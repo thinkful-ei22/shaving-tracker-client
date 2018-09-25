@@ -7,6 +7,11 @@ import {clearAuth} from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
 
 class NavBar extends React.Component {
+  logOut = () => {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const data = {
@@ -15,10 +20,6 @@ class NavBar extends React.Component {
     }
     // console.log(data);
     this.props.dispatch(login(data));
-  }
-  logOut = () => {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
   }
   render() {
     let error;
@@ -32,8 +33,8 @@ class NavBar extends React.Component {
     }
     if (this.props.isLogged) {
       msg = (
-      <div>Logged in</div>
-    );
+        <div className='test'>Logged in</div>
+      )
     }
     return (
       <div>
