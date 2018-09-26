@@ -30,11 +30,9 @@ export const addProduct = product => (dispatch, getState) => {
       },
       body: JSON.stringify(product)
     })
-      .then(res => {
-        return res.json();
-      })
-      // what are we doing with the store? add it to userProducts?
-      .then(data => console.log(data))
+      .then(res =>  res.json())
+      // should we populate the products in userProducts?
+      .then(data => dispatch(addProductSuccess(data)))
       .catch(err => dispatch(addProductError(err)))
   );
 };
