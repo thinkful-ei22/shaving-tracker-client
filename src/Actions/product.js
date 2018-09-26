@@ -19,6 +19,7 @@ export const addProductRequest = () => ({
 
 export const addProduct = product => (dispatch, getState) => {
   dispatch(addProductRequest());
+  let error;
   const authToken = getState().authReducer.authToken;
   return(
     fetch(`${API_BASE_URL}/products/personal`, {
@@ -30,13 +31,15 @@ export const addProduct = product => (dispatch, getState) => {
       },
       body: JSON.stringify(product)
     })
-      .then(res => res.json())
+      .then(res => {
+        error = res.ok;
+        return res.json();
+      })
       .then(data => {
-        console.log(data);
-        if (data.status !== 201) {
-          dispatch(addProductError(data));
+        if (error) {
+          dispatch(addProductSuccess(data));          
         } else {
-          dispatch(addProductSuccess(data));
+          dispatch(addProductError(data));
         } 
       })
       .catch(error => dispatch(addProductError(error)))
