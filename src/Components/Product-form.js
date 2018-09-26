@@ -7,18 +7,18 @@ class ProductForm extends React.Component {
     super(props);
 
     this.state = {
-      type: ['Subtypes']
+      type:['Subtypes','Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge']
     };
   }
   onSubmit(e) {
     e.preventDefault();
     const data = {
-      productType: e.target.productType.value,
+      productType: e.target.productType.value === '' ? null : e.target.productType.value,
       brand: e.target.brand.value,
       model: e.target.model.value,
       nickname: e.target.nickname.value,
       comment: e.target.comment.value,
-      subtype: e.target.subtype.value === 'subtypes' ? '' : e.target.subtype.value 
+      subtype: e.target.subtype.value === 'subtypes' ? null : e.target.subtype.value 
     };
     this.props.dispatch(addProduct(data));
   }
@@ -48,8 +48,7 @@ class ProductForm extends React.Component {
     return (
       <form onSubmit={e => this.onSubmit(e)}>
         <select onChange={e => this.handleProductChange(e)} name='productType' id='productType'>
-          <option value=''>Product Type</option>
-          <option value='razor'>Razor</option>
+          <option selected='selected' value='razor'>Razor</option>
           <option value='blade'>Blade</option> 
           <option value='brush'>Brush</option>
           <option value='lather'>Lather</option>
