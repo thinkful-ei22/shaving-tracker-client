@@ -39,6 +39,16 @@ class ProductForm extends React.Component {
   }
 
   render() {
+    let error;
+    console.log(this.props);
+    if (this.props.error) {
+      error = (
+        <div className="login-error" aria-live="polite">
+          {this.props.error.message}
+        </div>
+      );
+    }
+
     const typeList = this.state.type.map((type,index) => {
       return (
         <option value={type.toLowerCase()} key={index}>{type}</option>
@@ -47,8 +57,9 @@ class ProductForm extends React.Component {
 
     return (
       <form onSubmit={e => this.onSubmit(e)}>
+        {error}
         <select onChange={e => this.handleProductChange(e)} name='productType' id='productType'>
-          <option selected='selected' value='razor'>Razor</option>
+          <option defaultValue value='razor'>Razor</option>
           <option value='blade'>Blade</option> 
           <option value='brush'>Brush</option>
           <option value='lather'>Lather</option>
@@ -66,4 +77,10 @@ class ProductForm extends React.Component {
   }
 }
 
-export default connect()(ProductForm);
+const mapStateToProps = state => ({
+  loading: state.productReducer.loading,
+  error: state.productReducer.error,
+});
+
+
+export default connect(mapStateToProps)(ProductForm);

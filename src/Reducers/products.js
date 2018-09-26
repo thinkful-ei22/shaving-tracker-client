@@ -30,7 +30,7 @@ export function productReducer(state = initialState, action) {
     return({
       ...state, 
       loading: false,
-      error: action.err
+      error: action.error
     })
   }
   return state;

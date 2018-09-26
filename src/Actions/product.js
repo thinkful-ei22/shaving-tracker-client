@@ -30,9 +30,15 @@ export const addProduct = product => (dispatch, getState) => {
       },
       body: JSON.stringify(product)
     })
-      .then(res =>  res.json())
-      // should we populate the products in userProducts?
-      .then(data => dispatch(addProductSuccess(data)))
-      .catch(err => dispatch(addProductError(err)))
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.status !== 201) {
+          dispatch(addProductError(data));
+        } else {
+          dispatch(addProductSuccess(data));
+        } 
+      })
+      .catch(error => dispatch(addProductError(error)))
   );
 };
