@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { addProduct } from '../actions/product';
 
 class ProductForm extends React.Component {
   onSubmit(e) {
@@ -11,7 +12,7 @@ class ProductForm extends React.Component {
       nickname: e.target.nickname.value,
       comment: e.target.comment.value
     };
-    console.log(data);
+    this.props.dispatch(addProduct(data));
   }
 
   render() {
@@ -36,4 +37,4 @@ class ProductForm extends React.Component {
   }
 }
 
-export default ProductForm;
+export default connect()(ProductForm);
