@@ -40,7 +40,6 @@ class ProductForm extends React.Component {
 
   render() {
     let error;
-    console.log(this.props);
     if (this.props.error) {
       error = (
         <div className="login-error" aria-live="polite">
