@@ -33,9 +33,8 @@ export const addProduct = product => (dispatch, getState) => {
       .then(res => {
         return res.json();
       })
+      // what are we doing with the store? add it to userProducts?
       .then(data => console.log(data))
-      .catch(err => {
-
-      })
+      .catch(err => dispatch(addProductError(err)))
   );
 };
