@@ -2,25 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../actions/product';
 import './styles/shave-form.css';
+import { addShave } from '../actions/shave';
 
 class ShaveForm extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchProducts());
   }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const data = {
+      razorId : e.target.razor.value,
+      bladeId: e.target.blade.value,
+      brushId: e.target.brush.value,
+      latherId: e.target.lather.value,
+      aftershaveId: e.target.aftershave.value,
+      additionalCareId: e.target.additionalcare.value,
+      rating: e.target.rating.value,
+      date: e.target.date.value
+    };
+    this.props.dispatch(addShave(data));
+  }
   
   render() {
-    // for (let field in this.props.userProducts) {
-    //   if (field !== 'userId' && field !=='id') {
-    //     console.log(field);
-    //   }
-    // }
-    let razors;
-    let blades;
-    let brushes;
-    let lathers;
-    let aftershaves;
-    let additionalCares;
     let productsObj = {};
+    
     if (this.props.userProducts) {
       // initializes productsObj
       this.props.userProducts.forEach(product => {
@@ -31,33 +37,50 @@ class ShaveForm extends React.Component {
         productsObj[product.productType].push(product);
       });
     }
-    console.log(productsObj);
-
-    let productSelects = [];
+    
     for (let key in productsObj) {
-      console.log(key);
+      productsObj[key] = productsObj[key].map(product => {
+        return (
+          <option value={product.id} key={product.id}>{product.nickname}</option>
+        )
+      })
     }
-      
+
     return (
-      <form>
-        <select>
-          {razors}
+      <form onSubmit={e => this.onSubmit(e)}>
+        <h3>Add Shave</h3>
+        <label htmlFor='date'>Date</label>
+        <input type='date' id='date' name='date'/>
+        <label htmlFor='razor'>Razor</label>
+        <select id='razor' className='field-divided' name='razor'>
+          {productsObj ? productsObj.razor:null}
         </select>
-        <select>
-          {blades}
+        <label htmlFor='blade'>Blade</label>
+        <select id='blade' className='field-divided' name='blade'>
+          {productsObj ? productsObj.blade:null}
         </select>
-        <select>
-          {brushes}
+        <label htmlFor='brush'>Brush</label>
+        <select id='brush' name='brush'>
+          {productsObj ? productsObj.brush:null}
         </select>
-        <select>
-          {lathers}
+        <label htmlFor='lather'>Lather</label>
+        <select id='lather' name='lather'>
+          {productsObj ? productsObj.lather:null}
         </select>
-        <select>
-          {aftershaves}
+        <label htmlFor='aftershave'>Aftershave</label>
+        <select id='aftershave' name='aftershave'>
+          {productsObj ? productsObj.aftershave:null}
         </select>
-        <select>
-          {additionalCares}
+        <label htmlFor='additonalcare'>Additional Care</label>
+        <select id='additionalcare' name='additionalcare'>
+          {productsObj ? productsObj.additionalcare:null}
         </select>
+        <input type="radio" id="star5" name="rating" value='5'/>
+        <input type="radio" id="star4" name="rating" value='4'/>
+        <input type="radio" id="star3" name="rating" value='3'/>
+        <input type="radio" id="star2" name="rating" value='2'/>
+        <input type="radio" id="star1" name="rating" value='1'/>
+        <input type='submit' value='Submit'/>
       </form>
     );
   }
