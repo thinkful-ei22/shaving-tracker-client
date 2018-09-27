@@ -1,7 +1,7 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
-import {reducer as formReducer} from 'redux-form';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
-import {loadAuthToken} from './local-storage';
+import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth';
 import {userReducer} from './reducers/register';
 import {productReducer} from './reducers/products';
@@ -15,7 +15,7 @@ const store = createStore(
     userReducer,
     productReducer
   }),
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
 );
 
 const authToken = loadAuthToken();
