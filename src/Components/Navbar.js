@@ -39,6 +39,8 @@ class NavBar extends React.Component {
     return (
       <div>
         <h1><Link className='home-nav' to="/">Home</Link></h1>
+        <h5><Link className='collection-nav' to="/mycollection">My Collection</Link></h5>
+        
         {msg}
         <form className="form-login" onSubmit={e => this.onSubmit(e)}>
           {error}
@@ -55,9 +57,9 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.authReducer.loading,
-  error: state.authReducer.error,
-  isLogged: state.authReducer.loggedIn 
+  loading: state.auth.loading,
+  error: state.auth.error,
+  isLogged: state.auth.loggedIn 
 })
 
 export default connect(mapStateToProps)(NavBar);
