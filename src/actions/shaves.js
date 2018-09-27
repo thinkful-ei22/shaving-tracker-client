@@ -1,25 +1,25 @@
-import {API_BASE_URL} from '../config';
+import { API_BASE_URL } from '../config';
 
 export const GET_SHAVES_REQUEST = 'GET_SHAVES_REQUEST';
-export const getShavesRequest = () =>({
-  type: GET_SHAVES_REQUEST
+export const getShavesRequest = () => ({
+  type: GET_SHAVES_REQUEST,
 });
 
 export const GET_SHAVES_SUCCESS = 'GET_SHAVES_SUCCESS';
-export const getShavesSuccess = shaveHistory =>({
+export const getShavesSuccess = shaveHistory => ({
   type: GET_SHAVES_SUCCESS,
-  shaveHistory
+  shaveHistory,
 });
 
 export const GET_SHAVES_ERROR = 'GET_SHAVES_ERROR';
-export const getShavesError = error =>({
+export const getShavesError = error => ({
   type: GET_SHAVES_ERROR,
-  error
+  error,
 });
 
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
-  const authToken = getState().authReducer.authToken;
+  const authToken = getState().auth.authToken;
   
   return fetch(`${API_BASE_URL}/shaves`, {
       method: 'GET',
@@ -35,6 +35,7 @@ export const getShaves = () => (dispatch, getState) => {
       return res.json();
     })
     .then(res =>{
+      console.log('Success', res);
       dispatch(getShavesSuccess(res));
     })
     .catch(err =>{
