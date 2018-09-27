@@ -12,12 +12,12 @@ export const getShavesSuccess = shaveHistory =>({
 });
 
 export const GET_SHAVES_ERROR = 'GET_SHAVES_ERROR';
-export const getShavesError = () =>({
-  type: GET_SHAVES_ERROR
+export const getShavesError = error =>({
+  type: GET_SHAVES_ERROR,
+  error
 });
 
 export const getShaves = () => (dispatch, getState) => {
-  console.log('BEGIN GET SHAVES');
   dispatch(getShavesRequest());
   const authToken = getState().authReducer.authToken;
   
@@ -35,11 +35,10 @@ export const getShaves = () => (dispatch, getState) => {
       return res.json();
     })
     .then(res =>{
-      console.log('GET shaves success', res);
       dispatch(getShavesSuccess(res));
     })
     .catch(err =>{
-      console.log('Error:', err);
+      dispatch(getShavesError(`Error: ${err}`));
     });
 };
 

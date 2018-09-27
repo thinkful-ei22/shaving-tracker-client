@@ -37,8 +37,9 @@ class NavBar extends React.Component {
       )
     }
     return (
-      <div>
-        <h1><Link className='home-nav' to="/">Home</Link></h1>
+      <div className='nav'>
+        <h1><Link className='nav--home' to="/">Home</Link></h1>
+        <Link className='nav--shaves' to="/shaves">Shaves</Link>
         {msg}
         <form className="form-login" onSubmit={e => this.onSubmit(e)}>
           {error}
