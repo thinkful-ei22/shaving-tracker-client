@@ -86,7 +86,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     },
   })
     .then(res => res.json())
-    .then(({ newAuthToken }) => storeAuthInfo(newAuthToken, dispatch))
+    .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
     .catch((err) => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear

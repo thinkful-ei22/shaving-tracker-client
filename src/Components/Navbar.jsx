@@ -68,14 +68,14 @@ class NavBar extends Component {
 
 NavBar.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.object,
   isLogged: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
 NavBar.defaultProps = {
   loading: false,
-  error: '',
+  error: {},
   isLogged: false,
 };
 
