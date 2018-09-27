@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './styles/navbar.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, clearAuth } from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
 
 class NavBar extends Component {
+  constructor() {
+    super();
+    this.logOut = this.logOut.bind(this);
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const data = {
       username: e.target.username.value,
       password: e.target.password.value,
     };
-    // console.log(data);
     const { dispatch } = this.props;
     dispatch(login(data));
   }

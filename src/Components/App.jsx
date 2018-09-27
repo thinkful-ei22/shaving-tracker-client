@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles/App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LandingPage from './Landing-page';
-import NavBar from './Navbar';
+import LandingPage from './LandingPage';
+import NavBar from './NavBar';
 
 const App = () => (
   <Router>
