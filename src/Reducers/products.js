@@ -13,50 +13,50 @@ const initialState = {
   error: null,
 };
 
-export function productReducer(state = initialState, action) {
+export default function productReducer(state = initialState, action) {
   if (action.type === ADD_PRODUCT_REQUEST) {
     return ({
       ...state,
       loading: true,
-      error: null
-    })
+      error: null,
+    });
   }
-  else if (action.type === ADD_PRODUCT_SUCCESS) {
-    return({
-      ...state, 
+  if (action.type === ADD_PRODUCT_SUCCESS) {
+    return ({
+      ...state,
       loading: false,
       error: null,
-      userProducts: action.data
-    })
+      userProducts: action.data,
+    });
   }
-  else if (action.type === ADD_PRODUCT_ERROR) {
-    return({
-      ...state, 
+  if (action.type === ADD_PRODUCT_ERROR) {
+    return ({
+      ...state,
       loading: false,
-      error: action.error
-    })
+      error: action.error,
+    });
   }
-  else if (action.type === FETCH_PRODUCTS_SUCCESS) {
-    return({
-      ...state, 
+  if (action.type === FETCH_PRODUCTS_SUCCESS) {
+    return ({
+      ...state,
       loading: false,
       error: null,
-      userProducts: action.data
-    })
+      userProducts: action.data,
+    });
   }
-  else if (action.type === FETCH_PRODUCTS_ERROR) {
-    return({
-      ...state, 
+  if (action.type === FETCH_PRODUCTS_ERROR) {
+    return ({
+      ...state,
       loading: false,
-      error: action.error
-    })
+      error: action.error,
+    });
   }
-  else if (action.type === FETCH_PRODUCTS_REQUEST) {
-    return({
+  if (action.type === FETCH_PRODUCTS_REQUEST) {
+    return ({
       ...state,
       loading: true,
-      error: null
-    })
+      error: null,
+    });
   }
   return state;
 }
