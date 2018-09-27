@@ -29,7 +29,6 @@ export const registerUser = data => (dispatch) => {
     body: JSON.stringify(data),
   })
     .then((res) => {
-      console.log(res);
       if (!res.ok) {
         return Promise.reject(res.statusText);
       }
