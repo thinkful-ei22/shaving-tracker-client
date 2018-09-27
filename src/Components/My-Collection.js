@@ -59,28 +59,6 @@ class MyCollection extends React.Component {
           <Tab>Addtional Cares</Tab>
         </TabList>
         {collections}
-        {/* <TabPanel>
-          {collection}
-        </TabPanel>
-        <TabPanel>
-          {collection}
-        </TabPanel>
-        <TabPanel>
-          <p>Blades</p>
-        </TabPanel>
-        <TabPanel>
-          <p>Brushes</p>
-        </TabPanel>
-        <TabPanel>
-          <p>Lathers</p>
-        </TabPanel>
-        <TabPanel>
-          <p>Aftershaves</p>
-        </TabPanel>
-        <TabPanel>
-          <p>Additional Cares</p>
-        </TabPanel> */}
-        
       </Tabs>
     )
   }
