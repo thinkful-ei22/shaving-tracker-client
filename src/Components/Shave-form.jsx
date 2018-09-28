@@ -56,14 +56,26 @@ class ShaveForm extends React.Component {
       });
     }
 
-    for (const key in productsObj) {
+    const keys = Object.keys(productsObj);
+    keys.forEach((key) => {
       productsObj[key] = productsObj[key].map(product => (
         <option value={product.id} key={product.id}>{product.nickname}</option>
       ));
+    });
+
+    let errorMessage;
+    const { error } = this.props;
+    if (error) {
+      errorMessage = (
+        <div className="login-error" aria-live="polite">
+          {error.message}
+        </div>
+      );
     }
 
     return (
       <form onSubmit={e => this.onSubmit(e)}>
+        {errorMessage}
         <h3>Add Shave</h3>
         <label htmlFor="date">Date</label>
         <input type="date" id="date" name="date" />
@@ -104,8 +116,21 @@ class ShaveForm extends React.Component {
 
 ShaveForm.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.shape,
-  userProducts: PropTypes.arrayOf,
+  error: PropTypes.shape({
+    status: PropTypes.number,
+    message: PropTypes.string,
+  }),
+  userProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      nickname: PropTypes.string,
+      comment: PropTypes.string,
+      subtype: PropTypes.string,
+      brand: PropTypes.string,
+      model: PropTypes.string,
+      id: PropTypes.string,
+      productId: PropTypes.string,
+    }),
+  ),
   dispatch: PropTypes.func.isRequired,
 };
 

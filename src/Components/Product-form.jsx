@@ -50,8 +50,8 @@ class ProductForm extends React.Component {
       );
     }
 
-    const typeList = state.type.map((type, index) => (
-      <option value={type.toLowerCase()} key={index}>{type}</option>
+    const typeList = state.type.map(type => (
+      <option value={type.toLowerCase()} key={type}>{type}</option>
     ));
 
     return (
@@ -78,7 +78,10 @@ class ProductForm extends React.Component {
 
 ProductForm.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.shape,
+  error: PropTypes.shape({
+    status: PropTypes.number,
+    message: PropTypes.string,
+  }),
   dispatch: PropTypes.func.isRequired,
 };
 
