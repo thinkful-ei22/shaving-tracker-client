@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
-
+import requiresLogin from './requires-login';
 import './styles/mycollection.css';
 import { fetchCollection } from '../actions/get-collection';
 import CollectionCard from './Collection-card';
@@ -67,4 +67,5 @@ const mapStateToProps = state => ({
   error: state.collection.error,
 });
 
-export default connect(mapStateToProps)(MyCollection);
+
+export default requiresLogin()(connect(mapStateToProps)(MyCollection));
