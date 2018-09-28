@@ -31,7 +31,8 @@ class NavBar extends Component {
   render() {
     const { error, isLogged } = this.props;
     let errorMsg;
-    let loggedInStatusDisplay;
+    let loggedIn;
+    let loggedOut;
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
@@ -40,29 +41,34 @@ class NavBar extends Component {
       );
     }
     if (isLogged) {
-      loggedInStatusDisplay = (
-        <div className="test">Logged in</div>
+      loggedIn = (
+        <div>
+          <Link className="collection-nav" to="/mycollection">My Collection</Link>
+          <Link className="nav--shaves" to="/shaves">Shaves</Link>
+          <button type="button" onClick={this.logOut}>LOG OUT</button>
+        </div>
+      );
+    } else {
+      loggedOut = (
+        <form className="form-login" onSubmit={e => this.onSubmit(e)}>
+          <label htmlFor="user">
+          Username:
+            <input type="text" id="user" name="username" required />
+          </label>
+          <label htmlFor="password">
+          Password:
+            <input type="password" id="password" name="password" required />
+          </label>
+          <input type="submit" value="Login" className="login-button" />
+        </form>
       );
     }
     return (
       <div>
         <h1><Link className="home-nav" to="/">Home</Link></h1>
-        <h5><Link className="collection-nav" to="/mycollection">My Collection</Link></h5>
-        <Link className="nav--shaves" to="/shaves">Shaves</Link>
-        {loggedInStatusDisplay}
-        <form className="form-login" onSubmit={e => this.onSubmit(e)}>
-          {errorMsg}
-          <label htmlFor="user">
-            Username:
-            <input type="text" id="user" name="username" required />
-          </label>
-          <label htmlFor="password">
-            Password:
-            <input type="password" id="password" name="password" required />
-          </label>
-          <input type="submit" value="Login" className="login-button" />
-        </form>
-        <div><button type="button" onClick={this.logOut}>LOG OUT</button></div>
+        {errorMsg}
+        {loggedIn}
+        {loggedOut}
       </div>
     );
   }
