@@ -20,8 +20,8 @@ class ProductForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const data = {
-      productType: e.target.productType.value === '' ? null : e.target.productType.value,
-      brand: e.target.brand.value === '' ? null : e.target.brand.value,
+      productType: e.target.productType.value,
+      brand: e.target.brand.value,
       model: e.target.model.value,
       nickname: e.target.nickname.value,
       comment: e.target.comment.value,
@@ -33,13 +33,13 @@ class ProductForm extends React.Component {
 
   handleProductChange(e) {
     if (e.target.value === 'razor') {
-      this.setState({ types: ['Subtypes', 'Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'] });
+      this.setState({ types: ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'] });
     } else if (e.target.value === 'brush') {
-      this.setState({ types: ['Subtypes', 'Badger', 'Boar', 'Horse', 'Synthetic'] });
+      this.setState({ types: ['Badger', 'Boar', 'Horse', 'Synthetic'] });
     } else if (e.target.value === 'lather') {
-      this.setState({ types: ['Subtypes', 'Cream', 'Soap', 'Oil'] });
+      this.setState({ types: ['Cream', 'Soap', 'Oil'] });
     } else {
-      this.setState({ types: ['Subtypes'] });
+      this.setState({ types: [] });
     }
   }
 
@@ -96,7 +96,7 @@ class ProductForm extends React.Component {
           <option value="brush">Brush</option>
           <option value="lather">Lather</option>
           <option value="aftershave">Aftershave</option>
-          <option value="additonalcare">Additional Care</option>
+          <option value="additionalcare">Additional Care</option>
         </select>
         <label htmlFor="subtype">Select Product Subtype:</label>
         <select defaultValue="" className="col-5" id="subtype" name="subtype">

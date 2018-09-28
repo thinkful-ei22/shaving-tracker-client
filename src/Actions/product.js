@@ -19,7 +19,8 @@ export const addProductRequest = () => ({
 
 export const addProduct = product => (dispatch, getState) => {
   dispatch(addProductRequest());
-  let error;
+  console.log(product);
+
   const { authToken } = getState().auth;
   return (
     fetch(`${API_BASE_URL}/products/personal`, {
@@ -32,15 +33,14 @@ export const addProduct = product => (dispatch, getState) => {
       body: JSON.stringify(product),
     })
       .then((res) => {
-        error = res.ok;
+        console.log(res);
+        if (!res.ok) {
+          return Promise.reject('Unable to reach server');
+        }
         return res.json();
       })
       .then((data) => {
-        if (error) {
-          dispatch(addProductSuccess(data));
-        } else {
-          dispatch(addProductError(data));
-        }
+        dispatch(addProductSuccess(data));
       })
       .catch(error => dispatch(addProductError(error)))
   );

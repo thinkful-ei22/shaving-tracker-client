@@ -8,7 +8,7 @@ import {
 } from '../actions/product';
 
 const initialState = {
-  userProducts: null,
+  userProducts: [],
   loading: false,
   error: null,
 };
@@ -26,7 +26,7 @@ export default function productReducer(state = initialState, action) {
       ...state,
       loading: false,
       error: null,
-      userProducts: action.data,
+      userProducts: [...state.userProducts, action.data],
     });
   }
   if (action.type === ADD_PRODUCT_ERROR) {
