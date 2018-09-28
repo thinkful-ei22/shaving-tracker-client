@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
-import { addShave } from '../actions/shave';
+import { addShave } from '../actions/shaves';
 
 class ShaveForm extends React.Component {
   componentDidMount() {
@@ -82,50 +82,51 @@ class ShaveForm extends React.Component {
         {errorMessage}
         <h3>Add Shave</h3>
         <label htmlFor="date">
-          Date
-          <input className="col-5" type="date" id="date" name="date" />
+          <span>Date</span>
         </label>
+        <input className="col-5" type="date" id="date" name="date" />
         <label htmlFor="razor">
-          Razor
-          <select className="col-5" id="razor" name="razor">
-            {productsObj ? productsObj.razor : null}
-          </select>
+          <span>Select Razor:</span>
         </label>
-
+        <select className="col-5" id="razor" name="razor">
+          <option selected disabled>Razor</option>
+          {productsObj ? productsObj.razor : null}
+        </select>
         <label htmlFor="blade">
-          Blade
-          <select className="col-5" id="blade" name="blade">
-            {productsObj ? productsObj.blade : null}
-          </select>
+          <span>Select Blade:</span>
         </label>
-
+        <select className="col-5" id="blade" name="blade">
+          <option selected disabled>Blade</option>
+          {productsObj ? productsObj.blade : null}
+        </select>
         <label htmlFor="brush">
-          Brush
-          <select className="col-5" id="brush" name="brush">
-            {productsObj ? productsObj.brush : null}
-          </select>
+          <span>Select Brush:</span>
         </label>
-
+        <select className="col-5" id="brush" name="brush">
+          <option selected disabled>Brush</option>
+          {productsObj ? productsObj.brush : null}
+        </select>
         <label htmlFor="lather">
-          Lather
-          <select className="col-5" id="lather" name="lather">
-            {productsObj ? productsObj.lather : null}
-          </select>
+          <span>Select Lather:</span>
         </label>
-
+        <select className="col-5" id="lather" name="lather">
+          <option selected disabled>Lather</option>
+          {productsObj ? productsObj.lather : null}
+        </select>
         <label htmlFor="aftershave">
-          Aftershave
-          <select className="col-5" id="aftershave" name="aftershave">
-            {productsObj ? productsObj.aftershave : null}
-          </select>
+          <span>Select Aftershave:</span>
         </label>
-
-        <label htmlFor="additonalcare">
-          Additional Care
-          <select className="col-5" id="additionalcare" name="additionalcare">
-            {productsObj ? productsObj.additionalcare : null}
-          </select>
+        <select className="col-5" id="aftershave" name="aftershave">
+          <option selected disabled>Aftershave</option>
+          {productsObj ? productsObj.aftershave : null}
+        </select>
+        <label htmlFor="additionalcare">
+          <span>Select Additional Care:</span>
         </label>
+        <select className="col-5" id="additionalcare" name="additionalcare">
+          <option selected disabled>Additional Care</option>
+          {productsObj ? productsObj.additionalcare : null}
+        </select>
 
         <fieldset className="rating">
           <legend>Rating:</legend>

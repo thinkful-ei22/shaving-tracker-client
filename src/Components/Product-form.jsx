@@ -10,7 +10,7 @@ class ProductForm extends React.Component {
     super(props);
 
     this.state = {
-      type: ['Subtypes', 'Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'],
+      type: ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'],
     };
   }
 
@@ -66,7 +66,9 @@ class ProductForm extends React.Component {
         <h3>Add Product</h3>
         {errorMessage}
         {loadingWheel}
+        <label htmlFor="productType">Select Product Type: </label>
         <select className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
+          <option selected disabled>Product Type</option>
           <option defaultValue value="razor">Razor</option>
           <option value="blade">Blade</option>
           <option value="brush">Brush</option>
@@ -74,13 +76,27 @@ class ProductForm extends React.Component {
           <option value="aftershave">Aftershave</option>
           <option value="additonalcare">Additional Care</option>
         </select>
+        <label htmlFor="subtype">Select Product Subtype:</label>
         <select className="col-5" id="subtype" name="subtype">
+          <option selected disabled>Subtype</option>
           {typeList}
         </select>
-        <input className="col-5" name="brand" placeholder="brand" />
-        <input className="col-5" name="model" placeholder="model" />
-        <input className="col-5" name="nickname" placeholder="nickname" />
-        <textarea className="col-5" name="comment" placeholder="Comment/Notes" />
+        <label htmlFor="brand">
+          <span>Brand</span>
+        </label>
+        <input className="col-5" id="brand" name="brand" placeholder="brand" />
+        <label htmlFor="model">
+          <span>Model</span>
+        </label>
+        <input className="col-5" id="model" name="model" placeholder="model" />
+        <label htmlFor="nickname">
+          <span>Nickname</span>
+        </label>
+        <input className="col-5" id="nickname" name="nickname" placeholder="nickname" />
+        <label htmlFor="comment">
+          <span>Comments</span>
+        </label>
+        <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
         <button className="col-3" type="submit">Submit</button>
       </form>
     );
