@@ -1,6 +1,5 @@
 /* eslint-env browser */
 import jwtDecode from 'jwt-decode';
-// import { SubmissionError } from 'redux-form';
 
 import { API_BASE_URL } from '../config';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
@@ -43,41 +42,33 @@ const storeAuthInfo = (authToken, dispatch) => {
 };
 
 export const login = data => (dispatch) => {
-  console.log('login was called');
   dispatch(authRequest());
-  return (
-    fetch(`${API_BASE_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+
+  return fetch(`${API_BASE_URL}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
     // Reject any requests which don't return a 200 status, creating
     // errors which follow a consistent format
-      .then(res => res.json())
-      .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
-      .catch((err) => {
-        // const {code} = err;
-        // const message =
-        //     code === 401
-        //         ? 'Incorrect username or password'
-        //         : 'Unable to login, please try again';
-        dispatch(authError(err));
-        // Could not authenticate, so return a SubmissionError for Redux
-        // Form
-        //     return Promise.reject(
-        //         new SubmissionError({
-        //             _error: message
-        //         })
-        //     );
-      })
-  );
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return (res.json());
+    })
+    .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
+    .catch((err) => {
+      dispatch(authError(err));
+    });
 };
 
 export const refreshAuthToken = () => (dispatch, getState) => {
+  const { authToken } = getState().auth;
   dispatch(authRequest());
-  const { authToken } = getState().authReducer;
+
   return fetch(`${API_BASE_URL}/refresh`, {
     method: 'POST',
     headers: {
@@ -85,8 +76,13 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       Authorization: `Bearer ${authToken}`,
     },
   })
-    .then(res => res.json())
-    .then(({ newAuthToken }) => storeAuthInfo(newAuthToken, dispatch))
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return (res.json());
+    })
+    .then(({ authToken }) => storeAuthInfo(authToken, dispatch)) // eslint-disable-line no-shadow
     .catch((err) => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear

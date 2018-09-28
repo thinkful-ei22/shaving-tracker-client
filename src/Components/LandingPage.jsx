@@ -60,22 +60,22 @@ class LandingPage extends React.Component {
 }
 
 LandingPage.propTypes = {
-  loading: PropTypes.bool,
+  // loading: PropTypes.bool,
   error: PropTypes.string,
   isLogged: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
 LandingPage.defaultProps = {
-  loading: false,
+  // loading: false,
   error: '',
   isLogged: false,
 };
 
 const mapStateToProps = state => ({
-  isLogged: state.userReducer.isLogged,
-  loading: state.userReducer.loading,
-  error: state.userReducer.error,
+  isLogged: state.user.isLogged,
+  loading: state.user.loading,
+  error: state.user.error,
 });
 
 export default connect(mapStateToProps)(LandingPage);

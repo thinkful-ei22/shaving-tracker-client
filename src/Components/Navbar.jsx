@@ -35,7 +35,7 @@ class NavBar extends Component {
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
-            Incorrect username or password
+          Incorrect username or password
         </div>
       );
     }
@@ -47,6 +47,8 @@ class NavBar extends Component {
     return (
       <div>
         <h1><Link className="home-nav" to="/">Home</Link></h1>
+        <h5><Link className="collection-nav" to="/mycollection">My Collection</Link></h5>
+        <Link className="nav--shaves" to="/shaves">Shaves</Link>
         {loggedInStatusDisplay}
         <form className="form-login" onSubmit={e => this.onSubmit(e)}>
           {errorMsg}
@@ -67,22 +69,22 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  loading: PropTypes.bool,
+  // loading: PropTypes.bool,
   error: PropTypes.string,
   isLogged: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
 NavBar.defaultProps = {
-  loading: false,
+  // loading: false,
   error: '',
   isLogged: false,
 };
 
 const mapStateToProps = state => ({
-  loading: state.authReducer.loading,
-  error: state.authReducer.error,
-  isLogged: state.authReducer.loggedIn,
+  loading: state.auth.loading,
+  error: state.auth.error,
+  isLogged: state.auth.loggedIn,
 });
 
 export default connect(mapStateToProps)(NavBar);

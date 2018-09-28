@@ -1,17 +1,13 @@
-import {
-  REGISTER_REQUEST,
-  REGISTER_SUCCESS,
-  REGISTER_ERROR,
-} from '../actions/register';
+import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_ERROR } from '../actions/get-collection';
 
 const initialState = {
-  isLogged: false,
+  products: [],
   loading: false,
   error: null,
 };
 
-export default function userReducer(state = initialState, action) {
-  if (action.type === REGISTER_REQUEST) {
+export default function collectionReducer(state = initialState, action) {
+  if (action.type === FETCH_REQUEST) {
     console.log('request being made');
     return {
       ...state,
@@ -19,16 +15,16 @@ export default function userReducer(state = initialState, action) {
       error: null,
     };
   }
-  if (action.type === REGISTER_SUCCESS) {
-    console.log('Registered successfully');
+  if (action.type === FETCH_SUCCESS) {
+    console.log('successful request,', action.data);
     return {
       ...state,
-      isLogged: action.data,
       loading: false,
       error: null,
+      products: action.data,
     };
   }
-  if (action.type === REGISTER_ERROR) {
+  if (action.type === FETCH_ERROR) {
     console.log('Error with request');
     return {
       ...state,
