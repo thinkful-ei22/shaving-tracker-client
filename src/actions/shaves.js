@@ -1,3 +1,4 @@
+/* eslint-env browser */
 import { API_BASE_URL } from '../config';
 
 export const GET_SHAVES_REQUEST = 'GET_SHAVES_REQUEST';
@@ -19,28 +20,26 @@ export const getShavesError = error => ({
 
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
-  const authToken = getState().auth.authToken;
-  
+  const { authToken } = getState().auth;
+
   return fetch(`${API_BASE_URL}/shaves`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`
-      },
-    })
-    .then(res =>{
-      if(!res.ok){
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
         return Promise.reject(res.statusText);
       }
       return res.json();
     })
-    .then(res =>{
+    .then((res) => {
       console.log('Success', res);
       dispatch(getShavesSuccess(res));
     })
-    .catch(err =>{
+    .catch((err) => {
       dispatch(getShavesError(`Error: ${err}`));
     });
 };
-
-

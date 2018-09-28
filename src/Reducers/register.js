@@ -1,4 +1,8 @@
-import { REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_ERROR } from '../actions/register';
+import {
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR,
+} from '../actions/register';
 
 const initialState = {
   isLogged: false,

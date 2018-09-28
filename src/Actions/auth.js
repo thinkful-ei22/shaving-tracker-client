@@ -42,35 +42,34 @@ const storeAuthInfo = (authToken, dispatch) => {
 };
 
 export const login = data => (dispatch) => {
-  console.log('login was called');
   dispatch(authRequest());
-  return (
-    fetch(`${API_BASE_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+
+  return fetch(`${API_BASE_URL}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
     // Reject any requests which don't return a 200 status, creating
     // errors which follow a consistent format
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(res.statusText);
-        }
-        return (res.json());
-      })
-      .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
-      .catch((err) => {
-        dispatch(authError(err));
-      })
-  );
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return (res.json());
+    })
+    .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
+    .catch((err) => {
+      dispatch(authError(err));
+    });
 };
 
 export const refreshAuthToken = () => (dispatch, getState) => {
-  dispatch(authRequest());
   const { authToken } = getState().auth;
-  fetch(`${API_BASE_URL}/refresh`, {
+  dispatch(authRequest());
+
+  return fetch(`${API_BASE_URL}/refresh`, {
     method: 'POST',
     headers: {
       // Provide our existing token as credentials to get a new one
