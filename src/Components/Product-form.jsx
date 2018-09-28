@@ -18,7 +18,7 @@ class ProductForm extends React.Component {
     e.preventDefault();
     const data = {
       productType: e.target.productType.value === '' ? null : e.target.productType.value,
-      brand: e.target.brand.value,
+      brand: e.target.brand.value === '' ? null : e.target.brand.value,
       model: e.target.model.value,
       nickname: e.target.nickname.value,
       comment: e.target.comment.value,
@@ -67,9 +67,9 @@ class ProductForm extends React.Component {
         {errorMessage}
         {loadingWheel}
         <label htmlFor="productType">Select Product Type: </label>
-        <select className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
-          <option selected disabled>Product Type</option>
-          <option defaultValue value="razor">Razor</option>
+        <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
+          <option value="" disabled>Product Type</option>
+          <option value="razor">Razor</option>
           <option value="blade">Blade</option>
           <option value="brush">Brush</option>
           <option value="lather">Lather</option>
@@ -77,8 +77,8 @@ class ProductForm extends React.Component {
           <option value="additonalcare">Additional Care</option>
         </select>
         <label htmlFor="subtype">Select Product Subtype:</label>
-        <select className="col-5" id="subtype" name="subtype">
-          <option selected disabled>Subtype</option>
+        <select defaultValue="" className="col-5" id="subtype" name="subtype">
+          <option value="" disabled>Subtype</option>
           {typeList}
         </select>
         <label htmlFor="brand">
