@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchProducts } from '../actions/product';
 import './styles/shave-form.css';
-import './styles/loader.css';
 import { addShave } from '../actions/shave';
 
 class ShaveForm extends React.Component {
