@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchProducts } from '../actions/product';
-import './styles/shave-form.css';
+import './styles/form.css';
+import './styles/stars.css';
 import { addShave } from '../actions/shave';
 
 class ShaveForm extends React.Component {
@@ -126,12 +127,23 @@ class ShaveForm extends React.Component {
           </select>
         </label>
 
-        <input type="radio" id="star5" name="rating" value="5" />
-        <input type="radio" id="star4" name="rating" value="4" />
-        <input type="radio" id="star3" name="rating" value="3" />
-        <input type="radio" id="star2" name="rating" value="2" />
-        <input type="radio" id="star1" name="rating" value="1" />
-        <input type="submit" value="Submit" />
+        <fieldset className="rating">
+          <legend>Rating:</legend>
+          <input type="radio" id="star5" name="rating" value="5" />
+          <label htmlFor="star5" className="full" />
+          <input type="radio" id="star4" name="rating" value="4" />
+          <label htmlFor="star4" className="full" />
+          <input type="radio" id="star3" name="rating" value="3" />
+          <label htmlFor="star3" className="full" />
+          <input type="radio" id="star2" name="rating" value="2" />
+          <label htmlFor="star2" className="full" />
+          <input type="radio" id="star1" name="rating" value="1" />
+          <label htmlFor="star1" className="full" />
+        </fieldset>
+        <div>
+          <input type="submit" value="Submit" />
+        </div>
+
       </form>
     );
   }
