@@ -20,7 +20,7 @@ export const addProductRequest = () => ({
 export const addProduct = product => (dispatch, getState) => {
   dispatch(addProductRequest());
   let error;
-  const { authToken } = getState().authReducer;
+  const { authToken } = getState().auth;
   return (
     fetch(`${API_BASE_URL}/products/personal`, {
       method: 'POST',
@@ -65,7 +65,7 @@ export const fetchProductsRequest = () => ({
 
 export const fetchProducts = () => (dispatch, getState) => {
   dispatch(fetchProductsRequest());
-  const { authToken } = getState().authReducer;
+  const { authToken } = getState().auth;
   return (
     fetch(`${API_BASE_URL}/products/personal`, {
       method: 'GET',

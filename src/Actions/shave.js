@@ -18,7 +18,7 @@ export const addShaveRequest = () => ({
 });
 
 export const addShave = shave => (dispatch, getState) => {
-  const { authToken } = getState().authReducer;
+  const { authToken } = getState().auth;
   return (
     fetch(`${API_BASE_URL}/shaves/`, {
       method: 'POST',

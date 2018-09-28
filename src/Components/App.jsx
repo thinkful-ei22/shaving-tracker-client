@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LandingPage from './LandingPage';
+import LandingPage from './Landing-page';
 import MyCollection from './My-Collection';
-import NavBar from './NavBar';
+import NavBar from './Navbar';
 import ProductForm from './Product-form';
 import ShaveForm from './Shave-form';
 
