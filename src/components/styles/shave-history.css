@@ -1,0 +1,13 @@
+.shave-list{
+  max-width: 1000px;
+  border: 1px solid black;
+
+}
+
+.shave-list-item{
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  width: 300px;
+  border: 1px solid darkgreen;
+}

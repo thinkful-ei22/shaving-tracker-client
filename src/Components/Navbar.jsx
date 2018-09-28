@@ -35,7 +35,7 @@ class NavBar extends Component {
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
-            Incorrect username or password
+          Incorrect username or password
         </div>
       );
     }
@@ -48,6 +48,7 @@ class NavBar extends Component {
       <div>
         <h1><Link className="home-nav" to="/">Home</Link></h1>
         <h5><Link className="collection-nav" to="/mycollection">My Collection</Link></h5>
+        <Link className="nav--shaves" to="/shaves">Shaves</Link>
         {loggedInStatusDisplay}
         <form className="form-login" onSubmit={e => this.onSubmit(e)}>
           {errorMsg}
@@ -68,14 +69,17 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.object,
+  // loading: PropTypes.bool,
+  error: PropTypes.shape({
+    status: PropTypes.number,
+    message: PropTypes.string,
+  }),
   isLogged: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
 NavBar.defaultProps = {
-  loading: false,
+  // loading: false,
   error: {},
   isLogged: false,
 };
