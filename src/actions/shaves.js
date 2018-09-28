@@ -36,7 +36,6 @@ export const getShaves = () => (dispatch, getState) => {
       return res.json();
     })
     .then((res) => {
-      console.log('Success', res);
       dispatch(getShavesSuccess(res));
     })
     .catch((err) => {

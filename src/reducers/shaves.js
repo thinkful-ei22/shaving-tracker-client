@@ -14,7 +14,6 @@ const initialState = {
 };
 
 export default function shaveReducer(state = initialState, action) {
-  console.log('In shave reducer. action.type:', action.type);
   switch (action.type) {
     case GET_SHAVES_REQUEST:
       return {
