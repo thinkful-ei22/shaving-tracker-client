@@ -176,9 +176,9 @@ ShaveForm.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  loading: state.productReducer.loading,
-  error: state.productReducer.error,
-  userProducts: state.productReducer.userProducts,
+  loading: state.product.loading,
+  error: state.product.error,
+  userProducts: state.product.userProducts,
 });
 
 export default connect(mapStateToProps)(ShaveForm);

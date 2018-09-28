@@ -73,9 +73,9 @@ LandingPage.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  isLogged: state.userReducer.isLogged,
-  loading: state.userReducer.loading,
-  error: state.userReducer.error,
+  isLogged: state.user.isLogged,
+  loading: state.user.loading,
+  error: state.user.error,
 });
 
 export default connect(mapStateToProps)(LandingPage);

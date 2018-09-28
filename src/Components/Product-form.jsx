@@ -98,8 +98,8 @@ ProductForm.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  loading: state.productReducer.loading,
-  error: state.productReducer.error,
+  loading: state.product.loading,
+  error: state.product.error,
 });
 
 
