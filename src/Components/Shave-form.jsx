@@ -30,12 +30,12 @@ class ShaveForm extends React.Component {
     today = `${yyyy}-${mm}-${dd}`;
 
     const data = {
-      razorId: e.target.razor.value,
-      bladeId: e.target.blade.value,
-      brushId: e.target.brush.value,
-      latherId: e.target.lather.value,
-      aftershaveId: e.target.aftershave.value,
-      additionalCareId: e.target.additionalcare.value,
+      razorId: e.target.razor.value ? e.target.razor.value : null,
+      bladeId: e.target.blade.value ? e.target.blade.value : null,
+      brushId: e.target.brush.value ? e.target.brush.value : null,
+      latherId: e.target.lather.value ? e.target.lather.value : null,
+      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
+      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
     };
@@ -88,43 +88,43 @@ class ShaveForm extends React.Component {
         <label htmlFor="razor">
           <span>Select Razor:</span>
         </label>
-        <select className="col-5" id="razor" name="razor">
-          <option selected disabled>Razor</option>
+        <select defaultValue="" className="col-5" id="razor" name="razor">
+          <option value="" disabled>Razor</option>
           {productsObj ? productsObj.razor : null}
         </select>
         <label htmlFor="blade">
           <span>Select Blade:</span>
         </label>
-        <select className="col-5" id="blade" name="blade">
-          <option selected disabled>Blade</option>
+        <select defaultValue="" className="col-5" id="blade" name="blade">
+          <option value="" disabled>Blade</option>
           {productsObj ? productsObj.blade : null}
         </select>
         <label htmlFor="brush">
           <span>Select Brush:</span>
         </label>
-        <select className="col-5" id="brush" name="brush">
-          <option selected disabled>Brush</option>
+        <select defaultValue="" className="col-5" id="brush" name="brush">
+          <option value="" disabled>Brush</option>
           {productsObj ? productsObj.brush : null}
         </select>
         <label htmlFor="lather">
           <span>Select Lather:</span>
         </label>
-        <select className="col-5" id="lather" name="lather">
-          <option selected disabled>Lather</option>
+        <select defaultValue="" className="col-5" id="lather" name="lather">
+          <option value="" disabled>Lather</option>
           {productsObj ? productsObj.lather : null}
         </select>
         <label htmlFor="aftershave">
           <span>Select Aftershave:</span>
         </label>
-        <select className="col-5" id="aftershave" name="aftershave">
-          <option selected disabled>Aftershave</option>
+        <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
+          <option value="" disabled>Aftershave</option>
           {productsObj ? productsObj.aftershave : null}
         </select>
         <label htmlFor="additionalcare">
           <span>Select Additional Care:</span>
         </label>
-        <select className="col-5" id="additionalcare" name="additionalcare">
-          <option selected disabled>Additional Care</option>
+        <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
+          <option value="" disabled>Additional Care</option>
           {productsObj ? productsObj.additionalcare : null}
         </select>
 
