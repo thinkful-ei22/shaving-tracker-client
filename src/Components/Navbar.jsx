@@ -49,6 +49,8 @@ class NavBar extends Component {
         <h1><Link className="home-nav" to="/">Home</Link></h1>
         <h5><Link className="collection-nav" to="/mycollection">My Collection</Link></h5>
         <Link className="nav--shaves" to="/shaves">Shaves</Link>
+        <Link to="/shave-form">Add Shave</Link>
+        <Link to="/product-form">Add Product</Link>
         {loggedInStatusDisplay}
         <form className="form-login" onSubmit={e => this.onSubmit(e)}>
           {errorMsg}

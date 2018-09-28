@@ -78,51 +78,51 @@ class ShaveForm extends React.Component {
     }
 
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form className="form" onSubmit={e => this.onSubmit(e)}>
         {errorMessage}
         <h3>Add Shave</h3>
         <label htmlFor="date">
           Date
-          <input type="date" id="date" name="date" />
+          <input className="col-5" type="date" id="date" name="date" />
         </label>
         <label htmlFor="razor">
           Razor
-          <select id="razor" name="razor">
+          <select className="col-5" id="razor" name="razor">
             {productsObj ? productsObj.razor : null}
           </select>
         </label>
 
         <label htmlFor="blade">
           Blade
-          <select id="blade" name="blade">
+          <select className="col-5" id="blade" name="blade">
             {productsObj ? productsObj.blade : null}
           </select>
         </label>
 
         <label htmlFor="brush">
           Brush
-          <select id="brush" name="brush">
+          <select className="col-5" id="brush" name="brush">
             {productsObj ? productsObj.brush : null}
           </select>
         </label>
 
         <label htmlFor="lather">
           Lather
-          <select id="lather" name="lather">
+          <select className="col-5" id="lather" name="lather">
             {productsObj ? productsObj.lather : null}
           </select>
         </label>
 
         <label htmlFor="aftershave">
           Aftershave
-          <select id="aftershave" name="aftershave">
+          <select className="col-5" id="aftershave" name="aftershave">
             {productsObj ? productsObj.aftershave : null}
           </select>
         </label>
 
         <label htmlFor="additonalcare">
           Additional Care
-          <select id="additionalcare" name="additionalcare">
+          <select className="col-5" id="additionalcare" name="additionalcare">
             {productsObj ? productsObj.additionalcare : null}
           </select>
         </label>

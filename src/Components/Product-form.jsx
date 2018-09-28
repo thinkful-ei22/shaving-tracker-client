@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './styles/loader.css';
+import './styles/form.css';
 import PropTypes from 'prop-types';
 import { addProduct } from '../actions/product';
 
@@ -61,10 +62,11 @@ class ProductForm extends React.Component {
     ));
 
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form className="form" onSubmit={e => this.onSubmit(e)}>
+        <h3>Add Product</h3>
         {errorMessage}
         {loadingWheel}
-        <select onChange={e => this.handleProductChange(e)} name="productType" id="productType">
+        <select className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
           <option defaultValue value="razor">Razor</option>
           <option value="blade">Blade</option>
           <option value="brush">Brush</option>
@@ -72,12 +74,14 @@ class ProductForm extends React.Component {
           <option value="aftershave">Aftershave</option>
           <option value="additonalcare">Additional Care</option>
         </select>
-        <select id="subtype" name="subtype">{typeList}</select>
-        <input name="brand" placeholder="brand" />
-        <input name="model" placeholder="model" />
-        <input name="nickname" placeholder="nickname" />
-        <textarea name="comment" placeholder="Comment/Notes" />
-        <button type="submit">Submit</button>
+        <select className="col-5" id="subtype" name="subtype">
+          {typeList}
+        </select>
+        <input className="col-5" name="brand" placeholder="brand" />
+        <input className="col-5" name="model" placeholder="model" />
+        <input className="col-5" name="nickname" placeholder="nickname" />
+        <textarea className="col-5" name="comment" placeholder="Comment/Notes" />
+        <button className="col-3" type="submit">Submit</button>
       </form>
     );
   }
