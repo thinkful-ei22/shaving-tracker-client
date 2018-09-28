@@ -10,7 +10,10 @@ class ProductForm extends React.Component {
     super(props);
 
     this.state = {
-      type: ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'],
+      types: ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'],
+      brand: '',
+      model: '',
+      nickname: '',
     };
   }
 
@@ -30,21 +33,40 @@ class ProductForm extends React.Component {
 
   handleProductChange(e) {
     if (e.target.value === 'razor') {
-      this.setState({ type: ['Subtypes', 'Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'] });
+      this.setState({ types: ['Subtypes', 'Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'] });
     } else if (e.target.value === 'brush') {
-      this.setState({ type: ['Subtypes', 'Badger', 'Boar', 'Horse', 'Synthetic'] });
+      this.setState({ types: ['Subtypes', 'Badger', 'Boar', 'Horse', 'Synthetic'] });
     } else if (e.target.value === 'lather') {
-      this.setState({ type: ['Subtypes', 'Cream', 'Soap', 'Oil'] });
+      this.setState({ types: ['Subtypes', 'Cream', 'Soap', 'Oil'] });
     } else {
-      this.setState({ type: ['Subtypes'] });
+      this.setState({ types: ['Subtypes'] });
     }
+  }
+
+  handleNickname(e) {
+    if (e.target.name === 'brand') {
+      this.setState({ brand: e.target.value }, () => {
+        const { brand, model } = this.state;
+        this.setState({ nickname: `${brand} ${model}` });
+      });
+    }
+    if (e.target.name === 'model') {
+      this.setState({ model: e.target.value }, () => {
+        const { brand, model } = this.state;
+        this.setState({ nickname: `${brand} ${model}` });
+      });
+    }
+  }
+
+  handleNicknameChange(e) {
+    this.setState({ nickname: e.target.value });
   }
 
   render() {
     let errorMessage;
     let loadingWheel;
     const { error, loading } = this.props;
-    const { state } = this;
+    const { types, nickname } = this.state;
     if (error) {
       errorMessage = (
         <div className="login-error" aria-live="polite">
@@ -57,7 +79,7 @@ class ProductForm extends React.Component {
       loadingWheel = <div className="loader" />;
     }
 
-    const typeList = state.type.map(type => (
+    const typeList = types.map(type => (
       <option value={type.toLowerCase()} key={type}>{type}</option>
     ));
 
@@ -84,15 +106,15 @@ class ProductForm extends React.Component {
         <label htmlFor="brand">
           <span>Brand</span>
         </label>
-        <input className="col-5" id="brand" name="brand" placeholder="brand" />
+        <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} />
         <label htmlFor="model">
           <span>Model</span>
         </label>
-        <input className="col-5" id="model" name="model" placeholder="model" />
+        <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} />
         <label htmlFor="nickname">
           <span>Nickname</span>
         </label>
-        <input className="col-5" id="nickname" name="nickname" placeholder="nickname" />
+        <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
         <label htmlFor="comment">
           <span>Comments</span>
         </label>
