@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './styles/loader.css';
 import PropTypes from 'prop-types';
 import { addProduct } from '../actions/product';
 
@@ -40,7 +41,8 @@ class ProductForm extends React.Component {
 
   render() {
     let errorMessage;
-    const { error } = this.props;
+    let loadingWheel;
+    const { error, loading } = this.props;
     const { state } = this;
     if (error) {
       errorMessage = (
@@ -50,6 +52,10 @@ class ProductForm extends React.Component {
       );
     }
 
+    if (loading) {
+      loadingWheel = <div className="loader" />;
+    }
+
     const typeList = state.type.map(type => (
       <option value={type.toLowerCase()} key={type}>{type}</option>
     ));
@@ -57,6 +63,7 @@ class ProductForm extends React.Component {
     return (
       <form onSubmit={e => this.onSubmit(e)}>
         {errorMessage}
+        {loadingWheel}
         <select onChange={e => this.handleProductChange(e)} name="productType" id="productType">
           <option defaultValue value="razor">Razor</option>
           <option value="blade">Blade</option>
