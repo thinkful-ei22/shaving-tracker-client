@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles/landing-page.css';
 import { connect } from 'react-redux';
-import { registerUser } from '../actions/register';
+import { registerUser } from '../Actions/register';
 
 class LandingPage extends React.Component {
   onSubmit(e) {
