@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './styles/App.css';
-import store from '../store';
 import LandingPage from './LandingPage';
 import MyCollection from './My-Collection';
 import ShaveHistory from './Shave-history';
 import NavBar from './Navbar';
+import store from '../store';
 
 const App = () => (
   <Provider store={store}>
@@ -21,6 +21,5 @@ const App = () => (
     </Router>
   </Provider>
 );
-
 
 export default App;

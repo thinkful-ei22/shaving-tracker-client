@@ -6,8 +6,8 @@ import authReducer from './reducers/auth';
 import userReducer from './reducers/register';
 import shaveReducer from './reducers/shaves';
 import collectionReducer from './reducers/get-collection';
-import { loadAuthToken } from './local-storage';
-import { setAuthToken, refreshAuthToken } from './actions/auth';
+
+import localStorageHandler from './middleware/localStorage';
 
 
 const store = createStore(
@@ -18,14 +18,7 @@ const store = createStore(
     collection: collectionReducer,
     shaves: shaveReducer,
   }),
-  applyMiddleware(thunk),
+  applyMiddleware(localStorageHandler, thunk),
 );
-
-const authToken = loadAuthToken();
-if (authToken) {
-  const token = authToken;
-  store.dispatch(setAuthToken(token));
-  store.dispatch(refreshAuthToken());
-}
 
 export default store;

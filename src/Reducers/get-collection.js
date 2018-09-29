@@ -8,7 +8,6 @@ const initialState = {
 
 export default function collectionReducer(state = initialState, action) {
   if (action.type === FETCH_REQUEST) {
-    console.log('request being made');
     return {
       ...state,
       loading: true,
@@ -16,7 +15,6 @@ export default function collectionReducer(state = initialState, action) {
     };
   }
   if (action.type === FETCH_SUCCESS) {
-    console.log('successful request,', action.data);
     return {
       ...state,
       loading: false,
@@ -25,7 +23,6 @@ export default function collectionReducer(state = initialState, action) {
     };
   }
   if (action.type === FETCH_ERROR) {
-    console.log('Error with request');
     return {
       ...state,
       loading: false,

@@ -4,6 +4,7 @@ import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
   AUTH_ERROR,
+  LOAD_AUTH_TOKEN,
 } from '../actions/auth';
 
 const initialState = {
@@ -15,7 +16,11 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  if (action.type === SET_AUTH_TOKEN) {
+  if (action.type === LOAD_AUTH_TOKEN) {
+    return Object.assign({}, state, {
+      authToken: action.authToken,
+    });
+  } if (action.type === SET_AUTH_TOKEN) {
     return Object.assign({}, state, {
       authToken: action.authToken,
     });
