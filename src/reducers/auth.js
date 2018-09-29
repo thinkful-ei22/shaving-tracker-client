@@ -5,7 +5,7 @@ import {
   AUTH_SUCCESS,
   AUTH_ERROR,
   LOAD_AUTH_TOKEN,
-} from '../Actions/auth';
+} from '../actions/auth';
 
 const initialState = {
   loggedIn: false,

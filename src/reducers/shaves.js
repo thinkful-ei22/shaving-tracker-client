@@ -2,7 +2,7 @@ import {
   GET_SHAVES_REQUEST,
   GET_SHAVES_SUCCESS,
   GET_SHAVES_ERROR,
-} from '../Actions/shaves';
+} from '../actions/shaves';
 
 const initialState = {
   shaveHistory: null,

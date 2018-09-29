@@ -1,4 +1,4 @@
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_ERROR } from '../Actions/get-collection';
+import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_ERROR } from '../actions/get-collection';
 
 const initialState = {
   products: [],
