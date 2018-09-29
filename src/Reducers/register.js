@@ -2,7 +2,7 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_ERROR,
-} from '../actions/register';
+} from '../Actions/register';
 
 const initialState = {
   isLogged: false,

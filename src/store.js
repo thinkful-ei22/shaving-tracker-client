@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
-import authReducer from './reducers/auth';
-import userReducer from './reducers/register';
-import shaveReducer from './reducers/shaves';
-import collectionReducer from './reducers/get-collection';
+import authReducer from './Reducers/auth';
+import userReducer from './Reducers/register';
+import shaveReducer from './Reducers/shaves';
+import collectionReducer from './Reducers/get-collection';
 
 import localStorageHandler from './middleware/localStorage';
 

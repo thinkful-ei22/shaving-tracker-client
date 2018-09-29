@@ -1,6 +1,6 @@
 /* eslint-env browser */
 /* eslint-disable no-param-reassign */
-import { LOAD_AUTH_TOKEN, SET_AUTH_TOKEN, CLEAR_AUTH } from '../actions/auth';
+import { LOAD_AUTH_TOKEN, SET_AUTH_TOKEN, CLEAR_AUTH } from '../Actions/auth';
 
 const localStorageHandler = store => next => (action) => {
   switch (action.type) {
