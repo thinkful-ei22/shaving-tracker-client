@@ -5,7 +5,7 @@ import {
 } from 'react-tabs';
 
 import './styles/mycollection.css';
-import { fetchCollection } from '../Actions/get-collection';
+import { fetchCollection } from '../actions/get-collection';
 import CollectionCard from './Collection-card';
 import 'react-tabs/style/react-tabs.css';
 

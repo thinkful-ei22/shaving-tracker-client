@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
 import './styles/shave-history.css';
-import { getShaves } from '../Actions/shaves';
+import { getShaves } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
 
 class ShaveHistory extends React.Component {
