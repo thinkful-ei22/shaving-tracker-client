@@ -28,11 +28,10 @@ class ShaveHistoryItems extends React.Component {
           ? shaveHistory[i][key].nickname
           : 'None';
       });
-
       items.push(
         <div className="shave-list-item" key={shaveHistory[i].id}>
           <h3>{itemDate}</h3>
-          <p>{`Rating: ${shaveHistory[i].rating}`}</p>
+          <p>{`Rating: ${shaveHistory[i].rating ? shaveHistory[i].rating : 'None'}`}</p>
           <p>{`Razor: ${nicknames.razor}`}</p>
           <p>{`Blade: ${nicknames.blade}`}</p>
           <p>{`Brush: ${nicknames.brush}`}</p>

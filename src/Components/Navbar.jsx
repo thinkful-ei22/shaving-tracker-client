@@ -28,6 +28,15 @@ class NavBar extends Component {
     clearAuthToken();
   }
 
+  navIcon() {
+    const x = document.getElementById('topnav');
+    if (x.className === 'topnav') {
+      x.className += ' responsive';
+    } else {
+      x.className = 'topnav';
+    }
+  }
+
   render() {
     const { error, isLogged } = this.props;
     let errorMsg;
@@ -46,8 +55,7 @@ class NavBar extends Component {
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
           <Link to="/product-form">Product Form</Link>
-          <Link to="/shave-form">Shave Form</Link>
-          <button type="button" onClick={this.logOut}>LOG OUT</button>
+          <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button>
         </div>
       );
     } else {
@@ -61,13 +69,21 @@ class NavBar extends Component {
           Password:
             <input type="password" id="password" name="password" required />
           </label>
-          <input type="submit" value="Login" className="login-button" />
+          <button type="submit" className="login-button">Login</button>
         </form>
       );
     }
     return (
-      <div>
-        <h1><Link className="home-nav" to="/">Home</Link></h1>
+      <div className="topnav" id="topnav">
+        <a
+          type="button"
+          aria-label="menu"
+          className="icon"
+          onClick={() => this.navIcon()}
+        >
+          <i className="fa fa-bars" />
+        </a>
+        <h1><Link className="home-nav" id="home-nav" to="/">Beardy Wicked</Link></h1>
         {errorMsg}
         {loggedIn}
         {loggedOut}

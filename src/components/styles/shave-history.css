@@ -11,3 +11,11 @@
   width: 300px;
   border: 1px solid darkgreen;
 }
+
+.shave-form-link {
+  float: right;
+}
+
+.shave-history {
+  max-width: 1000px;
+}
