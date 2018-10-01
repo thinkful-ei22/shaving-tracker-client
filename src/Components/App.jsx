@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles/App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LandingPage from './LandingPage';
+import LandingPage from './Landing-page';
 import MyCollection from './My-Collection';
 import ShaveHistory from './Shave-history';
 import NavBar from './Navbar';
+import ProductForm from './Product-form';
+import ShaveForm from './Shave-form';
 
 const App = () => (
   <Router>
@@ -12,6 +14,8 @@ const App = () => (
       <NavBar />
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/mycollection" component={MyCollection} />
+      <Route exact path="/product-form" component={ProductForm} />
+      <Route exact path="/shave-form" component={ShaveForm} />
       <Route exact path="/shaves" component={ShaveHistory} />
     </div>
   </Router>
