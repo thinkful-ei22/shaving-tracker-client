@@ -1,7 +1,13 @@
+.shave-history {
+  margin: auto;
+  max-width: 1000px;
+}
+
 .shave-list{
   max-width: 1000px;
   border: 1px solid black;
-
+  margin: auto;
+  background: #5B3226;
 }
 
 .shave-list-item{
@@ -9,13 +15,11 @@
   padding: 10px;
   display: inline-block;
   width: 300px;
-  border: 1px solid darkgreen;
+  border: 1px solid #2F0F07;
+  background: #BBAF96;
 }
 
 .shave-form-link {
   float: right;
 }
 
-.shave-history {
-  max-width: 1000px;
-}

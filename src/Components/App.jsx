@@ -10,13 +10,15 @@ import ShaveForm from './Shave-form';
 
 const App = () => (
   <Router>
-    <div>
+    <div className="app-container">
       <NavBar />
-      <Route exact path="/" component={LandingPage} />
-      <Route exact path="/mycollection" component={MyCollection} />
-      <Route exact path="/product-form" component={ProductForm} />
-      <Route exact path="/shave-form" component={ShaveForm} />
-      <Route exact path="/shaves" component={ShaveHistory} />
+      <div className="content-container">
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/mycollection" component={MyCollection} />
+        <Route exact path="/product-form" component={ProductForm} />
+        <Route exact path="/shave-form" component={ShaveForm} />
+        <Route exact path="/shaves" component={ShaveHistory} />
+      </div>
     </div>
   </Router>
 );
