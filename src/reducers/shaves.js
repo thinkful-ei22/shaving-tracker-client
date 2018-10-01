@@ -2,6 +2,7 @@ import {
   GET_SHAVES_REQUEST,
   GET_SHAVES_SUCCESS,
   GET_SHAVES_ERROR,
+  REMOVE_SHAVE,
   ADD_SHAVE_REQUEST,
   ADD_SHAVE_SUCCESS,
   ADD_SHAVE_ERROR,
@@ -36,6 +37,11 @@ export default function shaveReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: action.error,
+      };
+    case REMOVE_SHAVE:
+      return {
+        ...state,
+        shaveHistory: state.shaveHistory.filter(item => item.id !== action.id),
       };
 
     case ADD_SHAVE_SUCCESS:
