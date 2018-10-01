@@ -28,7 +28,9 @@ class ShaveHistory extends React.Component {
           <button type="button">+ Shave</button>
         </Link>
         <div className="shave-list">
-          {shaveContent}
+          <div className="shave-list-content">
+            {shaveContent}
+          </div>
         </div>
       </div>
     );

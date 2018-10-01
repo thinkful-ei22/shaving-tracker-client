@@ -2,8 +2,6 @@ body{
   background: #414F36;
 }
 
-.content-container{
-  width: 100%;
-  height: 100%;
-  margin: auto;
+.app-content{
+  margin: 10px;
 }

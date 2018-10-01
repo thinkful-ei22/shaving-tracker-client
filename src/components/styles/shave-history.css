@@ -4,10 +4,16 @@
 }
 
 .shave-list{
-  max-width: 1000px;
-  border: 1px solid black;
+  /* border: 1px solid #2F0F07; */
+}
+
+.shave-list-content{
+  display: flex;
+  border: 2px solid #2F0F07;
   margin: auto;
   background: #5B3226;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .shave-list-item{
@@ -16,9 +22,20 @@
   display: inline-block;
   width: 300px;
   border: 1px solid #2F0F07;
-  background: #BBAF96;
+  background: #D7D0C1;
 }
 
+.shave-list-item-products{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: repeat(auto-fill, auto);
+  grid-row-gap: .8em;
+  grid-column-gap: .6em;
+}
+
+.shave-list-item-products--label{
+  /* text-align: right; */
+}
 
 .shave-form-link {
   position: relative;
