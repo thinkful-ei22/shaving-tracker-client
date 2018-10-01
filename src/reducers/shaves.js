@@ -3,17 +3,18 @@ import {
   GET_SHAVES_SUCCESS,
   GET_SHAVES_ERROR,
   REMOVE_SHAVE,
+  ADD_SHAVE_REQUEST,
+  ADD_SHAVE_SUCCESS,
+  ADD_SHAVE_ERROR,
 } from '../actions/shaves';
-import ShaveHistory from '../components/Shave-history';
 
 const initialState = {
-  shaveHistory: null,
+  shaveHistory: [],
   isLoading: true,
   error: null,
 };
 
 export default function shaveReducer(state = initialState, action) {
-  console.log('In shave reducer. action.type:', action.type);
   switch (action.type) {
     case GET_SHAVES_REQUEST:
       return {
@@ -41,6 +42,28 @@ export default function shaveReducer(state = initialState, action) {
       return {
         ...state,
         shaveHistory: state.shaveHistory.filter(item => item.id !== action.id),
+      };
+
+    case ADD_SHAVE_SUCCESS:
+      return {
+        ...state,
+        shaveHistory: [...state.shaveHistory, action.data],
+        isLoading: false,
+        error: null,
+      };
+
+    case ADD_SHAVE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
+
+    case ADD_SHAVE_REQUEST:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
       };
 
     default:
