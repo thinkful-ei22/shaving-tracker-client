@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
+import { Link } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
-
 import requiresLogin from './requires-login';
 import './styles/mycollection.css';
 import { fetchCollection } from '../actions/get-collection';
@@ -46,7 +46,8 @@ class MyCollection extends React.Component {
     ));
 
     return (
-      <Tabs>
+      <Tabs className="product-list">
+        <Link className="product-form-link" to="/product-form"><button type="button">+ Product</button></Link>
         <TabList>
           <Tab>All</Tab>
           <Tab>Razors</Tab>
