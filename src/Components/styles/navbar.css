@@ -10,7 +10,7 @@
 /* Nav Bar Styles */
 .topnav {
   overflow: hidden;
-  background-color: #00796B;
+  background-color: #5D4037;
 }
 
 /* Navbar links */
@@ -26,7 +26,7 @@
 
 /* Navbar links on mouse-over */
 .topnav a:hover {
-  background-color: #009688;
+  background-color: #795548;
   color: white;
 }
 
@@ -47,7 +47,7 @@
   padding: 6px;
   margin-top: 8px;
   margin-right: 16px;
-  background: #009688;
+  background: #795548;
   font-size: 17px;
   border: none;
   cursor: pointer;
