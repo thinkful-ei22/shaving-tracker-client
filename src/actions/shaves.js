@@ -18,6 +18,12 @@ export const getShavesError = error => ({
   error,
 });
 
+export const REMOVE_SHAVE = 'REMOVE_SHAVE';
+export const removeShave = id => ({
+  type: REMOVE_SHAVE,
+  id,
+});
+
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
   const { authToken } = getState().auth;
@@ -41,5 +47,26 @@ export const getShaves = () => (dispatch, getState) => {
     })
     .catch((err) => {
       dispatch(getShavesError(`Error: ${err}`));
+    });
+};
+
+
+export const deleteShaves = id => (dispatch, getState) => {
+  const { authToken } = getState().auth;
+
+  return fetch(`${API_BASE_URL}/shaves/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      dispatch(removeShave(id));
+    })
+    .catch((err) => {
+      console.error(err);
     });
 };
