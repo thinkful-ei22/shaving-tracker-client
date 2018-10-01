@@ -51,6 +51,8 @@ class NavBar extends Component {
         <div>
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
+          <Link to="/product-form">Product Form</Link>
+          <Link to="/shave-form">Shave Form</Link>
           <LinkButton to="/" type="button" onClick={this.logOut}>LOG OUT</LinkButton>
         </div>
       );
@@ -83,6 +85,7 @@ class NavBar extends Component {
 NavBar.propTypes = {
   // loading: PropTypes.bool,
   error: PropTypes.shape({
+    status: PropTypes.number,
     message: PropTypes.string,
   }),
   isLogged: PropTypes.bool,
@@ -91,7 +94,7 @@ NavBar.propTypes = {
 
 NavBar.defaultProps = {
   // loading: false,
-  error: '',
+  error: {},
   isLogged: false,
 };
 
