@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-
+import requiresLogin from './requires-login';
 import './styles/shave-history.css';
 import { getShaves, deleteShaves } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
@@ -48,4 +48,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(ShaveHistory);
+export default requiresLogin()(connect(mapStateToProps)(ShaveHistory));
