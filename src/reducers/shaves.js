@@ -38,6 +38,7 @@ export default function shaveReducer(state = initialState, action) {
         isLoading: false,
         error: action.error,
       };
+
     case REMOVE_SHAVE:
       return {
         ...state,

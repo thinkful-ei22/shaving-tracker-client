@@ -12,7 +12,6 @@ const initialState = {
 
 export default function userReducer(state = initialState, action) {
   if (action.type === REGISTER_REQUEST) {
-    console.log('request being made');
     return {
       ...state,
       loading: true,
@@ -20,7 +19,6 @@ export default function userReducer(state = initialState, action) {
     };
   }
   if (action.type === REGISTER_SUCCESS) {
-    console.log('Registered successfully');
     return {
       ...state,
       isLogged: action.data,
@@ -29,7 +27,6 @@ export default function userReducer(state = initialState, action) {
     };
   }
   if (action.type === REGISTER_ERROR) {
-    console.log('Error with request');
     return {
       ...state,
       loading: false,
