@@ -55,7 +55,6 @@ class NavBar extends Component {
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
           <Link to="/product-form">Product Form</Link>
-          <Link to="/shave-form">Shave Form</Link>
           <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button>
         </div>
       );
