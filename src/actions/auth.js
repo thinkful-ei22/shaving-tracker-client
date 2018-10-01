@@ -2,7 +2,6 @@
 import jwtDecode from 'jwt-decode';
 
 import { API_BASE_URL } from '../config';
-import { saveAuthToken, clearAuthToken } from '../local-storage';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -34,12 +33,16 @@ export const authError = error => ({
 
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
-const storeAuthInfo = (authToken, dispatch) => {
+const storeAuthInfo = authToken => (dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user));
-  saveAuthToken(authToken);
 };
+
+export const LOAD_AUTH_TOKEN = 'LOAD_AUTH_TOKEN';
+export const loadAuthToken = () => ({
+  type: LOAD_AUTH_TOKEN,
+});
 
 export const login = data => (dispatch) => {
   dispatch(authRequest());
@@ -59,7 +62,7 @@ export const login = data => (dispatch) => {
       }
       return (res.json());
     })
-    .then(({ authToken }) => storeAuthInfo(authToken, dispatch))
+    .then(({ authToken }) => dispatch(storeAuthInfo(authToken)))
     .catch((err) => {
       dispatch(authError(err));
     });
@@ -82,13 +85,12 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       }
       return (res.json());
     })
-    .then(({ authToken }) => storeAuthInfo(authToken, dispatch)) // eslint-disable-line no-shadow
+    .then(({ authToken }) => dispatch(storeAuthInfo(authToken))) // eslint-disable-line no-shadow
     .catch((err) => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
       dispatch(authError(err));
       dispatch(clearAuth());
-      clearAuthToken(authToken);
     });
 };

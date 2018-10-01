@@ -1,0 +1,15 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+script:
+- npm test
+- npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: Obhi3Z96ZCt6D/WvwDpCEYpEnRIOh0zysIucTHaUIJ4cJ80vyJpkBeOHEYEyslE84N6rKj8HWZUrRCHKxywsoLpcjURvSImCMOsnm2EwwQ3HJd6GNGTutFsuxAsJ7yifWCpNrNwidOPADQqLqcX3DQCsBa1TNNKD5l0qVzcLewc/YwdXzlOkB2vKaOdqphdQLO9lP8U0JwWAxKqCgi7CwqtIG31nx/9j2JAganCSzl7tsU19+ylxzuuj8S2PbPOqMKwgKRwBAo0P+hg5TyH3l2Beg8Y0OcOuYyu83fg2+Hlw+j8a8x1qsVDqWEWmWTt6SKop/wb6OEl4H5yKlTsSygQbo8lX8aMw+2ORplL8hTSpSRud52GTDHeo/FvSvhbHtrFRG/M2k3kVCt6nH2VnzeDlp8mZCPkRdWKDwsKV0aVegkDLsH2GL5YnswGKFhDeZJcyLHQD/G+53FeLcGBysYalFqJgVwdQyEqHwtxjHqW5zhRin5I06U1Lhk3gSnMdtV1tLwsRbcGJ64DpKVrzos4YRD2xmvlrKwWdwC9abp2hRH/RfJBBGs1V0PhgEthdiS++J+ZNePE6GfFUn4LW1kKCptB214uJDdZbPGTWvjeAvvinG1fo+cDR5E5DlS7/jfhCoc5ZZVdxiIB1RA83O/k43xog0RtX1svQcuNIcLM=
+  app: shaving-tracker-client
+  on:
+    repo: thinkful-ei22/shaving-tracker-client
