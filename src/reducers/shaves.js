@@ -66,28 +66,6 @@ export default function shaveReducer(state = initialState, action) {
         isLoading: true,
       };
 
-    case ADD_SHAVE_SUCCESS:
-      return {
-        ...state,
-        shaveHistory: [...state.shaveHistory, action.data],
-        isLoading: false,
-        error: null,
-      };
-
-    case ADD_SHAVE_ERROR:
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false,
-      };
-
-    case ADD_SHAVE_REQUEST:
-      return {
-        ...state,
-        error: null,
-        isLoading: true,
-      };
-
     default:
       return state;
   }
