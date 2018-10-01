@@ -20,7 +20,6 @@ export const fetchError = err => ({
 
 
 export const fetchCollection = () => (dispatch, getState) => {
-  console.log('fetchCollection was called');
   dispatch(fetchRequest());
   const { authToken } = getState().auth;
 

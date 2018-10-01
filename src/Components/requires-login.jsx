@@ -19,7 +19,7 @@ export default () => (Component) => {
   const displayName = Component.displayName || Component.name || 'Component';
   RequiresLogin.displayName = `RequiresLogin(${displayName})`;
 
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     authenticating: state.auth.loading,
     loggedIn: state.auth.currentUser !== null,
     error: state.auth.error,
