@@ -19,7 +19,6 @@ export const registerError = err => ({
 });
 
 export const registerUser = data => (dispatch) => {
-  console.log('registerEvent was called');
   dispatch(registerRequest());
 
   return fetch(`${API_BASE_URL}/user`, {

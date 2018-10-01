@@ -38,32 +38,11 @@ export default function shaveReducer(state = initialState, action) {
         isLoading: false,
         error: action.error,
       };
+
     case REMOVE_SHAVE:
       return {
         ...state,
         shaveHistory: state.shaveHistory.filter(item => item.id !== action.id),
-      };
-
-    case ADD_SHAVE_SUCCESS:
-      return {
-        ...state,
-        shaveHistory: [...state.shaveHistory, action.data],
-        isLoading: false,
-        error: null,
-      };
-
-    case ADD_SHAVE_ERROR:
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false,
-      };
-
-    case ADD_SHAVE_REQUEST:
-      return {
-        ...state,
-        error: null,
-        isLoading: true,
       };
 
     case ADD_SHAVE_SUCCESS:

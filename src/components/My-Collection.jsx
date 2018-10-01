@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 import requiresLogin from './requires-login';
 import './styles/mycollection.css';
 import { fetchCollection } from '../actions/get-collection';
 import CollectionCard from './Collection-card';
-import 'react-tabs/style/react-tabs.css';
 
 class MyCollection extends React.Component {
   componentDidMount() {

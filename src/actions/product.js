@@ -1,3 +1,4 @@
+/* eslint-env browser */
 import { API_BASE_URL } from '../config';
 
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
