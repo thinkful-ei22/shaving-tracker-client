@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles/collection-card.css';
 
 const CollectionCard = (props) => {
   const {
@@ -8,12 +7,12 @@ const CollectionCard = (props) => {
   } = props;
 
   return (
-    <div>
-      <h2>{brand}</h2>
-      <h3>{model}</h3>
-      <h5>{subtype}</h5>
-      <h5>{nickname}</h5>
-      <h6>{comment}</h6>
+    <div className="collection-item">
+      <h3>{brand}</h3>
+      <p><span className="collection-item-type">Model:</span> {model}</p>
+      <p><span className="collection-item-type">Subtype:</span> {subtype}</p>
+      <p><span className="collection-item-type">Nickname:</span> {nickname}</p>
+      <p><span className="collection-item-type">Comment:</span> {comment}</p>
     </div>
   );
 };
