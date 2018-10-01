@@ -24,3 +24,22 @@
     font-variant: small-caps;
     text-decoration: underline;
   }
+
+  .product-list {
+    width: 100%;
+  }
+  
+  .product-form-link {
+    position: relative;
+    float: right;
+    top: 5px;
+    right: 20px;
+  }
+  
+  .product-form-link button {
+    font-size: 1em;
+  }
+  
+  .product-form-link::after {
+    clear: both;
+  }
