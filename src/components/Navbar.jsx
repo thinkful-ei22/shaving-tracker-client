@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './styles/navbar.css';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login, clearAuth } from '../actions/auth';
-import { clearAuthToken } from '../local-storage';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import './styles/navbar.css';
+import LinkButton from './LinkButton';
+import { login, clearAuth, loadAuthToken } from '../actions/auth';
 
 class NavBar extends Component {
   constructor() {
     super();
     this.logOut = this.logOut.bind(this);
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(loadAuthToken());
   }
 
   onSubmit(e) {
@@ -25,7 +31,6 @@ class NavBar extends Component {
   logOut() {
     const { dispatch } = this.props;
     dispatch(clearAuth());
-    clearAuthToken();
   }
 
   navIcon() {
@@ -43,9 +48,10 @@ class NavBar extends Component {
     let loggedIn;
     let loggedOut;
     if (error) {
+      console.log(error);
       errorMsg = (
         <div className="login-error" aria-live="polite">
-          Incorrect username or password
+          {JSON.stringify(error)}
         </div>
       );
     }
@@ -54,19 +60,19 @@ class NavBar extends Component {
         <div>
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
-          <Link to="/product-form">Product Form</Link>
-          <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button>
+          <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</LinkButton>
+          {/* <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button> */}
         </div>
       );
     } else {
       loggedOut = (
         <form className="form-login" onSubmit={e => this.onSubmit(e)}>
           <label htmlFor="user">
-          Username:
+            Username:
             <input type="text" id="user" name="username" required />
           </label>
           <label htmlFor="password">
-          Password:
+            Password:
             <input type="password" id="password" name="password" required />
           </label>
           <button type="submit" className="login-button">Login</button>

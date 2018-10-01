@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import './styles/shave-history.css';
-import { getShaves, deleteShaves } from '../actions/shaves';
+import { getShaves } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
 
 class ShaveHistory extends React.Component {
@@ -24,7 +24,9 @@ class ShaveHistory extends React.Component {
       <div className="shave-history">
         <h2>Shaves</h2>
         {error}
-        <Link className="shave-form-link" to="/shave-form">Add Form</Link>
+        <Link className="shave-form-link" to="/shave-form">
+          <button type="button">+ Shave</button>
+        </Link>
         <div className="shave-list">
           {shaveContent}
         </div>

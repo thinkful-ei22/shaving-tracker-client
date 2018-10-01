@@ -19,7 +19,27 @@
   background: #BBAF96;
 }
 
+
 .shave-form-link {
+  position: relative;
   float: right;
+  top: 25px;
+  right: 15px;
 }
 
+.shave-form-link button {
+  font-size: 1em;
+}
+
+
+.shave-form-link::after {
+  clear: both;
+}
+.shave-history {
+  margin: auto;
+  max-width: 1000px;
+}
+
+.shave-history h2 {
+  display: inline-block;
+}
