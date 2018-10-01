@@ -6,3 +6,30 @@
   color: orange;
   font-size: 20px;
 }
+
+/* Nav Bar Styles */
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+/* Navbar links */
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Navbar links on mouse-over */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.form-login, .logout-btn {
+  float: right;
+}

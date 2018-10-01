@@ -47,7 +47,7 @@ class NavBar extends Component {
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
           <Link to="/product-form">Product Form</Link>
           <Link to="/shave-form">Shave Form</Link>
-          <button type="button" onClick={this.logOut}>LOG OUT</button>
+          <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button>
         </div>
       );
     } else {
@@ -66,7 +66,7 @@ class NavBar extends Component {
       );
     }
     return (
-      <div>
+      <div className="topnav">
         <h1><Link className="home-nav" to="/">Home</Link></h1>
         {errorMsg}
         {loggedIn}
