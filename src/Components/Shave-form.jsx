@@ -6,7 +6,6 @@ import './styles/form.css';
 import './styles/stars.css';
 import { addShave } from '../actions/shaves';
 
-
 class ShaveForm extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
