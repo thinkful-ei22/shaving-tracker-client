@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { deleteShaves } from '../actions/shaves';
 
 class ShaveHistoryItems extends React.Component {
+  onClick(id) {
+    const { dispatch } = this.props;
+    dispatch(deleteShaves(id));
+  }
+
   render() {
     const { shaveHistory } = this.props;
     if (!shaveHistory) {
@@ -22,17 +28,17 @@ class ShaveHistoryItems extends React.Component {
           ? shaveHistory[i][key].nickname
           : 'None';
       });
-
       items.push(
-        <div className="shave-list-item" key={`shave-list-item-${i}`}>
+        <div className="shave-list-item" key={shaveHistory[i].id}>
           <h3>{itemDate}</h3>
-          <p>{`Rating: ${shaveHistory[i].rating}`}</p>
+          <p>{`Rating: ${shaveHistory[i].rating ? shaveHistory[i].rating : 'None'}`}</p>
           <p>{`Razor: ${nicknames.razor}`}</p>
           <p>{`Blade: ${nicknames.blade}`}</p>
           <p>{`Brush: ${nicknames.brush}`}</p>
           <p>{`Lather: ${nicknames.lather}`}</p>
           <p>{`Aftershave: ${nicknames.aftershave}`}</p>
           <p>{`AdditionalCare: ${nicknames.additionalCare}`}</p>
+          <button type="button" className="delete-shave-history" onClick={() => this.onClick(shaveHistory[i].id)}>Delete</button>
         </div>,
       );
     }
@@ -45,6 +51,7 @@ class ShaveHistoryItems extends React.Component {
 
 ShaveHistoryItems.propTypes = {
   shaveHistory: PropTypes.arrayOf(Object),
+  dispatch: PropTypes.func.isRequired,
 };
 
 ShaveHistoryItems.defaultProps = {

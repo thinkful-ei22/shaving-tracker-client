@@ -18,6 +18,29 @@ export const getShavesError = error => ({
   error,
 });
 
+export const REMOVE_SHAVE = 'REMOVE_SHAVE';
+export const removeShave = id => ({
+  type: REMOVE_SHAVE,
+  id,
+});
+
+export const ADD_SHAVE_SUCCESS = 'ADD_SHAVE_SUCCESS';
+export const addShaveSuccess = data => ({
+  type: ADD_SHAVE_SUCCESS,
+  data,
+});
+
+export const ADD_SHAVE_ERROR = 'ADD_SHAVE_ERROR';
+export const addShaveError = error => ({
+  type: ADD_SHAVE_ERROR,
+  error,
+});
+
+export const ADD_SHAVE_REQUEST = 'ADD_SHAVE_REQUEST';
+export const addShaveRequest = () => ({
+  type: ADD_SHAVE_REQUEST,
+});
+
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
   const { authToken } = getState().auth;
@@ -43,23 +66,25 @@ export const getShaves = () => (dispatch, getState) => {
     });
 };
 
+export const deleteShaves = id => (dispatch, getState) => {
+  const { authToken } = getState().auth;
 
-export const ADD_SHAVE_SUCCESS = 'ADD_SHAVE_SUCCESS';
-export const addShaveSuccess = data => ({
-  type: ADD_SHAVE_SUCCESS,
-  data,
-});
-
-export const ADD_SHAVE_ERROR = 'ADD_SHAVE_ERROR';
-export const addShaveError = error => ({
-  type: ADD_SHAVE_ERROR,
-  error,
-});
-
-export const ADD_SHAVE_REQUEST = 'ADD_SHAVE_REQUEST';
-export const addShaveRequest = () => ({
-  type: ADD_SHAVE_REQUEST,
-});
+  return fetch(`${API_BASE_URL}/shaves/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return dispatch(removeShave(id));
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 export const addShave = shave => (dispatch, getState) => {
   dispatch(addShaveRequest());
