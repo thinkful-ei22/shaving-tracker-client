@@ -12,10 +12,25 @@
   border: 1px solid darkgreen;
 }
 
+
 .shave-form-link {
+  position: relative;
   float: right;
+  top: 25px;
+  right: 30px;
 }
 
+.shave-form-link button {
+  font-size: 1em;
+}
+
+.shave-form-link::after {
+  clear: both;
+}
 .shave-history {
   max-width: 1000px;
+}
+
+.shave-history h2 {
+  display: inline-block;
 }
