@@ -4,7 +4,7 @@ import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
 import requiresLogin from './requires-login';
-import './styles/mycollection.css';
+import './styles/my-collection.css';
 import { fetchCollection } from '../actions/get-collection';
 import CollectionCard from './Collection-card';
 import 'react-tabs/style/react-tabs.css';
@@ -39,7 +39,7 @@ class MyCollection extends React.Component {
     }, categorizedProducts);
 
     const collections = Object.keys(productType).map(product => (
-      <TabPanel key={product}>
+      <TabPanel key={product} className="collection-list">
         {productType[product].map(item => <div key={item.id}><CollectionCard {...item} /></div>)}
       </TabPanel>
     ));
