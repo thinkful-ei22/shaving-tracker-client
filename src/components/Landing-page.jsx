@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles/landing-page.css';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/register';
 
@@ -17,9 +18,14 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { error, isLogged } = this.props;
+    const { error, didRegisterSucceed, loggedIn } = this.props;
     let errorMsg;
     let registrationSuccessDisplay;
+
+    if (loggedIn) {
+      return <Redirect to="/mycollection" />;
+    }
+
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
@@ -27,7 +33,7 @@ class LandingPage extends React.Component {
         </div>
       );
     }
-    if (isLogged) {
+    if (didRegisterSucceed) {
       registrationSuccessDisplay = (
         <div className="test">Register Success</div>
       );
@@ -61,19 +67,22 @@ class LandingPage extends React.Component {
 
 LandingPage.propTypes = {
   // loading: PropTypes.bool,
+  loggedIn: PropTypes.bool,
   error: PropTypes.string,
-  isLogged: PropTypes.bool,
+  didRegisterSucceed: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
 LandingPage.defaultProps = {
   // loading: false,
+  loggedIn: false,
   error: '',
-  isLogged: false,
+  didRegisterSucceed: false,
 };
 
 const mapStateToProps = state => ({
-  isLogged: state.user.isLogged,
+  loggedIn: state.auth.loggedIn,
+  didRegisterSucceed: state.user.isLogged,
   loading: state.user.loading,
   error: state.user.error,
 });
