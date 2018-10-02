@@ -41,6 +41,18 @@ export const addShaveRequest = () => ({
   type: ADD_SHAVE_REQUEST,
 });
 
+export const SET_SHAVE_FILTER_START = 'SET_SHAVE_FILTER_START';
+export const setShaveFilterStart = date => ({
+  type: SET_SHAVE_FILTER_START,
+  date,
+});
+
+export const SET_SHAVE_FILTER_END = 'SET_SHAVE_FILTER_END';
+export const setShaveFilterEnd = date => ({
+  type: SET_SHAVE_FILTER_END,
+  date,
+});
+
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
   const { authToken } = getState().auth;
