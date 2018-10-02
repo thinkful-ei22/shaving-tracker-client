@@ -31,13 +31,29 @@ class ShaveHistoryItems extends React.Component {
       items.push(
         <div className="shave-list-item" key={shaveHistory[i].id}>
           <h3>{itemDate}</h3>
-          <p>{`Rating: ${shaveHistory[i].rating ? shaveHistory[i].rating : 'None'}`}</p>
-          <p>{`Razor: ${nicknames.razor}`}</p>
-          <p>{`Blade: ${nicknames.blade}`}</p>
-          <p>{`Brush: ${nicknames.brush}`}</p>
-          <p>{`Lather: ${nicknames.lather}`}</p>
-          <p>{`Aftershave: ${nicknames.aftershave}`}</p>
-          <p>{`AdditionalCare: ${nicknames.additionalCare}`}</p>
+          <div className="shave-list-item-products">
+            <span className="shave-list-item-products--label">Rating: </span>
+            <span>{shaveHistory[i].rating ? shaveHistory[i].rating : 'None '}</span>
+
+            <span className="shave-list-item-products--label">Razor: </span>
+            <span>{nicknames.razor}</span>
+
+            <span className="shave-list-item-products--label">Blade: </span>
+            <span>{nicknames.blade}</span>
+
+            <span className="shave-list-item-products--label">Brush: </span>
+            <span>{nicknames.brush}</span>
+
+            <span className="shave-list-item-products--label">Lather: </span>
+            <span>{nicknames.lather}</span>
+
+            <span className="shave-list-item-products--label">Aftershave: </span>
+            <span>{nicknames.aftershave}</span>
+
+            <span className="shave-list-item-products--label">Additional Care: </span>
+            <span>{nicknames.additionalCare}</span>
+
+          </div>
           <button type="button" className="delete-shave-history" onClick={() => this.onClick(shaveHistory[i].id)}>Delete</button>
         </div>,
       );

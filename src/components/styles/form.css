@@ -1,7 +1,9 @@
 .form {
+  display: inline-block;
   max-width: 1000px;
-  border: 1px solid black;
-  min-height: 500px;
+  border: 1px solid #2F0F07;
+  background: #BBAF96;
+  min-width: 600px; 
 }
 
 .form * {

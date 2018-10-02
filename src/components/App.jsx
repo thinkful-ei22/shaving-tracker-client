@@ -16,11 +16,13 @@ const App = () => (
     <Router>
       <div>
         <NavBar />
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/mycollection" component={MyCollection} />
-        <Route exact path="/product-form" component={ProductForm} />
-        <Route exact path="/shave-form" component={ShaveForm} />
-        <Route exact path="/shaves" component={ShaveHistory} />
+        <div className="app-content">
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/mycollection" component={MyCollection} />
+          <Route exact path="/product-form" component={ProductForm} />
+          <Route exact path="/shave-form" component={ShaveForm} />
+          <Route exact path="/shaves" component={ShaveHistory} />
+        </div>
       </div>
     </Router>
   </Provider>

@@ -11,6 +11,7 @@
 .topnav {
   overflow: hidden;
   background-color: #5D4037;
+  border-bottom: 1px solid #2F0F07
 }
 
 /* Navbar links */

@@ -33,23 +33,26 @@ class LandingPage extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="landing-page">
         <h2>Welcome!</h2>
         <div className="sign-up-container">
           <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">
             {errorMsg}
             <label htmlFor="email">
               Email:
-              <input type="text" id="email" name="email" required />
             </label>
+            <input type="text" id="email" name="email" required />
+            
             <label htmlFor="register-user">
               Username:
-              <input type="text" id="register-user" name="registerusername" required />
             </label>
+            <input type="text" id="register-user" name="registerusername" required />
+            
             <label htmlFor="register-password">
               Password:
-              <input type="password" id="register-password" name="registerpassword" required />
             </label>
+            <input type="password" id="register-password" name="registerpassword" required />
+            
             <input type="submit" value="Register" className="register-button" />
             {registrationSuccessDisplay}
           </form>
