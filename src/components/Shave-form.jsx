@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
+import requiresLogin from './requires-login';
 import { addShave } from '../actions/shaves';
 
 class ShaveForm extends React.Component {
@@ -182,4 +183,4 @@ const mapStateToProps = state => ({
   userProducts: state.product.userProducts,
 });
 
-export default connect(mapStateToProps)(ShaveForm);
+export default requiresLogin()(connect(mapStateToProps)(ShaveForm));

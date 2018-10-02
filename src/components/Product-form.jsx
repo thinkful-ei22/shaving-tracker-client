@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './styles/loader.css';
 import './styles/form.css';
 import PropTypes from 'prop-types';
+import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
 import { addProduct } from '../actions/product';
 
@@ -20,7 +21,7 @@ class ProductForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(e.target.singleImage.value);
+    const { image, dispatch } = this.props;
     const data = {
       productType: e.target.productType.value,
       brand: e.target.brand.value,
@@ -28,8 +29,8 @@ class ProductForm extends React.Component {
       nickname: e.target.nickname.value,
       comment: e.target.comment.value,
       subtype: e.target.subtype.value === 'subtypes' ? null : e.target.subtype.value,
+      imageUrl: image ? image.secure_url : null,
     };
-    const { dispatch } = this.props;
     dispatch(addProduct(data));
   }
 
@@ -135,17 +136,22 @@ ProductForm.propTypes = {
     message: PropTypes.string,
   }),
   dispatch: PropTypes.func.isRequired,
+  image: PropTypes.shape({
+    secure_url: PropTypes.string,
+  }),
 };
 
 ProductForm.defaultProps = {
   loading: false,
   error: {},
+  image: {},
 };
 
 const mapStateToProps = state => ({
   loading: state.product.loading,
   error: state.product.error,
+  image: state.image.image,
 });
 
 
-export default connect(mapStateToProps)(ProductForm);
+export default requiresLogin()(connect(mapStateToProps)(ProductForm));

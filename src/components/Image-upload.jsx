@@ -43,15 +43,16 @@ class ImageUpload extends React.Component {
       response = <div>{error}</div>;
     } else if (image) {
       response = (
-        <img src={image.url} alt="your upload" />
+        <img src={image.secure_url} alt="" />
       );
     }
     return (
       <div>
         <div>{errorResponse}</div>
         {response}
-        <label htmlFor="single">Image Uploader</label>
-        <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
+        <label htmlFor="single">
+          <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
+        </label>
       </div>
     );
   }
