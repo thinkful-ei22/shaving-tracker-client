@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
 import requiresLogin from './requires-login';
-import './styles/my-collection.css';
+import './styles/mycollections.css';
 import { fetchCollection } from '../actions/get-collection';
 import CollectionCard from './Collection-card';
 
