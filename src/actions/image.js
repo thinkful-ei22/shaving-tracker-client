@@ -24,6 +24,10 @@ export const addImage = file => (dispatch, getState) => (
     body: file,
   })
     .then((res) => {
-      console.log(res);
+      if (!res.ok) {
+        throw res;
+      }
+      return res.json();
     })
+    .then(image => console.log(image))
 );
