@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './styles/loader.css';
 import './styles/form.css';
 import PropTypes from 'prop-types';
+import ImageUpload from './Image-upload';
 import { addProduct } from '../actions/product';
 
 class ProductForm extends React.Component {
@@ -85,6 +86,7 @@ class ProductForm extends React.Component {
 
     return (
       <form className="form" onSubmit={e => this.onSubmit(e)}>
+        <ImageUpload />
         <h3>Add Product</h3>
         {errorMessage}
         {loadingWheel}
