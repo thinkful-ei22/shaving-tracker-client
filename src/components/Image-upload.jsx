@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addImage } from '../actions/image';
 
 class ImageUpload extends React.Component {
@@ -23,7 +24,6 @@ class ImageUpload extends React.Component {
       if (file.size > 150000) {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
-      console.log(errs);
       this.setState({ errors: errs });
       if (errs.length < 1) {
         formData.append('file', file);
@@ -58,6 +58,23 @@ class ImageUpload extends React.Component {
   }
 }
 
+ImageUpload.propTypes = {
+  image: PropTypes.shape({
+    secure_url: PropTypes.string,
+  }),
+  dispatch: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  error: PropTypes.shape({
+    status: PropTypes.number,
+    message: PropTypes.string,
+  }),
+};
+
+ImageUpload.defaultProps = {
+  image: {},
+  loading: false,
+  error: {},
+};
 const mapStateToProps = (state) => {
   const { image, loading, error } = state.image;
   return ({ image, loading, error });
