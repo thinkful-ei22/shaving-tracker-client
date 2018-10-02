@@ -10,17 +10,36 @@ class ShaveHistoryItems extends React.Component {
   }
 
   render() {
-    const { shaveHistory } = this.props;
+    const { shaveHistory, startFilter, endFilter } = this.props;
     if (!shaveHistory) {
       return <div>No history!</div>;
     }
 
     const items = [];
     for (let i = 0; i < shaveHistory.length; i += 1) {
+      const startFilterComp = startFilter ? new Date(startFilter) : null;
+      const itemDateComp = new Date(shaveHistory[i].date);
+      const endFilterComp = endFilter ? new Date(endFilter) : null;
+
+      if (startFilterComp && itemDateComp < startFilterComp) {
+        console.log('itemDate is before startFilter');
+        console.log('comp:', itemDateComp);
+        console.log('filt:', startFilterComp);
+        continue;
+      }
+
+      if (endFilterComp && endFilterComp < itemDateComp) {
+        console.log('itemDate is after endFilter', itemDateComp, endFilterComp);
+        console.log('comp:', itemDateComp);
+        console.log('filt:', endFilterComp);
+        continue;
+      }
+
       const itemDate = new Date(shaveHistory[i].date)
         .toLocaleDateString('en-US', {
           year: 'numeric', month: 'short', day: 'numeric',
         });
+
       const keys = Object.keys(shaveHistory[i]);
       const nicknames = {};
       keys.forEach((key) => {
@@ -76,7 +95,9 @@ ShaveHistoryItems.defaultProps = {
 
 const mapStateToProps = state => ({
   shaveHistory: state.shaves.shaveHistory,
-  everything: state,
+  startFilter: state.shaves.startFilter,
+  endFilter: state.shaves.endFilter,
+  // everything: state,
 });
 
 export default connect(mapStateToProps)(ShaveHistoryItems);

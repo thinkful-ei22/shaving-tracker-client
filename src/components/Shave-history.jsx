@@ -4,7 +4,11 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import './styles/shave-history.css';
-import { getShaves } from '../actions/shaves';
+import {
+  getShaves,
+  setShaveFilterStart,
+  setShaveFilterEnd,
+} from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
 
 class ShaveHistory extends React.Component {
@@ -15,7 +19,7 @@ class ShaveHistory extends React.Component {
 
 
   render() {
-    const { isLoading, error } = this.props;
+    const { dispatch, isLoading, error } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
       : (<ShaveHistoryItems />);
@@ -27,6 +31,20 @@ class ShaveHistory extends React.Component {
         <Link className="shave-form-link" to="/shave-form">
           <button type="button">+ Shave</button>
         </Link>
+        <div className="shave-date-filter-container">
+          <h3>Date Filter: </h3>
+          <label>Start Date: </label>
+          <input
+            type="date"
+            onChange={(e) => {
+              dispatch(setShaveFilterStart(e.target.value));
+            }}
+          />
+
+          <br />
+          <label>End Date: </label>
+          <input type="date" />
+        </div>
         <div className="shave-list">
           <div className="shave-list-content">
             {shaveContent}
