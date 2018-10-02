@@ -9,6 +9,7 @@ class ImageUpload extends React.Component {
       loading: true,
       uploading: false,
       images: [],
+      errors: [],
     };
   }
 
@@ -26,6 +27,7 @@ class ImageUpload extends React.Component {
         errs.push(`'${file.name}' is too large, please pick a smaller file`);
       }
       console.log(errs);
+      this.setState({ errors: errs });
       if (errs.length < 1) {
         formData.append('file', file);
         dispatch(addImage(formData));
@@ -34,8 +36,11 @@ class ImageUpload extends React.Component {
   }
 
   render() {
+    const { errors } = this.state;
+    const errorResponse = errors.map(error => <div>{error}</div>);
     return (
       <div>
+        <div>{errorResponse}</div>
         <label htmlFor="single">Image Uploader</label>
         <input type="file" id="single" onChange={e => this.onChange(e)} />
       </div>
