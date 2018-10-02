@@ -21,17 +21,17 @@ class ShaveHistoryItems extends React.Component {
       const itemDateComp = new Date(shaveHistory[i].date);
       const endFilterComp = endFilter ? new Date(endFilter) : null;
 
-      if (startFilterComp && itemDateComp < startFilterComp) {
-        console.log('itemDate is before startFilter');
-        console.log('comp:', itemDateComp);
-        console.log('filt:', startFilterComp);
+      if (startFilterComp && itemDateComp.getTime() < startFilterComp.getTime()) {
+        // console.log('itemDate is before startFilter');
+        // console.log('comp:', itemDateComp.getTime());
+        // console.log('filt:', startFilterComp.getTime());
         continue;
       }
 
-      if (endFilterComp && endFilterComp < itemDateComp) {
-        console.log('itemDate is after endFilter', itemDateComp, endFilterComp);
-        console.log('comp:', itemDateComp);
-        console.log('filt:', endFilterComp);
+      if (endFilterComp && endFilterComp.getTime() < itemDateComp.getTime()) {
+        // console.log('itemDate is after endFilter');
+        // console.log('comp:', itemDateComp);
+        // console.log('filt:', endFilterComp);
         continue;
       }
 

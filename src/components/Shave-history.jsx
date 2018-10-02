@@ -43,7 +43,12 @@ class ShaveHistory extends React.Component {
 
           <br />
           <label>End Date: </label>
-          <input type="date" />
+          <input
+            type="date"
+            onChange={(e) => {
+              dispatch(setShaveFilterEnd(e.target.value));
+            }}
+          />
         </div>
         <div className="shave-list">
           <div className="shave-list-content">
