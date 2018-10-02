@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { deleteShaves } from '../actions/shaves';
@@ -17,10 +18,17 @@ class ShaveHistoryItems extends React.Component {
 
     const items = [];
     for (let i = 0; i < shaveHistory.length; i += 1) {
-      const itemDate = new Date(shaveHistory[i].date)
-        .toLocaleDateString('en-US', {
-          year: 'numeric', month: 'short', day: 'numeric',
-        });
+      // const itemDate = new Date(shaveHistory[i].date)
+      //   .toLocaleDateString('en-US', {
+      //     year: 'numeric', month: 'short', day: 'numeric',
+      //   });
+      const itemDate = moment(shaveHistory[i].date)
+        .tz('Atlantic/Azores')
+        .format('MMM Do, YYYY');
+      console.log('raw date: ', shaveHistory[i].date);
+      console.log('format date: ', itemDate);
+
+
       const keys = Object.keys(shaveHistory[i]);
       const nicknames = {};
       keys.forEach((key) => {
