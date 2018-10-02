@@ -20,6 +20,7 @@ class ProductForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    console.log(e.target.singleImage.value);
     const data = {
       productType: e.target.productType.value,
       brand: e.target.brand.value,
@@ -86,10 +87,10 @@ class ProductForm extends React.Component {
 
     return (
       <form className="form" onSubmit={e => this.onSubmit(e)}>
-        <ImageUpload />
         <h3>Add Product</h3>
         {errorMessage}
         {loadingWheel}
+        <ImageUpload />
         <label htmlFor="productType">Select Product Type: </label>
         <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
           <option value="" disabled>Product Type</option>

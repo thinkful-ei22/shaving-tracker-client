@@ -6,9 +6,6 @@ class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      uploading: false,
-      images: [],
       errors: [],
     };
   }
@@ -36,16 +33,33 @@ class ImageUpload extends React.Component {
   }
 
   render() {
+    const { image, loading, error } = this.props;
     const { errors } = this.state;
-    const errorResponse = errors.map(error => <div>{error}</div>);
+    const errorResponse = errors.map((error, i) => <div key={i}>{error}</div>);
+    let response;
+    if (loading) {
+      response = <div>Loading annimation here!</div>;
+    } else if (error) {
+      response = <div>{error}</div>;
+    } else if (image) {
+      response = (
+        <img src={image.url} alt="your upload" />
+      );
+    }
     return (
       <div>
         <div>{errorResponse}</div>
+        {response}
         <label htmlFor="single">Image Uploader</label>
-        <input type="file" id="single" onChange={e => this.onChange(e)} />
+        <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
       </div>
     );
   }
 }
 
-export default connect()(ImageUpload);
+const mapStateToProps = (state) => {
+  const { image, loading, error } = state.image;
+  return ({ image, loading, error });
+};
+
+export default connect(mapStateToProps)(ImageUpload);

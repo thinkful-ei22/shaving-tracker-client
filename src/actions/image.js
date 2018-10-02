@@ -18,16 +18,23 @@ export const addImageRequest = () => ({
   type: ADD_IMAGE_REQUEST,
 });
 
-export const addImage = file => (dispatch, getState) => (
-  fetch(`${API_BASE_URL}/image/upload`, {
-    method: 'POST',
-    body: file,
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw res;
-      }
-      return res.json();
+export const addImage = file => (dispatch, getState) => {
+  dispatch(addImageRequest());
+  return (
+    fetch(`${API_BASE_URL}/image/upload`, {
+      method: 'POST',
+      body: file,
     })
-    .then(image => console.log(image))
-);
+      .then((res) => {
+        if (!res.ok) {
+          throw res;
+        }
+        return res.json();
+      })
+      .then((image) => {
+        console.log(image);
+        dispatch(addImageSuccess(image));
+      })
+      .catch(err => dispatch(addImageError(err)))
+  );
+};
