@@ -20,6 +20,10 @@
   font-family: 'Charmonman', cursive;
 }
 
+.collection-item > img {
+  width: 250px;
+}
+
 .collection-item-type {
   font-variant: small-caps;
   text-decoration: underline;
