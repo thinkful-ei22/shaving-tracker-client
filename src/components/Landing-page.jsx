@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles/landing-page.css';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/register';
 
@@ -17,9 +18,14 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { error, isLogged } = this.props;
+    const { error, didRegisterSucceed, loggedIn } = this.props;
     let errorMsg;
     let registrationSuccessDisplay;
+
+    if (loggedIn) {
+      return <Redirect to="/mycollection" />;
+    }
+
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
@@ -27,32 +33,29 @@ class LandingPage extends React.Component {
         </div>
       );
     }
-    if (isLogged) {
+    if (didRegisterSucceed) {
       registrationSuccessDisplay = (
         <div className="test">Register Success</div>
       );
     }
     return (
-      <div className="landing-page">
+      <div>
         <h2>Welcome!</h2>
         <div className="sign-up-container">
           <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">
             {errorMsg}
             <label htmlFor="email">
               Email:
+              <input type="text" id="email" name="email" required />
             </label>
-            <input type="text" id="email" name="email" required />
-            
             <label htmlFor="register-user">
               Username:
+              <input type="text" id="register-user" name="registerusername" required />
             </label>
-            <input type="text" id="register-user" name="registerusername" required />
-            
             <label htmlFor="register-password">
               Password:
+              <input type="password" id="register-password" name="registerpassword" required />
             </label>
-            <input type="password" id="register-password" name="registerpassword" required />
-            
             <input type="submit" value="Register" className="register-button" />
             {registrationSuccessDisplay}
           </form>
@@ -64,19 +67,22 @@ class LandingPage extends React.Component {
 
 LandingPage.propTypes = {
   // loading: PropTypes.bool,
+  loggedIn: PropTypes.bool,
   error: PropTypes.string,
-  isLogged: PropTypes.bool,
+  didRegisterSucceed: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
 LandingPage.defaultProps = {
   // loading: false,
+  loggedIn: false,
   error: '',
-  isLogged: false,
+  didRegisterSucceed: false,
 };
 
 const mapStateToProps = state => ({
-  isLogged: state.user.isLogged,
+  loggedIn: state.auth.loggedIn,
+  didRegisterSucceed: state.user.isLogged,
   loading: state.user.loading,
   error: state.user.error,
 });
