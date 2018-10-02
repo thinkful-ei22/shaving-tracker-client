@@ -6,9 +6,13 @@ import {
   ADD_SHAVE_REQUEST,
   ADD_SHAVE_SUCCESS,
   ADD_SHAVE_ERROR,
+  SET_SHAVE_FILTER_START,
+  SET_SHAVE_FILTER_END,
 } from '../actions/shaves';
 
 const initialState = {
+  startFilter: null,
+  endFilter: null,
   shaveHistory: [],
   isLoading: true,
   error: null,
@@ -66,6 +70,19 @@ export default function shaveReducer(state = initialState, action) {
         error: null,
         isLoading: true,
       };
+
+    case SET_SHAVE_FILTER_START:
+      return {
+        ...state,
+        startFilter: action.date,
+      };
+
+    case SET_SHAVE_FILTER_END:
+      return {
+        ...state,
+        endFilter: action.date,
+      };
+
 
     default:
       return state;
