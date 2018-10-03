@@ -8,6 +8,7 @@ import {
   ADD_SHAVE_ERROR,
   SET_SHAVE_FILTER_START,
   SET_SHAVE_FILTER_END,
+  RESET_SHAVE_FILTER,
 } from '../actions/shaves';
 
 const initialState = {
@@ -83,6 +84,12 @@ export default function shaveReducer(state = initialState, action) {
         endFilter: action.date,
       };
 
+    case RESET_SHAVE_FILTER:
+      return {
+        ...state,
+        startFilter: null,
+        endFilter: null,
+      };
 
     default:
       return state;
