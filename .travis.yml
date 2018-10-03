@@ -11,3 +11,4 @@ deploy:
   app: hetokibo-shaving-client
   on:
     repo: thinkful-ei22/shaving-tracker-client
+    branch: feature/setup-travis
