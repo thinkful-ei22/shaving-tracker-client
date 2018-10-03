@@ -60,8 +60,9 @@ class NavBar extends Component {
         <div>
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
-          <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</LinkButton>
-          {/* <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button> */}
+          <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
+            LOG OUT
+          </LinkButton>
         </div>
       );
     } else {
