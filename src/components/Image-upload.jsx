@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addImage } from '../actions/image';
+import { addImage, removeImage } from '../actions/image';
 
 class ImageUpload extends React.Component {
   constructor(props) {
@@ -9,6 +9,12 @@ class ImageUpload extends React.Component {
     this.state = {
       errors: [],
     };
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    console.log('mounted');
+    dispatch(removeImage());
   }
 
   onChange(e) {

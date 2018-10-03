@@ -1,4 +1,6 @@
-import { ADD_IMAGE_ERROR, ADD_IMAGE_REQUEST, ADD_IMAGE_SUCCESS } from '../actions/image';
+import {
+ ADD_IMAGE_ERROR, ADD_IMAGE_REQUEST, ADD_IMAGE_SUCCESS, REMOVE_IMAGE_SUCCESS 
+} from '../actions/image';
 
 const initialState = {
   image: null,
@@ -26,6 +28,13 @@ export default function imageReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.error,
+      };
+    case REMOVE_IMAGE_SUCCESS:
+      return {
+        ...state,
+        image: null,
+        loading: false,
+        error: null,
       };
     default:
       return state;

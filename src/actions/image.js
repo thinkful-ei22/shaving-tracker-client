@@ -18,6 +18,10 @@ export const addImageRequest = () => ({
   type: ADD_IMAGE_REQUEST,
 });
 
+export const REMOVE_IMAGE_SUCCESS = 'REMOVE_IMAGE_SUCCESS';
+export const removeImageSuccess = () => ({
+  type: REMOVE_IMAGE_SUCCESS,
+});
 export const addImage = file => (dispatch, getState) => {
   dispatch(addImageRequest());
   return (
@@ -32,9 +36,12 @@ export const addImage = file => (dispatch, getState) => {
         return res.json();
       })
       .then((image) => {
-        console.log(image);
         dispatch(addImageSuccess(image));
       })
       .catch(err => dispatch(addImageError(err)))
   );
+};
+
+export const removeImage = () => (dispatch) => {
+  dispatch(removeImageSuccess());
 };

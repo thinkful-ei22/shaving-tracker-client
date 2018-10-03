@@ -5,6 +5,7 @@ import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
 import requiresLogin from './requires-login';
+import ImageUpload from './Image-upload';
 import { addShave } from '../actions/shaves';
 
 class ShaveForm extends React.Component {
@@ -15,6 +16,8 @@ class ShaveForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const { dispatch, image } = this.props;
+
     let today = new Date();
     let dd = today.getDate();
 
@@ -39,8 +42,8 @@ class ShaveForm extends React.Component {
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
+      imageUrl: image ? image.secure_url : null,
     };
-    const { dispatch } = this.props;
     dispatch(addShave(data));
   }
 
@@ -80,8 +83,9 @@ class ShaveForm extends React.Component {
 
     return (
       <form className="form" onSubmit={e => this.onSubmit(e)}>
-        {errorMessage}
         <h3>Add Shave</h3>
+        {errorMessage}
+        <ImageUpload />
         <label htmlFor="date">
           <span>Date</span>
         </label>
@@ -169,18 +173,23 @@ ShaveForm.propTypes = {
     }),
   ),
   dispatch: PropTypes.func.isRequired,
+  image: PropTypes.shape({
+    secure_url: PropTypes.string,
+  }),
 };
 
 ShaveForm.defaultProps = {
   loading: false,
   error: {},
   userProducts: [],
+  image: {},
 };
 
 const mapStateToProps = state => ({
   loading: state.product.loading,
   error: state.product.error,
   userProducts: state.product.userProducts,
+  image: state.image.image,
 });
 
 export default requiresLogin()(connect(mapStateToProps)(ShaveForm));
