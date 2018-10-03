@@ -18,7 +18,6 @@ class ShaveHistoryItems extends React.Component {
 
     const items = [];
     const sortedShaveHist = shaveHistory.sort((item1, item2) => {
-      console.log(item1, item2);
       return new Date(item1.date).getTime() - new Date(item2.date).getTime();
     });
 

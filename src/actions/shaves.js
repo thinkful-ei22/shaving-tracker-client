@@ -58,6 +58,33 @@ export const resetShaveFilter = () => ({
   type: RESET_SHAVE_FILTER,
 });
 
+
+export const getCommunityShaves = (start, end) => (dispatch, getState) => {
+  dispatch(getShavesRequest());
+  const { authToken } = getState().auth;
+
+  return fetch(`${API_BASE_URL}/community/shaves/${start}/${end}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${authToken}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then((res) => {
+      dispatch(getShavesSuccess(res));
+    })
+    .catch((err) => {
+      dispatch(getShavesError(`Error: ${err}`));
+    });
+};
+
+
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
   const { authToken } = getState().auth;
