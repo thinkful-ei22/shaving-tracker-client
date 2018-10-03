@@ -1,7 +1,6 @@
 language: node_js
 node_js: node
 script:
-- npx install-peerdeps --dev eslint-config-airbnb
 - npm test
 - npm run build
 deploy:
