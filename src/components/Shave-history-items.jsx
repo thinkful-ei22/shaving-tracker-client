@@ -39,7 +39,6 @@ class ShaveHistoryItems extends React.Component {
         .toLocaleDateString('en-US', {
           year: 'numeric', month: 'short', day: 'numeric',
         });
-
       const keys = Object.keys(shaveHistory[i]);
       const nicknames = {};
       keys.forEach((key) => {
@@ -47,9 +46,11 @@ class ShaveHistoryItems extends React.Component {
           ? shaveHistory[i][key].nickname
           : 'None';
       });
+      console.log(nicknames);
       items.push(
         <div className="shave-list-item" key={shaveHistory[i].id}>
           <h3>{itemDate}</h3>
+          <img src={shaveHistory[i].imageUrl} alt="" />
           <div className="shave-list-item-products">
             <span className="shave-list-item-products--label">Rating: </span>
             <span>{shaveHistory[i].rating ? shaveHistory[i].rating : 'None '}</span>
