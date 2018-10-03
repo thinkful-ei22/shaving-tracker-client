@@ -13,7 +13,6 @@ class ImageUpload extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    console.log('mounted');
     dispatch(removeImage());
   }
 
