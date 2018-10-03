@@ -53,6 +53,11 @@ export const setShaveFilterEnd = date => ({
   date,
 });
 
+export const RESET_SHAVE_FILTER = 'RESET_SHAVE_FILTER';
+export const resetShaveFilter = () => ({
+  type: RESET_SHAVE_FILTER,
+});
+
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
   const { authToken } = getState().auth;
