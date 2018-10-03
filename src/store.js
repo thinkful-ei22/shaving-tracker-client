@@ -8,7 +8,6 @@ import shaveReducer from './reducers/shaves';
 import productReducer from './reducers/products';
 import collectionReducer from './reducers/get-collection';
 
-import { loadAuthToken } from './local-storage';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import localStorageHandler from './middleware/localStorage';
 
@@ -25,7 +24,7 @@ const store = createStore(
   applyMiddleware(localStorageHandler, thunk),
 );
 
-const authToken = loadAuthToken();
+const authToken = localStorage.getItem('authToken');
 if (authToken) {
   const token = authToken;
   store.dispatch(setAuthToken(token));
