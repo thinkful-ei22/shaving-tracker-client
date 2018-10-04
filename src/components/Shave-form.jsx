@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
@@ -14,20 +15,7 @@ class ShaveForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let today = new Date();
-    let dd = today.getDate();
-
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-      mm = `0${mm}`;
-    }
-
-    today = `${yyyy}-${mm}-${dd}`;
+    const today = moment().format('YYYY-M-D');
 
     const data = {
       razorId: e.target.razor.value ? e.target.razor.value : null,
