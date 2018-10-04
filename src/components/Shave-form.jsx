@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
@@ -17,22 +18,7 @@ class ShaveForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const { dispatch, image } = this.props;
-
-    let today = new Date();
-    let dd = today.getDate();
-
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-      mm = `0${mm}`;
-    }
-
-    today = `${yyyy}-${mm}-${dd}`;
-
+    const today = moment().format('YYYY-M-D');
     const data = {
       razorId: e.target.razor.value ? e.target.razor.value : null,
       bladeId: e.target.blade.value ? e.target.blade.value : null,
@@ -40,6 +26,7 @@ class ShaveForm extends React.Component {
       latherId: e.target.lather.value ? e.target.lather.value : null,
       aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
+      share: e.target.share.checked,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
       imageUrl: image ? image.secure_url : null,
@@ -132,6 +119,9 @@ class ShaveForm extends React.Component {
           <option value="" disabled>Additional Care</option>
           {productsObj ? productsObj.additionalcare : null}
         </select>
+
+        <label>Share with community?</label>
+        <input type="checkbox" name="share" value="share" />
 
         <fieldset className="rating">
           <legend>Rating:</legend>
