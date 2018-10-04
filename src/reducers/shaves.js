@@ -77,17 +77,24 @@ export default function shaveReducer(state = initialState, action) {
         isLoading: true,
       };
 
+    case UPDATE_SHAVE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
+
     case UPDATE_SHAVE_SUCCESS:
       const newShaveHistory = state.shaveHistory.map((shave) => {
         const updated = action.data;
         if (updated.id === shave.id) {
-          const obj = {}
-          for (let key in updated) {
+          const obj = {};
+          for (const key in updated) {
             if (updated[key]) {
-              obj[key] = updated[key]
+              obj[key] = updated[key];
             }
           }
-          return Object.assign(shave, obj)
+          return Object.assign(shave, obj);
         }
         return shave;
       });
