@@ -34,9 +34,6 @@ class ShaveHistory extends React.Component {
       <div className="shave-history">
         <h2>Shaves</h2>
         {error}
-        <Link className="shave-form-link" to="/shave-form">
-          <button type="button">+ Shave</button>
-        </Link>
         <div className="shave-date-filter-container">
           <h3>Date Filter: </h3>
           <label>Start Date: </label>
