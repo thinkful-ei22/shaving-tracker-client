@@ -40,7 +40,8 @@ class ShaveHistory extends React.Component {
             type="date"
             value={startFilter}
             onChange={(e) => {
-              dispatch(setShaveFiltersGetCommunityShaves(e.target.value, endFilter));
+              const newStart = e.target.value || moment().subtract('months', 1).format('YYYY-MM-DD')
+              dispatch(setShaveFiltersGetCommunityShaves(newStart, endFilter));
             }}
           />
 
@@ -50,7 +51,8 @@ class ShaveHistory extends React.Component {
             type="date"
             value={endFilter}
             onChange={(e) => {
-              dispatch(setShaveFiltersGetCommunityShaves(startFilter, e.target.value));
+              const newEnd = e.target.value || moment().format('YYYY-MM-DD');
+              dispatch(setShaveFiltersGetCommunityShaves(startFilter, newEnd));
             }}
           />
         </div>
