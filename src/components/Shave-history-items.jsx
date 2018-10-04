@@ -11,16 +11,20 @@ class ShaveHistoryItems extends React.Component {
   }
 
   render() {
-    const { shaveHistory, startFilter, endFilter } = this.props;
-    if (!shaveHistory) {
+    const { canDelete, showUsername, shaveHistory, startFilter, endFilter } = this.props;
+    if (!shaveHistory || !shaveHistory.length > 0) {
       return <div>No history!</div>;
     }
 
     const items = [];
-    for (let i = 0; i < shaveHistory.length; i += 1) {
+    const sortedShaveHist = shaveHistory.sort((item1, item2) => {
+      return new Date(item1.date).getTime() - new Date(item2.date).getTime();
+    });
+
+    for (let i = 0; i < sortedShaveHist.length; i += 1) {
 
       const startFilterComp = startFilter ? new Date(startFilter) : null;
-      const itemDateComp = new Date(shaveHistory[i].date);
+      const itemDateComp = new Date(sortedShaveHist[i].date);
       const endFilterComp = endFilter ? new Date(endFilter) : null;
 
       if (startFilterComp && itemDateComp.getTime() < startFilterComp.getTime()) {
@@ -37,23 +41,36 @@ class ShaveHistoryItems extends React.Component {
         continue;
       }
 
-      const itemDate = moment(shaveHistory[i].date)
+      const itemDate = moment(sortedShaveHist[i].date)
         .tz('Atlantic/Azores')
         .format('MMM Do, YYYY');
 
-      const keys = Object.keys(shaveHistory[i]);
+      const keys = Object.keys(sortedShaveHist[i]);
       const nicknames = {};
       keys.forEach((key) => {
-        nicknames[key] = shaveHistory[i][key]
-          ? shaveHistory[i][key].nickname
+        nicknames[key] = sortedShaveHist[i][key]
+          ? sortedShaveHist[i][key].nickname
           : 'None';
       });
+
+      const deleteButton = canDelete
+        ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+        : '';
+
+      const username = showUsername
+        ? [
+          <span className="shave-list-item-products--label" key="usernameLabel">User: </span>,
+          <span key="usernameVal">{sortedShaveHist[i].username}</span>,
+        ]
+        : '';
+
       items.push(
-        <div className="shave-list-item" key={shaveHistory[i].id}>
+        <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
           <div className="shave-list-item-products">
+            {username}
             <span className="shave-list-item-products--label">Rating: </span>
-            <span>{shaveHistory[i].rating ? shaveHistory[i].rating : 'None '}</span>
+            <span>{sortedShaveHist[i].rating ? sortedShaveHist[i].rating : 'None '}</span>
 
             <span className="shave-list-item-products--label">Razor: </span>
             <span>{nicknames.razor}</span>
@@ -74,7 +91,7 @@ class ShaveHistoryItems extends React.Component {
             <span>{nicknames.additionalCare}</span>
 
           </div>
-          <button type="button" className="delete-shave-history" onClick={() => this.onClick(shaveHistory[i].id)}>Delete</button>
+          {deleteButton}
         </div>,
       );
     }
@@ -86,11 +103,15 @@ class ShaveHistoryItems extends React.Component {
 }
 
 ShaveHistoryItems.propTypes = {
+  canDelete: PropTypes.bool,
+  showUsername: PropTypes.bool,
   shaveHistory: PropTypes.arrayOf(Object),
   dispatch: PropTypes.func.isRequired,
 };
 
 ShaveHistoryItems.defaultProps = {
+  canDelete: false,
+  showUsername: false,
   shaveHistory: [],
 };
 
