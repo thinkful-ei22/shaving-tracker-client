@@ -11,14 +11,13 @@ class ShaveHistoryItems extends React.Component {
   }
 
   render() {
-    const { shaveHistory, startFilter, endFilter } = this.props;
-    if (!shaveHistory) {
+    const { canDelete, showUsername, shaveHistory, startFilter, endFilter } = this.props;
+    if (!shaveHistory || !shaveHistory.length > 0) {
       return <div>No history!</div>;
     }
 
     const items = [];
     const sortedShaveHist = shaveHistory.sort((item1, item2) => {
-      console.log(item1, item2);
       return new Date(item1.date).getTime() - new Date(item2.date).getTime();
     });
 
@@ -53,10 +52,23 @@ class ShaveHistoryItems extends React.Component {
           ? sortedShaveHist[i][key].nickname
           : 'None';
       });
+
+      const deleteButton = canDelete
+        ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+        : '';
+
+      const username = showUsername
+        ? [
+          <span className="shave-list-item-products--label" key="usernameLabel">User: </span>,
+          <span key="usernameVal">{sortedShaveHist[i].username}</span>,
+        ]
+        : '';
+
       items.push(
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
           <div className="shave-list-item-products">
+            {username}
             <span className="shave-list-item-products--label">Rating: </span>
             <span>{sortedShaveHist[i].rating ? sortedShaveHist[i].rating : 'None '}</span>
 
@@ -79,7 +91,7 @@ class ShaveHistoryItems extends React.Component {
             <span>{nicknames.additionalCare}</span>
 
           </div>
-          <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+          {deleteButton}
         </div>,
       );
     }
@@ -91,11 +103,15 @@ class ShaveHistoryItems extends React.Component {
 }
 
 ShaveHistoryItems.propTypes = {
+  canDelete: PropTypes.bool,
+  showUsername: PropTypes.bool,
   shaveHistory: PropTypes.arrayOf(Object),
   dispatch: PropTypes.func.isRequired,
 };
 
 ShaveHistoryItems.defaultProps = {
+  canDelete: false,
+  showUsername: false,
   shaveHistory: [],
 };
 
