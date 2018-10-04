@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment-timezone';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import './styles/shave-history.css';
 import {
