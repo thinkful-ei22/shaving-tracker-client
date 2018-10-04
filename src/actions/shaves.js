@@ -59,9 +59,11 @@ export const resetShaveFilter = () => ({
 });
 
 
-export const getCommunityShaves = (start, end) => (dispatch, getState) => {
-  dispatch(getShavesRequest());
+export const setShaveFiltersGetCommunityShaves = (start, end) => (dispatch, getState) => {
   const { authToken } = getState().auth;
+  dispatch(setShaveFilterStart(start));
+  dispatch(setShaveFilterEnd(end));
+  dispatch(getShavesRequest());
 
   return fetch(`${API_BASE_URL}/community/shaves/${start}/${end}`, {
     method: 'GET',
