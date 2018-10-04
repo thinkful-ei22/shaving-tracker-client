@@ -24,7 +24,7 @@ class ShaveHistory extends React.Component {
     const { dispatch, isLoading, error } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
-      : (<ShaveHistoryItems canDelete />);
+      : (<ShaveHistoryItems canDelete showShare />);
 
     return (
       <div className="shave-history">

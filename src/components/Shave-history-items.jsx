@@ -11,7 +11,14 @@ class ShaveHistoryItems extends React.Component {
   }
 
   render() {
-    const { canDelete, showUsername, shaveHistory, startFilter, endFilter } = this.props;
+    const {
+      canDelete,
+      showUsername,
+      showShare,
+      shaveHistory,
+      startFilter,
+      endFilter,
+    } = this.props;
     if (!shaveHistory || !shaveHistory.length > 0) {
       return <div>No history!</div>;
     }
@@ -28,16 +35,9 @@ class ShaveHistoryItems extends React.Component {
       const endFilterComp = endFilter ? new Date(endFilter) : null;
 
       if (startFilterComp && itemDateComp.getTime() < startFilterComp.getTime()) {
-        // console.log('itemDate is before startFilter');
-        // console.log('comp:', itemDateComp.getTime());
-        // console.log('filt:', startFilterComp.getTime());
         continue;
       }
-
       if (endFilterComp && endFilterComp.getTime() < itemDateComp.getTime()) {
-        // console.log('itemDate is after endFilter');
-        // console.log('comp:', itemDateComp);
-        // console.log('filt:', endFilterComp);
         continue;
       }
 
@@ -61,6 +61,13 @@ class ShaveHistoryItems extends React.Component {
         ? [
           <span className="shave-list-item-products--label" key="usernameLabel">User: </span>,
           <span key="usernameVal">{sortedShaveHist[i].username}</span>,
+        ]
+        : '';
+
+      const share = showShare
+        ? [
+          <span className="shave-list-item-products--label" key="shareLabel">Shared: </span>,
+          <span key="shareVal">{sortedShaveHist[i].share ? 'Yes' : 'No'}</span>,
         ]
         : '';
 
@@ -90,6 +97,8 @@ class ShaveHistoryItems extends React.Component {
             <span className="shave-list-item-products--label">Additional Care: </span>
             <span>{nicknames.additionalCare}</span>
 
+            {share}
+
           </div>
           {deleteButton}
         </div>,
@@ -103,15 +112,21 @@ class ShaveHistoryItems extends React.Component {
 }
 
 ShaveHistoryItems.propTypes = {
+  startFilter: PropTypes.string,
+  endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
   canDelete: PropTypes.bool,
   showUsername: PropTypes.bool,
+  showShare: PropTypes.bool,
   shaveHistory: PropTypes.arrayOf(Object),
   dispatch: PropTypes.func.isRequired,
 };
 
 ShaveHistoryItems.defaultProps = {
+  startFilter: null,
+  endFilter: null,
   canDelete: false,
   showUsername: false,
+  showShare: false,
   shaveHistory: [],
 };
 
