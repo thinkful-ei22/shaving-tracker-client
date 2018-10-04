@@ -12,8 +12,9 @@ class ShaveHistoryItems extends React.Component {
 
   render() {
     const { canDelete, showUsername, shaveHistory, startFilter, endFilter } = this.props;
+    const noHistory = <div>No History!</div>
     if (!shaveHistory || !shaveHistory.length > 0) {
-      return <div>No history!</div>;
+      return (noHistory);
     }
 
     const items = [];
@@ -96,9 +97,11 @@ class ShaveHistoryItems extends React.Component {
       );
     }
 
-    return (
-      items
-    );
+    if(items.length > 0){
+      return (items);
+    }else{
+      return (noHistory);
+    }
   }
 }
 
