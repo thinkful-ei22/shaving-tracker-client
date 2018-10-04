@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import EditShaves from './Edit-shave';
 import { deleteShaves } from '../actions/shaves';
 
 class ShaveHistoryItems extends React.Component {
@@ -55,6 +56,9 @@ class ShaveHistoryItems extends React.Component {
 
           </div>
           <button type="button" className="delete-shave-history" onClick={() => this.onClick(shaveHistory[i].id)}>Delete</button>
+          <div>
+            <EditShaves shaveId={shaveHistory[i].id} nickName={nicknames} />
+          </div>
         </div>,
       );
     }

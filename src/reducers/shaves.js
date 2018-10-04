@@ -6,6 +6,9 @@ import {
   ADD_SHAVE_REQUEST,
   ADD_SHAVE_SUCCESS,
   ADD_SHAVE_ERROR,
+  UPDATE_SHAVE_SUCCESS,
+  UPDATE_SHAVE_REQUEST,
+  UPDATE_SHAVE_ERROR,
 } from '../actions/shaves';
 
 const initialState = {
@@ -65,6 +68,34 @@ export default function shaveReducer(state = initialState, action) {
         ...state,
         error: null,
         isLoading: true,
+      };
+
+    case UPDATE_SHAVE_REQUEST:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
+      };
+
+    case UPDATE_SHAVE_SUCCESS:
+      const newShaveHistory = state.shaveHistory.map((shave) => {
+        const updated = action.data;
+        if (updated.id === shave.id) {
+          const obj = {}
+          for (let key in updated) {
+            if (updated[key]) {
+              obj[key] = updated[key]
+            }
+          }
+          return Object.assign(shave, obj)
+        }
+        return shave;
+      });
+      return {
+        ...state,
+        shaveHistory: newShaveHistory,
+        error: null,
+        isLoading: false,
       };
 
     default:

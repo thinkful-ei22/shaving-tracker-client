@@ -41,6 +41,23 @@ export const addShaveRequest = () => ({
   type: ADD_SHAVE_REQUEST,
 });
 
+export const UPDATE_SHAVE_SUCCESS = 'UPDATE_SHAVE_SUCESS';
+export const updateShaveSuccess = data => ({
+  type: UPDATE_SHAVE_SUCCESS,
+  data,
+});
+
+export const UPDATE_SHAVE_ERROR = 'UPDATE_SHAVE_ERROR';
+export const updateShaveError = error => ({
+  type: UPDATE_SHAVE_ERROR,
+  error,
+});
+
+export const UPDATE_SHAVE_REQUEST = 'UPDATE_SHAVE_REQUEST';
+export const updateShaveRequest = () => ({
+  type: UPDATE_SHAVE_REQUEST,
+});
+
 export const getShaves = () => (dispatch, getState) => {
   dispatch(getShavesRequest());
   const { authToken } = getState().auth;
@@ -107,5 +124,28 @@ export const addShave = shave => (dispatch, getState) => {
       })
       .then(data => dispatch(addShaveSuccess(data)))
       .catch(error => dispatch(getShavesError(`Error: ${error}`)))
+  );
+};
+
+export const updateShave = (body, id) => (dispatch, getState) => {
+  dispatch(updateShaveRequest());
+  const { authToken } = getState().auth;
+  return (
+    fetch(`${API_BASE_URL}/shaves/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject(res.statusText);
+        }
+        return res.json();
+      })
+      .then(data => dispatch(updateShaveSuccess(data)))
+      .catch(error => dispatch(updateShaveError(`Error: ${error}`)))
   );
 };
