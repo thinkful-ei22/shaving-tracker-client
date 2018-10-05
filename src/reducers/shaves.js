@@ -109,6 +109,7 @@ export default function shaveReducer(state = initialState, action) {
       };
 
     case UPDATE_SHAVE_SUCCESS:
+      console.log(action.data);
       const newShaveHistory = state.shaveHistory.map((shave) => {
         const updated = action.data;
         if (updated.id === shave.id) {
