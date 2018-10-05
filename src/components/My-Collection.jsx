@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
-import { Link } from 'react-router-dom';
 import ProductForm from './Product-form';
 import 'react-tabs/style/react-tabs.css';
 import requiresLogin from './requires-login';
