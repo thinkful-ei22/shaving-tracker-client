@@ -20,7 +20,6 @@ export const addProductRequest = () => ({
 
 export const addProduct = product => (dispatch, getState) => {
   dispatch(addProductRequest());
-  console.log(product);
 
   const { authToken } = getState().auth;
   return (

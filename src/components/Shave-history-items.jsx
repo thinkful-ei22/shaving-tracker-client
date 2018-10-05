@@ -76,6 +76,7 @@ class ShaveHistoryItems extends React.Component {
       items.push(
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
+          <img src={shaveHistory[i].imageUrl} alt="" />
           <div className="shave-list-item-products">
             {username}
             <span className="shave-list-item-products--label">Rating: </span>
