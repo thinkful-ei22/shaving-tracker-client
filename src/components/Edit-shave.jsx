@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import { fetchProducts } from '../actions/product';
@@ -33,39 +34,28 @@ class EditShaves extends React.Component {
 
   handleEdit(e, id) {
     e.preventDefault();
-    let today = new Date();
-    let dd = today.getDate();
 
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-      mm = `0${mm}`;
-    }
-
-    today = `${yyyy}-${mm}-${dd}`;
+    const today = moment().format('YYYY-MM-DD');
 
     const data = {
-      razorId: e.target.razor.value ? e.target.razor.value : null,
-      bladeId: e.target.blade.value ? e.target.blade.value : null,
-      brushId: e.target.brush.value ? e.target.brush.value : null,
-      latherId: e.target.lather.value ? e.target.lather.value : null,
-      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
-      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
+      razorId: e.target.razor.value ? e.target.razor.value : undefined,
+      bladeId: e.target.blade.value ? e.target.blade.value : undefined,
+      brushId: e.target.brush.value ? e.target.brush.value : undefined,
+      latherId: e.target.lather.value ? e.target.lather.value : undefined,
+      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : undefined,
+      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : undefined,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
       share: e.target.share.checked,
     };
+    console.log('Data: ', data);
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
   }
 
   render() {
     const productsObj = {};
-    const { userProducts, loading, error, shaveId, nickName } = this.props;
+    const { userProducts, loading, error, shaveId, nickName, shaveItem } = this.props;
     if (userProducts) {
       // initializes productsObj
       userProducts.forEach((product) => {
@@ -97,12 +87,14 @@ class EditShaves extends React.Component {
       );
     }
 
+    console.log(shaveItem);
+
     return (
       <div>
         <button type="button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
         <ReactModal
           isOpen={this.state.showModal}
-          contentLabel="Minimal Modal Example"
+          contentLabel="Edit Shave"
           className="Modal"
           overlayClassName="Overlay"
           ariaHideApp={false}
@@ -113,7 +105,10 @@ class EditShaves extends React.Component {
             <label htmlFor="date">
               <span>Date</span>
             </label>
-            <input className="col-5" type="date" id="date" name="date" />
+            <input className="col-5" type="date" id="date" name="date"
+              defaultValue={moment(shaveItem.date).tz('Atlantic/Azores').format('YYYY-MM-DD')}
+            />
+
             <label htmlFor="razor">
               <span>Select Razor:</span>
             </label>
@@ -121,6 +116,7 @@ class EditShaves extends React.Component {
               <option value="">{nickName.razor}</option>
               {productsObj ? productsObj.razor : null}
             </select>
+
             <label htmlFor="blade">
               <span>Select Blade:</span>
             </label>
@@ -128,6 +124,7 @@ class EditShaves extends React.Component {
               <option value="">{nickName.blade}</option>
               {productsObj ? productsObj.blade : null}
             </select>
+
             <label htmlFor="brush">
               <span>Select Brush:</span>
             </label>
@@ -135,6 +132,7 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.brush}</option>
               {productsObj ? productsObj.brush : null}
             </select>
+
             <label htmlFor="lather">
               <span>Select Lather:</span>
             </label>
@@ -142,6 +140,7 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.lather}</option>
               {productsObj ? productsObj.lather : null}
             </select>
+
             <label htmlFor="aftershave">
               <span>Select Aftershave:</span>
             </label>
@@ -149,11 +148,12 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.aftershave}</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
+            
             <label htmlFor="additionalcare">
               <span>Select Additional Care:</span>
             </label>
             <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
-              <option value="" disabled>{nickName.additionalare}</option>
+              <option value="" disabled>{nickName.additionalCare}</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
             
@@ -189,6 +189,9 @@ EditShaves.propTypes = {
     status: PropTypes.number,
     message: PropTypes.string,
   }),
+  // shaveItem: PropTypes.shape({
+
+  // }),
   userProducts: PropTypes.arrayOf(
     PropTypes.shape({
       nickname: PropTypes.string,
