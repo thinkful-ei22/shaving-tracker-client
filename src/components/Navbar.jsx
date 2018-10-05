@@ -48,7 +48,6 @@ class NavBar extends Component {
     let loggedIn;
     let loggedOut;
     if (error) {
-      console.log(error);
       errorMsg = (
         <div className="login-error" aria-live="polite">
           {JSON.stringify(error)}
@@ -61,7 +60,6 @@ class NavBar extends Component {
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
           <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</LinkButton>
-          {/* <button className="logout-btn" type="button" onClick={this.logOut}>LOG OUT</button> */}
         </div>
       );
     } else {
