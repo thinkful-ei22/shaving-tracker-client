@@ -6,6 +6,7 @@ import './styles/App.css';
 import LandingPage from './Landing-page';
 import MyCollection from './My-Collection';
 import ShaveHistory from './Shave-history';
+import CommunityShaveHistory from './Community-shave-history';
 import ProductForm from './Product-form';
 import ShaveForm from './Shave-form';
 import NavBar from './Navbar';
@@ -22,6 +23,7 @@ const App = () => (
           <Route exact path="/product-form" component={ProductForm} />
           <Route exact path="/shave-form" component={ShaveForm} />
           <Route exact path="/shaves" component={ShaveHistory} />
+          <Route exact path="/community/shaves" component={CommunityShaveHistory} />
         </div>
       </div>
     </Router>

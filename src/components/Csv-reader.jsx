@@ -12,7 +12,7 @@ const CSVReader = ({
       reader.onload = (event) => {
         const csvData = PapaParse.parse(event.target.result);
         console.log(csvData.data[0]);
-
+        
         onFileLoaded(csvData.data, filename);
       };
       reader.readAsText(e.target.files[0]);

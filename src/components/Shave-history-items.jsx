@@ -11,14 +11,22 @@ class ShaveHistoryItems extends React.Component {
   }
 
   render() {
-    const { shaveHistory, startFilter, endFilter } = this.props;
-    if (!shaveHistory) {
-      return <div>No history!</div>;
+    const {
+      canDelete,
+      showUsername,
+      showShare,
+      shaveHistory,
+      startFilter,
+      endFilter,
+    } = this.props;
+    const noHistory = <div>No History!</div>
+
+    if (!shaveHistory || !shaveHistory.length > 0) {
+      return (noHistory);
     }
 
     const items = [];
     const sortedShaveHist = shaveHistory.sort((item1, item2) => {
-      console.log(item1, item2);
       return new Date(item1.date).getTime() - new Date(item2.date).getTime();
     });
 
@@ -29,16 +37,9 @@ class ShaveHistoryItems extends React.Component {
       const endFilterComp = endFilter ? new Date(endFilter) : null;
 
       if (startFilterComp && itemDateComp.getTime() < startFilterComp.getTime()) {
-        // console.log('itemDate is before startFilter');
-        // console.log('comp:', itemDateComp.getTime());
-        // console.log('filt:', startFilterComp.getTime());
         continue;
       }
-
       if (endFilterComp && endFilterComp.getTime() < itemDateComp.getTime()) {
-        // console.log('itemDate is after endFilter');
-        // console.log('comp:', itemDateComp);
-        // console.log('filt:', endFilterComp);
         continue;
       }
 
@@ -53,10 +54,30 @@ class ShaveHistoryItems extends React.Component {
           ? sortedShaveHist[i][key].nickname
           : 'None';
       });
+
+      const deleteButton = canDelete
+        ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+        : '';
+
+      const username = showUsername
+        ? [
+          <span className="shave-list-item-products--label" key="usernameLabel">User: </span>,
+          <span key="usernameVal">{sortedShaveHist[i].username}</span>,
+        ]
+        : '';
+
+      const share = showShare
+        ? [
+          <span className="shave-list-item-products--label" key="shareLabel">Shared: </span>,
+          <span key="shareVal">{sortedShaveHist[i].share ? 'Yes' : 'No'}</span>,
+        ]
+        : '';
+
       items.push(
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
           <div className="shave-list-item-products">
+            {username}
             <span className="shave-list-item-products--label">Rating: </span>
             <span>{sortedShaveHist[i].rating ? sortedShaveHist[i].rating : 'None '}</span>
 
@@ -78,24 +99,38 @@ class ShaveHistoryItems extends React.Component {
             <span className="shave-list-item-products--label">Additional Care: </span>
             <span>{nicknames.additionalCare}</span>
 
+            {share}
+
           </div>
-          <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+          {deleteButton}
         </div>,
       );
     }
 
-    return (
-      items
-    );
+    if(items.length > 0){
+      return (items);
+    }else{
+      return (noHistory);
+    }
   }
 }
 
 ShaveHistoryItems.propTypes = {
+  startFilter: PropTypes.string,
+  endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
+  canDelete: PropTypes.bool,
+  showUsername: PropTypes.bool,
+  showShare: PropTypes.bool,
   shaveHistory: PropTypes.arrayOf(Object),
   dispatch: PropTypes.func.isRequired,
 };
 
 ShaveHistoryItems.defaultProps = {
+  startFilter: null,
+  endFilter: null,
+  canDelete: false,
+  showUsername: false,
+  showShare: false,
   shaveHistory: [],
 };
 
