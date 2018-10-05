@@ -57,6 +57,7 @@ class EditShaves extends React.Component {
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
+      share: e.target.share.checked,
     };
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
@@ -155,6 +156,9 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.additionalare}</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
+            
+            <label>Share with community?</label>
+            <input type="checkbox" name="share" value="share" />
 
             <fieldset className="rating">
               <legend>Rating:</legend>
