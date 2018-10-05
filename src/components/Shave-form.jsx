@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
+import requiresLogin from './requires-login';
+import ImageUpload from './Image-upload';
 import { addShave } from '../actions/shaves';
 
 class ShaveForm extends React.Component {
@@ -14,21 +17,8 @@ class ShaveForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let today = new Date();
-    let dd = today.getDate();
-
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-      mm = `0${mm}`;
-    }
-
-    today = `${yyyy}-${mm}-${dd}`;
-
+    const { dispatch, image } = this.props;
+    const today = moment().format('YYYY-M-D');
     const data = {
       razorId: e.target.razor.value ? e.target.razor.value : null,
       bladeId: e.target.blade.value ? e.target.blade.value : null,
@@ -36,10 +26,11 @@ class ShaveForm extends React.Component {
       latherId: e.target.lather.value ? e.target.lather.value : null,
       aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
+      share: e.target.share.checked,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
+      imageUrl: image ? image.secure_url : null,
     };
-    const { dispatch } = this.props;
     dispatch(addShave(data));
   }
 
@@ -79,8 +70,9 @@ class ShaveForm extends React.Component {
 
     return (
       <form className="form" onSubmit={e => this.onSubmit(e)}>
-        {errorMessage}
         <h3>Add Shave</h3>
+        {errorMessage}
+        <ImageUpload />
         <label htmlFor="date">
           <span>Date</span>
         </label>
@@ -128,6 +120,9 @@ class ShaveForm extends React.Component {
           {productsObj ? productsObj.additionalcare : null}
         </select>
 
+        <label>Share with community?</label>
+        <input type="checkbox" name="share" value="share" />
+
         <fieldset className="rating">
           <legend>Rating:</legend>
           <input type="radio" id="star5" name="rating" value="5" />
@@ -168,18 +163,23 @@ ShaveForm.propTypes = {
     }),
   ),
   dispatch: PropTypes.func.isRequired,
+  image: PropTypes.shape({
+    secure_url: PropTypes.string,
+  }),
 };
 
 ShaveForm.defaultProps = {
   loading: false,
   error: {},
   userProducts: [],
+  image: {},
 };
 
 const mapStateToProps = state => ({
   loading: state.product.loading,
   error: state.product.error,
   userProducts: state.product.userProducts,
+  image: state.image.image,
 });
 
-export default connect(mapStateToProps)(ShaveForm);
+export default requiresLogin()(connect(mapStateToProps)(ShaveForm));

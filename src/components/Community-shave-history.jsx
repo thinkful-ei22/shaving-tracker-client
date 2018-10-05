@@ -1,45 +1,47 @@
 import React from 'react';
+import moment from 'moment-timezone';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
 import './styles/shave-history.css';
 import {
-  getShaves,
-  setShaveFilterStart,
-  setShaveFilterEnd,
-  resetShaveFilter,
+  setShaveFiltersGetCommunityShaves,
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
 
 class ShaveHistory extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(getShaves());
-    dispatch(resetShaveFilter());
+    const oneMonthAgo = moment().subtract('months', 1).format('YYYY-MM-DD');
+    const today = moment().format('YYYY-MM-DD');
+    dispatch(setShaveFiltersGetCommunityShaves(oneMonthAgo, today));
   }
 
-
   render() {
-    const { dispatch, isLoading, error } = this.props;
+    const {
+      dispatch,
+      isLoading,
+      error,
+      startFilter,
+      endFilter,
+    } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
-      : (<ShaveHistoryItems canDelete showShare />);
+      : (<ShaveHistoryItems canDelete={false} showUsername />);
 
     return (
       <div className="shave-history">
         <h2>Shaves</h2>
         {error}
-        <Link className="shave-form-link" to="/shave-form">
-          <button type="button">+ Shave</button>
-        </Link>
         <div className="shave-date-filter-container">
           <h3>Date Filter: </h3>
           <label>Start Date: </label>
           <input
             type="date"
+            value={startFilter}
             onChange={(e) => {
-              dispatch(setShaveFilterStart(e.target.value));
+              const newStart = e.target.value || moment().subtract('months', 1).format('YYYY-MM-DD')
+              dispatch(setShaveFiltersGetCommunityShaves(newStart, endFilter));
             }}
           />
 
@@ -47,8 +49,10 @@ class ShaveHistory extends React.Component {
           <label>End Date: </label>
           <input
             type="date"
+            value={endFilter}
             onChange={(e) => {
-              dispatch(setShaveFilterEnd(e.target.value));
+              const newEnd = e.target.value || moment().format('YYYY-MM-DD');
+              dispatch(setShaveFiltersGetCommunityShaves(startFilter, newEnd));
             }}
           />
         </div>
@@ -63,17 +67,23 @@ class ShaveHistory extends React.Component {
 }
 
 ShaveHistory.propTypes = {
+  startFilter: PropTypes.string,
+  endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
   dispatch: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   error: PropTypes.string,
 };
 
 ShaveHistory.defaultProps = {
+  startFilter: null,
+  endFilter: null,
   isLoading: false,
   error: null,
 };
 
 const mapStateToProps = state => ({
+  startFilter: state.shaves.startFilter,
+  endFilter: state.shaves.endFilter,
   isLoading: state.shaves.isLoading,
   error: state.shaves.error,
 });
