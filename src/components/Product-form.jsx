@@ -6,7 +6,7 @@ import './styles/form.css';
 import PropTypes from 'prop-types';
 import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
-import { addProduct } from '../actions/product';
+import { addProduct, clearErr } from '../actions/product';
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -28,7 +28,9 @@ class ProductForm extends React.Component {
   }
 
   handleCloseModal() {
-    this.setState({ showModal: false });
+    const { dispatch } = this.props;
+    this.setState({ showModal: false, nickname: '' });
+    dispatch(clearErr());
   }
 
   onSubmit(e) {
@@ -43,7 +45,7 @@ class ProductForm extends React.Component {
       subtype: e.target.subtype.value === 'subtypes' ? null : e.target.subtype.value,
       imageUrl: image ? image.secure_url : null,
     };
-    dispatch(addProduct(data));
+    dispatch(addProduct(data, this.handleCloseModal));
   }
 
   handleProductChange(e) {
@@ -85,7 +87,7 @@ class ProductForm extends React.Component {
     if (error) {
       errorMessage = (
         <div className="login-error" aria-live="polite">
-          {error.message}
+          {error}
         </div>
       );
     }
@@ -113,7 +115,7 @@ class ProductForm extends React.Component {
             {errorMessage}
             {loadingWheel}
             <ImageUpload />
-            <label classname="form-label" htmlFor="productType">Select Product Type: </label>
+            <label className="form-label" htmlFor="productType">Select Product Type: </label>
             <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
               <option value="" disabled>Product Type</option>
               <option value="razor">Razor</option>
@@ -123,20 +125,20 @@ class ProductForm extends React.Component {
               <option value="aftershave">Aftershave</option>
               <option value="additionalcare">Additional Care</option>
             </select>
-            <label classname="form-label"  htmlFor="subtype">Select Product Subtype:</label>
+            <label className="form-label"  htmlFor="subtype">Select Product Subtype:</label>
             <select defaultValue="" className="col-5" id="subtype" name="subtype">
               <option value="" disabled>Subtype</option>
               {typeList}
             </select>
-            <label classname="form-label" htmlFor="brand">
+            <label className="form-label" htmlFor="brand">
               <span>Brand</span>
             </label>
             <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} />
-            <label classname="form-label"  htmlFor="model">
+            <label className="form-label"  htmlFor="model">
               <span>Model</span>
             </label>
             <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} />
-            <label classname="form-label" htmlFor="nickname">
+            <label className="form-label" htmlFor="nickname">
               <span>Nickname</span>
             </label>
             <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
@@ -155,10 +157,7 @@ class ProductForm extends React.Component {
 
 ProductForm.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.shape({
-    status: PropTypes.number,
-    message: PropTypes.string,
-  }),
+  error: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   image: PropTypes.shape({
     secure_url: PropTypes.string,
@@ -167,7 +166,7 @@ ProductForm.propTypes = {
 
 ProductForm.defaultProps = {
   loading: false,
-  error: {},
+  error: '',
   image: {},
 };
 
