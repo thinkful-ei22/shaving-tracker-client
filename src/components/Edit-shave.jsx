@@ -48,7 +48,6 @@ class EditShaves extends React.Component {
       date: e.target.date.value ? e.target.date.value : today,
       share: e.target.share.checked,
     };
-    console.log('Data: ', data);
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
   }
@@ -87,7 +86,7 @@ class EditShaves extends React.Component {
       );
     }
 
-    console.log(shaveItem);
+    console.log(shaveItem.rating);
 
     return (
       <div>
@@ -158,19 +157,31 @@ class EditShaves extends React.Component {
             </select>
             
             <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" />
+            <input type="checkbox" name="share" value="share"
+              defaultChecked={shaveItem.share}
+            />
 
-            <fieldset className="rating">
+            <fieldset className="rating" defaultValue={shaveItem.rating}>
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" />
+              <input type="radio" id="star5" name="rating" value="5" 
+                defaultChecked={shaveItem.rating === 5 ? true : false}
+              />
               <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" />
+              <input type="radio" id="star4" name="rating" value="4" 
+                defaultChecked={shaveItem.rating === 4 ? true : false}
+              />
               <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" />
+              <input type="radio" id="star3" name="rating" value="3" 
+                defaultChecked={shaveItem.rating === 3 ? true : false}
+              />
               <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2" />
+              <input type="radio" id="star2" name="rating" value="2"
+                defaultChecked={shaveItem.rating === 2 ? true : false}
+              />
               <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1" />
+              <input type="radio" id="star1" name="rating" value="1"
+                defaultChecked={shaveItem.rating === 1 ? true : false}
+              />
               <label htmlFor="star1" className="full" />
             </fieldset>
             <button type="button" onClick={this.handleCloseModal}>Close</button>
