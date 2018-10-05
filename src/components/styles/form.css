@@ -1,26 +1,43 @@
 .form {
-  display: inline-block;
   max-width: 1000px;
-  border: 1px solid #2F0F07;
-  background: #BBAF96;
-  min-width: 600px; 
+  background: #fffcf2;
+  text-align: center;
 }
 
 .form * {
   display: block;
+  margin: 5px auto;
+}
+
+.form-label {
+  vertical-align: middle;
 }
 
 .edit-form {
   display: inline-block;
   max-width: 1000px;
   border: 1px solid #2F0F07;
-  background: papayawhip;
+  background: #fffcf2;
   min-width: 600px;
 }
 
 .edit-form * {
   display: block;
 }
+
+.add-shave-button {
+  position: absolute;
+  right: 30px;
+  font-size: 22px;
+}
+
+.add-product-button {
+  margin-bottom: 20px;
+  margin-left: 15px;
+  float: right;
+  
+}
+
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
