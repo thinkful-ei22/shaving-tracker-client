@@ -15,8 +15,8 @@ import {
 } from '../actions/shaves';
 
 const initialState = {
-  startFilter: null,
-  endFilter: null,
+  startFilter: '',
+  endFilter: '',
   shaveHistory: [],
   isLoading: true,
   error: null,
@@ -90,8 +90,8 @@ export default function shaveReducer(state = initialState, action) {
     case RESET_SHAVE_FILTER:
       return {
         ...state,
-        startFilter: null,
-        endFilter: null,
+        startFilter: '',
+        endFilter: '',
       }
 
     case UPDATE_SHAVE_REQUEST:
