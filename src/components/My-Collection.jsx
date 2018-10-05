@@ -4,6 +4,7 @@ import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
 import { Link } from 'react-router-dom';
+import ProductForm from './Product-form';
 import 'react-tabs/style/react-tabs.css';
 import requiresLogin from './requires-login';
 import './styles/mycollections.css';
@@ -47,7 +48,7 @@ class MyCollection extends React.Component {
 
     return (
       <Tabs className="product-list">
-        <Link className="product-form-link" to="/product-form"><button type="button">+ Product</button></Link>
+        <ProductForm />
         <TabList>
           <Tab>All</Tab>
           <Tab>Razors</Tab>

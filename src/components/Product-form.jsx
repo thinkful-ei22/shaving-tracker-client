@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactModal from 'react-modal';
 import './styles/loader.css';
 import './styles/form.css';
 import PropTypes from 'prop-types';
@@ -14,7 +15,18 @@ class ProductForm extends React.Component {
       brand: '',
       model: '',
       nickname: '',
+      showModal: false,
     };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
   }
 
   onSubmit(e) {
@@ -84,43 +96,55 @@ class ProductForm extends React.Component {
     ));
 
     return (
-      <form className="form" onSubmit={e => this.onSubmit(e)}>
-        <h3>Add Product</h3>
-        {errorMessage}
-        {loadingWheel}
-        <label htmlFor="productType">Select Product Type: </label>
-        <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
-          <option value="" disabled>Product Type</option>
-          <option value="razor">Razor</option>
-          <option value="blade">Blade</option>
-          <option value="brush">Brush</option>
-          <option value="lather">Lather</option>
-          <option value="aftershave">Aftershave</option>
-          <option value="additionalcare">Additional Care</option>
-        </select>
-        <label htmlFor="subtype">Select Product Subtype:</label>
-        <select defaultValue="" className="col-5" id="subtype" name="subtype">
-          <option value="" disabled>Subtype</option>
-          {typeList}
-        </select>
-        <label htmlFor="brand">
-          <span>Brand</span>
-        </label>
-        <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} />
-        <label htmlFor="model">
-          <span>Model</span>
-        </label>
-        <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} />
-        <label htmlFor="nickname">
-          <span>Nickname</span>
-        </label>
-        <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
-        <label htmlFor="comment">
-          <span>Comments</span>
-        </label>
-        <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
-        <button className="col-3" type="submit">Submit</button>
-      </form>
+      <div>
+        <button className="add-product-button" onClick={this.handleOpenModal}>+ Product</button>
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="Minimal Modal Example"
+          className="Modal"
+          overlayClassName="Overlay"
+          ariaHideApp={false}
+        >
+          <form className="form" onSubmit={e => this.onSubmit(e)}>
+            <h3>Add Product</h3>
+            {errorMessage}
+            {loadingWheel}
+            <label htmlFor="productType">Select Product Type: </label>
+            <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
+              <option value="" disabled>Product Type</option>
+              <option value="razor">Razor</option>
+              <option value="blade">Blade</option>
+              <option value="brush">Brush</option>
+              <option value="lather">Lather</option>
+              <option value="aftershave">Aftershave</option>
+              <option value="additionalcare">Additional Care</option>
+            </select>
+            <label htmlFor="subtype">Select Product Subtype:</label>
+            <select defaultValue="" className="col-5" id="subtype" name="subtype">
+              <option value="" disabled>Subtype</option>
+              {typeList}
+            </select>
+            <label htmlFor="brand">
+              <span>Brand</span>
+            </label>
+            <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} />
+            <label htmlFor="model">
+              <span>Model</span>
+            </label>
+            <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} />
+            <label htmlFor="nickname">
+              <span>Nickname</span>
+            </label>
+            <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
+            <label htmlFor="comment">
+              <span>Comments</span>
+            </label>
+            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
+            <button className="col-3" type="submit">Submit</button>
+            <button type="button" onClick={this.handleCloseModal}>Close</button>
+          </form>
+        </ReactModal>
+      </div>
     );
   }
 }
