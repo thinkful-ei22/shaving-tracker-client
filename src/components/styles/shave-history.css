@@ -25,6 +25,10 @@
   background: #D7D0C1;
 }
 
+.shave-list-item > img {
+  width: 280px;
+}
+
 .shave-list-item-products{
   display: grid;
   grid-template-columns: auto auto;
