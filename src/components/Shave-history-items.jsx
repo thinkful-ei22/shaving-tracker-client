@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import EditShaves from './Edit-shave';
 import { deleteShaves } from '../actions/shaves';
 
 class ShaveHistoryItems extends React.Component {
@@ -103,7 +104,12 @@ class ShaveHistoryItems extends React.Component {
             {share}
 
           </div>
-          {deleteButton}
+          <div>
+            {deleteButton}
+          </div>
+          <div>
+            <EditShaves shaveId={shaveHistory[i].id} nickName={nicknames} />
+          </div>
         </div>,
       );
     }

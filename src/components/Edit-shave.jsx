@@ -1,16 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import ReactModal from 'react-modal';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
-import requiresLogin from './requires-login';
-import ImageUpload from './Image-upload';
-import { addShave } from '../actions/shaves';
+import { updateShave } from '../actions/shaves';
 
-class ShaveForm extends React.Component {
+class EditShaves extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -34,10 +31,23 @@ class ShaveForm extends React.Component {
     dispatch(fetchProducts());
   }
 
-  onSubmit(e) {
+  handleEdit(e, id) {
     e.preventDefault();
-    const { dispatch, image } = this.props;
-    const today = moment().format('YYYY-M-D');
+    let today = new Date();
+    let dd = today.getDate();
+
+    let mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = `0${dd}`;
+    }
+
+    if (mm < 10) {
+      mm = `0${mm}`;
+    }
+
+    today = `${yyyy}-${mm}-${dd}`;
+
     const data = {
       razorId: e.target.razor.value ? e.target.razor.value : null,
       bladeId: e.target.blade.value ? e.target.blade.value : null,
@@ -45,17 +55,16 @@ class ShaveForm extends React.Component {
       latherId: e.target.lather.value ? e.target.lather.value : null,
       aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
-      share: e.target.share.checked,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
-      imageUrl: image ? image.secure_url : null,
     };
-    dispatch(addShave(data));
+    const { dispatch, shaveId } = this.props;
+    dispatch(updateShave(data, shaveId));
   }
 
   render() {
     const productsObj = {};
-    const { userProducts, loading, error } = this.props;
+    const { userProducts, loading, error, shaveId, nickName } = this.props;
     if (userProducts) {
       // initializes productsObj
       userProducts.forEach((product) => {
@@ -89,7 +98,7 @@ class ShaveForm extends React.Component {
 
     return (
       <div>
-        <button className="add-shave-button" onClick={this.handleOpenModal}>+ Shave</button>
+        <button type="button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
@@ -97,7 +106,7 @@ class ShaveForm extends React.Component {
           overlayClassName="Overlay"
           ariaHideApp={false}
         >
-          <form className="form" onSubmit={e => this.onSubmit(e)}>
+          <form className="form" onSubmit={e => this.handleEdit(e)}>
             {errorMessage}
             <h3>Add Shave</h3>
             <label htmlFor="date">
@@ -108,47 +117,44 @@ class ShaveForm extends React.Component {
               <span>Select Razor:</span>
             </label>
             <select defaultValue="" className="col-5" id="razor" name="razor">
-              <option value="" disabled>Razor</option>
+              <option value="">{nickName.razor}</option>
               {productsObj ? productsObj.razor : null}
             </select>
             <label htmlFor="blade">
               <span>Select Blade:</span>
             </label>
             <select defaultValue="" className="col-5" id="blade" name="blade">
-              <option value="" disabled>Blade</option>
+              <option value="">{nickName.blade}</option>
               {productsObj ? productsObj.blade : null}
             </select>
             <label htmlFor="brush">
               <span>Select Brush:</span>
             </label>
             <select defaultValue="" className="col-5" id="brush" name="brush">
-              <option value="" disabled>Brush</option>
+              <option value="" disabled>{nickName.brush}</option>
               {productsObj ? productsObj.brush : null}
             </select>
             <label htmlFor="lather">
               <span>Select Lather:</span>
             </label>
             <select defaultValue="" className="col-5" id="lather" name="lather">
-              <option value="" disabled>Lather</option>
+              <option value="" disabled>{nickName.lather}</option>
               {productsObj ? productsObj.lather : null}
             </select>
             <label htmlFor="aftershave">
               <span>Select Aftershave:</span>
             </label>
             <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
-              <option value="" disabled>Aftershave</option>
+              <option value="" disabled>{nickName.aftershave}</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
             <label htmlFor="additionalcare">
               <span>Select Additional Care:</span>
             </label>
             <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
-              <option value="" disabled>Additional Care</option>
+              <option value="" disabled>{nickName.additionalare}</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
-
-            <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" />
 
             <fieldset className="rating">
               <legend>Rating:</legend>
@@ -163,19 +169,17 @@ class ShaveForm extends React.Component {
               <input type="radio" id="star1" name="rating" value="1" />
               <label htmlFor="star1" className="full" />
             </fieldset>
-            <div>
-              <input type="submit" value="Submit" />
-              <button type="button" onClick={this.handleCloseModal}>Close</button>
-            </div>
-            </form>
-          </ReactModal>
-        </div>
-      
+            <button type="button" onClick={this.handleCloseModal}>Close</button>
+            <button type="submit">Submit</button>
+          </form>
+        </ReactModal>
+      </div>
+
     );
   }
 }
 
-ShaveForm.propTypes = {
+EditShaves.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.shape({
     status: PropTypes.number,
@@ -193,23 +197,17 @@ ShaveForm.propTypes = {
     }),
   ),
   dispatch: PropTypes.func.isRequired,
-  image: PropTypes.shape({
-    secure_url: PropTypes.string,
-  }),
 };
-
-ShaveForm.defaultProps = {
+EditShaves.defaultProps = {
   loading: false,
   error: {},
   userProducts: [],
-  image: {},
 };
 
 const mapStateToProps = state => ({
   loading: state.product.loading,
   error: state.product.error,
   userProducts: state.product.userProducts,
-  image: state.image.image,
 });
 
-export default requiresLogin()(connect(mapStateToProps)(ShaveForm));
+export default connect(mapStateToProps)(EditShaves);
