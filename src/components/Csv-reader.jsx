@@ -11,9 +11,37 @@ const CSVReader = ({
       const filename = e.target.files[0].name;
       reader.onload = (event) => {
         const csvData = PapaParse.parse(event.target.result);
-        console.log(csvData.data[0]);
-        
-        onFileLoaded(csvData.data, filename);
+        const csvDataObj = {};
+        csvData.data[0].forEach((property, index) => {
+            if (/.*nickname.*/i.test(property)) {
+              csvDataObj['nickname'] = { property, index }
+            } else if (/.*producttype/i.test(property)) {
+              csvDataObj['producttype'] = { property, index }
+            } else if (/.*brand/i.test(property)) {
+              csvDataObj['brand'] = { property, index }
+            } else if (/.*model/i.test(property)) {
+              csvDataObj['model'] = { property, index }
+            } else if (/.*comment/i.test(property)) {
+              csvDataObj['comment'] = { property, index }
+            } else if (/.*subtype/i.test(property)) {
+              csvDataObj['subtype'] = { property, index }
+            }
+        })
+        let products = [];
+        for (let i = 1; i < csvData.data.length; i++) {
+          let formattedData = {}
+          for (let j=0; j < csvData.data[i].length; j++) {
+            Object.keys(csvDataObj).forEach(key => {
+              if (csvDataObj[key].index === j) {
+                // console.log(csvDataObj[key].property, csvDataObj[key].index, csvData.data[i][j]);
+                formattedData[key] = csvData.data[i][j];
+              }
+            })
+          }
+          products.push(formattedData);
+        }
+        console.log(products)
+        onFileLoaded(products, filename);
       };
       reader.readAsText(e.target.files[0]);
     }
