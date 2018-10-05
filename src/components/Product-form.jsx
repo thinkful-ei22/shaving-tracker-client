@@ -112,6 +112,7 @@ class ProductForm extends React.Component {
             <h3>Add Product</h3>
             {errorMessage}
             {loadingWheel}
+            <ImageUpload />
             <label classname="form-label" htmlFor="productType">Select Product Type: </label>
             <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
               <option value="" disabled>Product Type</option>

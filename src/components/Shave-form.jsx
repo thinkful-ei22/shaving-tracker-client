@@ -98,8 +98,9 @@ class ShaveForm extends React.Component {
           ariaHideApp={false}
         >
           <form className="form" onSubmit={e => this.onSubmit(e)}>
-            {errorMessage}
             <h3>Add Shave</h3>
+            {errorMessage}
+            <ImageUpload />
             <label htmlFor="date">
               <span>Date</span>
             </label>
