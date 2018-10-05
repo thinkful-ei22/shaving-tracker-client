@@ -36,7 +36,7 @@ class EditShaves extends React.Component {
     e.preventDefault();
 
     const today = moment().format('YYYY-MM-DD');
-
+    console.log(e.target.share.checked);
     const data = {
       razorId: e.target.razor.value ? e.target.razor.value : undefined,
       bladeId: e.target.blade.value ? e.target.blade.value : undefined,
@@ -46,7 +46,7 @@ class EditShaves extends React.Component {
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : undefined,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
-      share: e.target.share.checked,
+      share: e.target.share.checked ? e.target.share.checked : false,
     };
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
