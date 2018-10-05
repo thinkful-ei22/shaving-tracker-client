@@ -33,16 +33,17 @@ export const addProduct = product => (dispatch, getState) => {
       body: JSON.stringify(product),
     })
       .then((res) => {
-        console.log(res);
         if (!res.ok) {
-          return Promise.reject('Unable to reach server');
+          return res.json().then(res => Promise.reject(res));
         }
         return res.json();
       })
       .then((data) => {
         dispatch(addProductSuccess(data));
       })
-      .catch(error => dispatch(addProductError(error)))
+      .catch(error => { 
+        dispatch(addProductError(error.message))
+      })
   );
 };
 
