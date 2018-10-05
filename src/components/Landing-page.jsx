@@ -4,7 +4,6 @@ import './styles/landing-page.css';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/register';
-import CSVReader from './Csv-reader';
 
 class LandingPage extends React.Component {
   onSubmit(e) {
@@ -16,10 +15,6 @@ class LandingPage extends React.Component {
     };
     const { dispatch } = this.props;
     dispatch(registerUser(data));
-  }
-
-  handleUpload(data, filename) {
-    console.log(data, filename);
   }
 
   render() {
@@ -45,9 +40,6 @@ class LandingPage extends React.Component {
     }
     return (
       <div>
-        <CSVReader
-          onFileLoaded={this.handleUpload}
-        />
         <h2>Welcome!</h2>
         <div className="sign-up-container">
           <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">

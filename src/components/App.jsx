@@ -11,12 +11,14 @@ import ProductForm from './Product-form';
 import ShaveForm from './Shave-form';
 import NavBar from './Navbar';
 import store from '../store';
+import CSVProducts from './Csv-products';
 
 const App = () => (
   <Provider store={store}>
     <Router>
       <div>
         <NavBar />
+        <CSVProducts />
         <div className="app-content">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/mycollection" component={MyCollection} />

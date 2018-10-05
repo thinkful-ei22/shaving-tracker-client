@@ -16,7 +16,7 @@ const CSVReader = ({
             if (/.*nickname.*/i.test(property)) {
               csvDataObj['nickname'] = { property, index }
             } else if (/.*producttype/i.test(property)) {
-              csvDataObj['producttype'] = { property, index }
+              csvDataObj['productType'] = { property, index }
             } else if (/.*brand/i.test(property)) {
               csvDataObj['brand'] = { property, index }
             } else if (/.*model/i.test(property)) {
@@ -33,7 +33,6 @@ const CSVReader = ({
           for (let j=0; j < csvData.data[i].length; j++) {
             Object.keys(csvDataObj).forEach(key => {
               if (csvDataObj[key].index === j) {
-                // console.log(csvDataObj[key].property, csvDataObj[key].index, csvData.data[i][j]);
                 formattedData[key] = csvData.data[i][j];
               }
             })
