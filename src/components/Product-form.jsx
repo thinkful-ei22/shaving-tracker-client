@@ -6,7 +6,7 @@ import './styles/form.css';
 import PropTypes from 'prop-types';
 import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
-import { addProduct } from '../actions/product';
+import { addProduct, clearErr } from '../actions/product';
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -28,7 +28,9 @@ class ProductForm extends React.Component {
   }
 
   handleCloseModal() {
-    this.setState({ showModal: false });
+    const { dispatch } = this.props;
+    this.setState({ showModal: false, nickname: '' });
+    dispatch(clearErr());
   }
 
   onSubmit(e) {
@@ -43,7 +45,7 @@ class ProductForm extends React.Component {
       subtype: e.target.subtype.value === 'subtypes' ? null : e.target.subtype.value,
       imageUrl: image ? image.secure_url : null,
     };
-    dispatch(addProduct(data));
+    dispatch(addProduct(data, this.handleCloseModal));
   }
 
   handleProductChange(e) {

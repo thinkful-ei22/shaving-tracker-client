@@ -7,13 +7,13 @@ import ProductForm from './Product-form';
 import 'react-tabs/style/react-tabs.css';
 import requiresLogin from './requires-login';
 import './styles/mycollections.css';
-import { fetchCollection } from '../actions/get-collection';
+import { fetchProducts } from '../actions/product';
 import CollectionCard from './Collection-card';
 
 class MyCollection extends React.Component {
   componentDidMount() {
-    const { dispatch, userId } = this.props;
-    dispatch(fetchCollection(userId));
+    const { dispatch } = this.props;
+    dispatch(fetchProducts());
   }
 
   render() {
@@ -64,9 +64,9 @@ class MyCollection extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.collection.products,
-  loading: state.collection.loading,
-  error: state.collection.error,
+  loading: state.product.loading,
+  error: state.product.error,
+  products: state.product.userProducts,
 });
 
 
