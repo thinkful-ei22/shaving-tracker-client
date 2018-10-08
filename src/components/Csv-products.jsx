@@ -1,77 +1,61 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Tab, Tabs, TabList, TabPanel,
-} from 'react-tabs';
-import { Link } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
 import './styles/mycollections.css';
-import CollectionCard from './Collection-card';
 import CSVReader from './Csv-reader';
+import CSVProductsCard from './Csv-products-card';
 
 
 class CSVProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
     }
   }
 
   handleUpload(data, filename) {
     console.log(data, filename);
-    console.log(data);
     this.setState({products: data});
   }
 
-  render() {
+  handleSubmit(e) {
+    // handlesubmit will just upload the files from the store
+    e.preventDefault();
+    const { products, canSubmit } = this.state;
+    console.log(products, canSubmit);
+    console.log('handledSubmit');
+  }
+
+  handleChange(e) {
+    console.log('handleChange');
     const { products } = this.state;
-    const categorizedProducts = {
-      all: [],
-      razor: [],
-      blade: [],
-      brush: [],
-      lather: [],
-      aftershave: [],
-      additionalcare: [],
-    };
-    const productType = products.reduce((obj, product) => {
-      const tempObj = obj;
-      const type = product.productType;
-      if (!obj[type]) {
-        tempObj[type] = [product];
-      } else {
-        tempObj[type] = [...tempObj[type], product];
-      }
-      tempObj.all.push(product);
-      return tempObj;
-    }, categorizedProducts);
+    const id = e.target.name.split(' ');
+    const newProducts = products.slice(0);
+    newProducts[id[1]][id[0]] = e.target.value;
+    this.setState({products: newProducts})
+  }
 
-    const collections = Object.keys(productType).map(product => (
-      <TabPanel key={product} className="collection-list">
-        {productType[product].map(item => <div key={item.id}><CollectionCard {...item} /></div>)}
-      </TabPanel>
-    ));
-
+  render() {
+    const response = this.state.products.map((product, i) => {
+      return (
+      <div key={`csv-product-${i}`}>
+        <CSVProductsCard 
+          {...product} 
+          index={i}
+          handleChange={e => this.handleChange(e)}
+        />
+      </div>);
+    }) 
+    const submit = this.state.products.length > 0 ? <button type="submit">+ Add All</button> : null;
     return (
-      <div>
+      <form onSubmit={e => this.handleSubmit(e)}>
         <CSVReader
             onFileLoaded={(data, filename) => this.handleUpload(data, filename)}
           />
-        <Tabs className="product-list">
-          <Link className="product-form-link" to="/product-form"><button type="button">+ Product</button></Link>
-          <TabList>
-            <Tab>All</Tab>
-            <Tab>Razors</Tab>
-            <Tab>Blades</Tab>
-            <Tab>Brushes</Tab>
-            <Tab>Lathers</Tab>
-            <Tab>Aftershaves</Tab>
-            <Tab>Addtional Cares</Tab>
-          </TabList>
-          {collections}
-        </Tabs>
-      </div>
+        {response}
+        {submit}
+      </form>
     );
   }
 }

@@ -5,3 +5,7 @@ body{
 .app-content{
   margin: 10px;
 }
+
+.red {
+  background-color: red;
+}
