@@ -14,6 +14,7 @@ class ShaveHistoryItems extends React.Component {
   render() {
     const {
       canDelete,
+      canEdit,
       showUsername,
       showShare,
       shaveHistory,
@@ -60,6 +61,9 @@ class ShaveHistoryItems extends React.Component {
         ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
         : '';
 
+      const editButton = canEdit
+        ? <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} nickName={nicknames} />
+        : '';
       const username = showUsername
         ? [
           <span className="shave-list-item-products--label" key="usernameLabel">User: </span>,
@@ -111,7 +115,7 @@ class ShaveHistoryItems extends React.Component {
             {deleteButton}
           </div>
           <div>
-            <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} nickName={nicknames} />
+            {editButton}
           </div>
         </div>,
       );
@@ -129,6 +133,7 @@ ShaveHistoryItems.propTypes = {
   startFilter: PropTypes.string,
   endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
   canDelete: PropTypes.bool,
+  canEdit: PropTypes.bool,
   showUsername: PropTypes.bool,
   showShare: PropTypes.bool,
   shaveHistory: PropTypes.arrayOf(Object),
@@ -139,6 +144,7 @@ ShaveHistoryItems.defaultProps = {
   startFilter: null,
   endFilter: null,
   canDelete: false,
+  canEdit: false,
   showUsername: false,
   showShare: false,
   shaveHistory: [],
