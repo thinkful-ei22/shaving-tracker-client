@@ -103,6 +103,9 @@ class ShaveHistoryItems extends React.Component {
 
             {share}
 
+            <span className="shave-list-item-products--label">Comments: </span>
+            <span>{sortedShaveHist[i].comments}</span>
+
           </div>
           <div>
             {deleteButton}

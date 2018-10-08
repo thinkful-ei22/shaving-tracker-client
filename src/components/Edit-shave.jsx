@@ -46,6 +46,7 @@ class EditShaves extends React.Component {
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
       share: e.target.share.checked,
+      comments:e.target.comment.value,
     };
     Object.keys(data).forEach(key =>{
       if(typeof data[key] === 'string' && data[key].toLowerCase() === 'none')
@@ -163,7 +164,12 @@ class EditShaves extends React.Component {
               <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
-            
+            <textarea className="col-5"
+              id="comment"
+              name="comment"
+              placeholder="Comment/Notes"
+              defaultValue={shaveItem.comments}
+            />
             <label>Share with community?</label>
             <input type="checkbox" name="share" value="share"
               defaultChecked={shaveItem.share}

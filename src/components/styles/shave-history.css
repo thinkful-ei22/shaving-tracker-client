@@ -66,12 +66,13 @@
 }
 
 .Modal {
-  position: absolute;
+  position: fixed;
   top: 150px;
   left: 150px;
   right: 150px;
   bottom: 150px;
   background-color: #fffcf2;
+  height: 520px;
   }
 
 .Overlay {
