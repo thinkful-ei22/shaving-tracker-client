@@ -47,7 +47,7 @@ class EditShaves extends React.Component {
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
       share: e.target.share.checked ? e.target.share.checked : false,
-      comments:e.target.comments.value,
+      comments:e.target.comment.value,
     };
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
