@@ -57,7 +57,7 @@ class EditShaves extends React.Component {
 
   render() {
     const productsObj = {};
-    const { userProducts, loading, error, shaveId, nickName, shaveItem } = this.props;
+    const { userProducts, loading, error, shaveId, shaveItem } = this.props;
     if (userProducts) {
       // initializes productsObj
       userProducts.forEach((product) => {

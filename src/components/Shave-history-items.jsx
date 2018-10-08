@@ -108,7 +108,7 @@ class ShaveHistoryItems extends React.Component {
             {deleteButton}
           </div>
           <div>
-            <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} nickName={nicknames} />
+            <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} />
           </div>
         </div>,
       );
