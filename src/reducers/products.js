@@ -5,6 +5,7 @@ import {
   FETCH_PRODUCTS_ERROR,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_REQUEST,
+  CLEAR_ERR,
 } from '../actions/product';
 
 const initialState = {
@@ -57,6 +58,13 @@ export default function productReducer(state = initialState, action) {
       loading: true,
       error: null,
     });
+  }
+  if (action.type === CLEAR_ERR) {
+    return ({
+      ...state, 
+      error: null,
+      loading: false,
+    })
   }
   return state;
 }

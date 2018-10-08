@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 import { fetchProducts } from '../actions/product';
@@ -33,31 +34,19 @@ class EditShaves extends React.Component {
 
   handleEdit(e, id) {
     e.preventDefault();
-    let today = new Date();
-    let dd = today.getDate();
 
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-      mm = `0${mm}`;
-    }
-
-    today = `${yyyy}-${mm}-${dd}`;
-
+    const today = moment().format('YYYY-MM-DD');
+    console.log(e.target.share.checked);
     const data = {
-      razorId: e.target.razor.value ? e.target.razor.value : null,
-      bladeId: e.target.blade.value ? e.target.blade.value : null,
-      brushId: e.target.brush.value ? e.target.brush.value : null,
-      latherId: e.target.lather.value ? e.target.lather.value : null,
-      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
-      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
+      razorId: e.target.razor.value ? e.target.razor.value : undefined,
+      bladeId: e.target.blade.value ? e.target.blade.value : undefined,
+      brushId: e.target.brush.value ? e.target.brush.value : undefined,
+      latherId: e.target.lather.value ? e.target.lather.value : undefined,
+      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : undefined,
+      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : undefined,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
-      share: e.target.share.checked,
+      share: e.target.share.checked ? e.target.share.checked : false,
     };
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
@@ -65,7 +54,7 @@ class EditShaves extends React.Component {
 
   render() {
     const productsObj = {};
-    const { userProducts, loading, error, shaveId, nickName } = this.props;
+    const { userProducts, loading, error, shaveId, nickName, shaveItem } = this.props;
     if (userProducts) {
       // initializes productsObj
       userProducts.forEach((product) => {
@@ -97,12 +86,14 @@ class EditShaves extends React.Component {
       );
     }
 
+    console.log(shaveItem.rating);
+
     return (
       <div>
         <button type="button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
         <ReactModal
           isOpen={this.state.showModal}
-          contentLabel="Minimal Modal Example"
+          contentLabel="Edit Shave"
           className="Modal"
           overlayClassName="Overlay"
           ariaHideApp={false}
@@ -113,7 +104,10 @@ class EditShaves extends React.Component {
             <label htmlFor="date">
               <span>Date</span>
             </label>
-            <input className="col-5" type="date" id="date" name="date" />
+            <input className="col-5" type="date" id="date" name="date"
+              defaultValue={moment(shaveItem.date).tz('Atlantic/Azores').format('YYYY-MM-DD')}
+            />
+
             <label htmlFor="razor">
               <span>Select Razor:</span>
             </label>
@@ -121,6 +115,7 @@ class EditShaves extends React.Component {
               <option value="">{nickName.razor}</option>
               {productsObj ? productsObj.razor : null}
             </select>
+
             <label htmlFor="blade">
               <span>Select Blade:</span>
             </label>
@@ -128,6 +123,7 @@ class EditShaves extends React.Component {
               <option value="">{nickName.blade}</option>
               {productsObj ? productsObj.blade : null}
             </select>
+
             <label htmlFor="brush">
               <span>Select Brush:</span>
             </label>
@@ -135,6 +131,7 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.brush}</option>
               {productsObj ? productsObj.brush : null}
             </select>
+
             <label htmlFor="lather">
               <span>Select Lather:</span>
             </label>
@@ -142,6 +139,7 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.lather}</option>
               {productsObj ? productsObj.lather : null}
             </select>
+
             <label htmlFor="aftershave">
               <span>Select Aftershave:</span>
             </label>
@@ -149,28 +147,41 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.aftershave}</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
+            
             <label htmlFor="additionalcare">
               <span>Select Additional Care:</span>
             </label>
             <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
-              <option value="" disabled>{nickName.additionalare}</option>
+              <option value="" disabled>{nickName.additionalCare}</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
             
             <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" />
+            <input type="checkbox" name="share" value="share"
+              defaultChecked={shaveItem.share}
+            />
 
-            <fieldset className="rating">
+            <fieldset className="rating" defaultValue={shaveItem.rating}>
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" />
+              <input type="radio" id="star5" name="rating" value="5" 
+                defaultChecked={shaveItem.rating === 5 ? true : false}
+              />
               <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" />
+              <input type="radio" id="star4" name="rating" value="4" 
+                defaultChecked={shaveItem.rating === 4 ? true : false}
+              />
               <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" />
+              <input type="radio" id="star3" name="rating" value="3" 
+                defaultChecked={shaveItem.rating === 3 ? true : false}
+              />
               <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2" />
+              <input type="radio" id="star2" name="rating" value="2"
+                defaultChecked={shaveItem.rating === 2 ? true : false}
+              />
               <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1" />
+              <input type="radio" id="star1" name="rating" value="1"
+                defaultChecked={shaveItem.rating === 1 ? true : false}
+              />
               <label htmlFor="star1" className="full" />
             </fieldset>
             <button type="button" onClick={this.handleCloseModal}>Close</button>
@@ -189,6 +200,9 @@ EditShaves.propTypes = {
     status: PropTypes.number,
     message: PropTypes.string,
   }),
+  // shaveItem: PropTypes.shape({
+
+  // }),
   userProducts: PropTypes.arrayOf(
     PropTypes.shape({
       nickname: PropTypes.string,

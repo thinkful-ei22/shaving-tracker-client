@@ -12,7 +12,7 @@ import ShaveHistoryItems from './Shave-history-items';
 class ShaveHistory extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
-    const oneMonthAgo = moment().subtract('months', 1).format('YYYY-MM-DD');
+    const oneMonthAgo = moment().subtract(1, 'months').format('YYYY-MM-DD');
     const today = moment().format('YYYY-MM-DD');
     dispatch(setShaveFiltersGetCommunityShaves(oneMonthAgo, today));
   }
@@ -40,7 +40,7 @@ class ShaveHistory extends React.Component {
             type="date"
             value={startFilter}
             onChange={(e) => {
-              const newStart = e.target.value || moment().subtract('months', 1).format('YYYY-MM-DD')
+              const newStart = e.target.value || moment().subtract(1, 'months').format('YYYY-MM-DD')
               dispatch(setShaveFiltersGetCommunityShaves(newStart, endFilter));
             }}
           />
@@ -75,8 +75,8 @@ ShaveHistory.propTypes = {
 };
 
 ShaveHistory.defaultProps = {
-  startFilter: null,
-  endFilter: null,
+  startFilter: '',
+  endFilter: '',
   isLoading: false,
   error: null,
 };

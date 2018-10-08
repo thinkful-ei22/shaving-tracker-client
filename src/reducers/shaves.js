@@ -15,8 +15,8 @@ import {
 } from '../actions/shaves';
 
 const initialState = {
-  startFilter: null,
-  endFilter: null,
+  startFilter: '',
+  endFilter: '',
   shaveHistory: [],
   isLoading: true,
   error: null,
@@ -90,8 +90,8 @@ export default function shaveReducer(state = initialState, action) {
     case RESET_SHAVE_FILTER:
       return {
         ...state,
-        startFilter: null,
-        endFilter: null,
+        startFilter: '',
+        endFilter: '',
       }
 
     case UPDATE_SHAVE_REQUEST:
@@ -109,20 +109,10 @@ export default function shaveReducer(state = initialState, action) {
       };
 
     case UPDATE_SHAVE_SUCCESS:
-      console.log(action.data);
-      const newShaveHistory = state.shaveHistory.map((shave) => {
-        const updated = action.data;
-        if (updated.id === shave.id) {
-          const obj = {};
-          for (const key in updated) {
-            if (updated[key]) {
-              obj[key] = updated[key];
-            }
-          }
-          return Object.assign(shave, obj);
-        }
-        return shave;
-      });
+      const newItem = action.data;
+      const newShaveHistory = state.shaveHistory
+        .filter(shaveItem => newItem.id !== shaveItem.id);
+      newShaveHistory.push(newItem);
       return {
         ...state,
         shaveHistory: newShaveHistory,
