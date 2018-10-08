@@ -1,20 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CSVProductsCard = (props) => {
+const CSVProductsCard = props => {
   const {
-    brand, model, subtype, nickname, comment, productType, index, handleChange,
+    brand, model, subtype, nickname, comment, productType, index, handleChange, handleRemove,
   } = props;
+  let types = [];
+  const razorTypes = ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'];
+  const brushTypes = ['Badger', 'Boar', 'Horse', 'Synthetic'];
+  const latherTypes = ['Cream', 'Soap', 'Oil'];
   let productTypeStyle = '';
   let falseOption;
+  let subtypeError = false;
+
+  if (productType === 'razor') {
+    types = razorTypes;
+    if (!new RegExp(razorTypes.join('|'), 'i').test(subtype)) {
+      subtypeError = true;
+    }
+  } else if (productType === 'brush') {
+    types = brushTypes
+    if (!new RegExp(brushTypes.join('|'), 'i').test(subtype)) {
+      subtypeError = true;
+    }
+  } else if (productType === 'lather') {
+    types = latherTypes;
+    if (!new RegExp(latherTypes.join('|'), 'i').test(subtype)) {
+      subtypeError = true;
+    }
+  } else {
+    types = ['none'];
+  }
+  
+  const typeList = types.map(type => (
+    <option value={type.toLowerCase()} key={type}>{type}</option>
+  ));
+
   if (!/(.*razor.*)|(.*blade.*)|(.*brush.*)|(.*lather.*)|(.*aftershave.*)|(.*additionalcare.*)/i.test(productType)) {
-    console.log(productType);
     productTypeStyle = 'red';
+    subtypeError = true;
     falseOption = <option value={null}>{`${productType} not a valid Product Type`}</option>
   } 
+  
   return (
     <div className="collection-item">
-      <button type="button">- remove product</button>
+      <button onClick={handleRemove} type="button" name={`remove-item ${index}`}>- remove product</button>
       <h3>{`Product ${index+1}`}</h3>
       <p>
         <span className={`collection-item-type ${productTypeStyle}`}>
@@ -32,6 +62,24 @@ const CSVProductsCard = (props) => {
           <option value="lather">Lather</option>
           <option value="aftershave">Aftershave</option>
           <option value="additionalcare">Additional Care</option>
+        </select>
+      </p>
+      <p>
+        <span className={`collection-item-type ${subtypeError ? 'red' : ''}`}>
+          Subtype:
+        </span>
+        <input 
+          type="text" 
+          value={subtype} 
+          name={`subtype ${index}`} 
+          onChange={handleChange}
+        />
+        <select 
+          defaultValue={subtype || 'none'} 
+          name={`subtype ${index}`}
+          onChange={handleChange}
+        >
+          {typeList}
         </select>
       </p>
       <p>
@@ -53,17 +101,6 @@ const CSVProductsCard = (props) => {
           type="text" 
           value={model} 
           name={`model ${index}`} 
-          onChange={handleChange}
-        />
-      </p>
-      <p>
-        <span className="collection-item-type">
-          Subtype:
-        </span>
-        <input 
-          type="text" 
-          value={subtype} 
-          name={`subtype ${index}`} 
           onChange={handleChange}
         />
       </p>
