@@ -36,18 +36,21 @@ class EditShaves extends React.Component {
     e.preventDefault();
 
     const today = moment().format('YYYY-MM-DD');
-    console.log(e.target.share.checked);
     const data = {
       razorId: e.target.razor.value ? e.target.razor.value : undefined,
       bladeId: e.target.blade.value ? e.target.blade.value : undefined,
-      brushId: e.target.brush.value ? e.target.brush.value : undefined,
-      latherId: e.target.lather.value ? e.target.lather.value : undefined,
-      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : undefined,
-      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : undefined,
+      brushId: e.target.brush.value ? e.target.brush.value : null,
+      latherId: e.target.lather.value ? e.target.lather.value : null,
+      aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
+      additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
-      share: e.target.share.checked ? e.target.share.checked : false,
+      share: e.target.share.checked,
     };
+    Object.keys(data).forEach(key =>{
+      if(typeof data[key] === 'string' && data[key].toLowerCase() === 'none')
+        data[key] = null;
+    });
     const { dispatch, shaveId } = this.props;
     dispatch(updateShave(data, shaveId));
   }
@@ -86,7 +89,12 @@ class EditShaves extends React.Component {
       );
     }
 
-    console.log(shaveItem.rating);
+    const defaultRazor = shaveItem.razor ? shaveItem.razor.id : '';
+    const defaultBlade = shaveItem.blade ? shaveItem.blade.id : '';
+    const defaultBrush = shaveItem.brush ? shaveItem.brush.id : '';
+    const defaultLather = shaveItem.lather ? shaveItem.lather.id : '';
+    const defaultAftershave = shaveItem.aftershave ? shaveItem.aftershave.id : '';
+    const defaultAdditionalCare = shaveItem.additionalCare ? shaveItem.additionalCare.id : '';
 
     return (
       <div>
@@ -111,48 +119,48 @@ class EditShaves extends React.Component {
             <label htmlFor="razor">
               <span>Select Razor:</span>
             </label>
-            <select defaultValue="" className="col-5" id="razor" name="razor">
-              <option value="">{nickName.razor}</option>
+            <select defaultValue={defaultRazor} className="col-5" id="razor" name="razor" required>
+              <option value="" disabled>Select...</option>
               {productsObj ? productsObj.razor : null}
             </select>
 
             <label htmlFor="blade">
               <span>Select Blade:</span>
             </label>
-            <select defaultValue="" className="col-5" id="blade" name="blade">
-              <option value="">{nickName.blade}</option>
+            <select defaultValue={defaultBlade} className="col-5" id="blade" name="blade" required>
+              <option value="" disabled>Select...</option>
               {productsObj ? productsObj.blade : null}
             </select>
 
             <label htmlFor="brush">
               <span>Select Brush:</span>
             </label>
-            <select defaultValue="" className="col-5" id="brush" name="brush">
-              <option value="" disabled>{nickName.brush}</option>
+            <select defaultValue={defaultBrush} className="col-5" id="brush" name="brush">
+              <option value="">None</option>
               {productsObj ? productsObj.brush : null}
             </select>
 
             <label htmlFor="lather">
               <span>Select Lather:</span>
             </label>
-            <select defaultValue="" className="col-5" id="lather" name="lather">
-              <option value="" disabled>{nickName.lather}</option>
+            <select defaultValue={defaultLather} className="col-5" id="lather" name="lather">
+              <option value="" >None</option>
               {productsObj ? productsObj.lather : null}
             </select>
 
             <label htmlFor="aftershave">
               <span>Select Aftershave:</span>
             </label>
-            <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
-              <option value="" disabled>{nickName.aftershave}</option>
+            <select defaultValue={defaultAftershave} className="col-5" id="aftershave" name="aftershave">
+              <option value="" >None</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
             
             <label htmlFor="additionalcare">
               <span>Select Additional Care:</span>
             </label>
-            <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
-              <option value="" disabled>{nickName.additionalCare}</option>
+            <select defaultValue={defaultAdditionalCare} className="col-5" id="additionalcare" name="additionalcare">
+              <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
             
