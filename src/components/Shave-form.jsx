@@ -49,6 +49,7 @@ class ShaveForm extends React.Component {
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
       imageUrl: image ? image.secure_url : null,
+      comments: e.target.comment.value,
     };
     dispatch(addShave(data));
   }
@@ -148,7 +149,7 @@ class ShaveForm extends React.Component {
               <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
-
+            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
             <label>Share with community?</label>
             <input type="checkbox" name="share" value="share" defaultChecked={true}/>
 
