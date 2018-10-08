@@ -87,8 +87,6 @@ class EditShaves extends React.Component {
       );
     }
 
-    console.log(shaveItem.rating);
-
     return (
       <div>
         <button type="button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
@@ -156,7 +154,12 @@ class EditShaves extends React.Component {
               <option value="" disabled>{nickName.additionalCare}</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
-            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
+            <textarea className="col-5"
+              id="comment"
+              name="comment"
+              placeholder="Comment/Notes"
+              defaultValue={shaveItem.comments}
+            />
             <label>Share with community?</label>
             <input type="checkbox" name="share" value="share"
               defaultChecked={shaveItem.share}
