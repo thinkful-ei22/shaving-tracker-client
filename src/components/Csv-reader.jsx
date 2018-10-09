@@ -39,7 +39,6 @@ const CSVReader = ({
           }
           products.push(formattedData);
         }
-        console.log(products)
         onFileLoaded(products, filename);
       };
       reader.readAsText(e.target.files[0]);

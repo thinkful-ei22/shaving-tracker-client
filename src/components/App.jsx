@@ -18,7 +18,6 @@ const App = () => (
     <Router>
       <div>
         <NavBar />
-        <CSVProducts />
         <div className="app-content">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/mycollection" component={MyCollection} />
@@ -26,6 +25,7 @@ const App = () => (
           <Route exact path="/shave-form" component={ShaveForm} />
           <Route exact path="/shaves" component={ShaveHistory} />
           <Route exact path="/community/shaves" component={CommunityShaveHistory} />
+          <Route exact path="/csvproducts" component={CSVProducts} />
         </div>
       </div>
     </Router>

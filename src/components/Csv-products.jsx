@@ -5,6 +5,8 @@ import './styles/mycollections.css';
 import CSVReader from './Csv-reader';
 import CSVProductsCard from './Csv-products-card';
 import { addProduct } from '../actions/product';
+import requiresLogin from './requires-login';
+
 
 
 class CSVProducts extends React.Component {
@@ -29,7 +31,6 @@ class CSVProducts extends React.Component {
     const possibleLatherTypes = ['Cream', 'Soap', 'Oil'];
     e.preventDefault();
     const { products } = this.state;
-    console.log('handledSubmit');
     let errors = [];
     products.forEach((product,index) => {
       if (!new RegExp(possibleProductType.join('|'), 'i').test(product.productType)) {
@@ -70,13 +71,11 @@ class CSVProducts extends React.Component {
   }
 
   handleChange(e) {
-    console.log('handleChange');
     const { products } = this.state;
     const id = e.target.name.split(' ');
     const newProducts = products.slice(0);
     newProducts[id[1]][id[0]] = e.target.value;
     if (id[0] === 'productType') {
-      console.log('change subtype');
       switch(newProducts[id[1]][id[0]]) {
         case 'razor':
           newProducts[id[1]].subtype = 'Double Edge';
@@ -98,14 +97,13 @@ class CSVProducts extends React.Component {
     const { products } = this.state;
     const id = e.target.name.split(' ');
     this.setState({
-      products: products.slice(0, id[1]).concat(products.slice(id[1]+1)),
+      products: products.filter((el, i) => i.toString() !== id[1]),
       errors: [],
     })
   }
 
   render() {
     const { products, errors, filename } = this.state;
-    console.log(errors);
     const errorResponse = errors.map((error, i) => {
       const {errorMsg, index} = error;
       return (
@@ -147,4 +145,4 @@ class CSVProducts extends React.Component {
 }
 
 
-export default connect()(CSVProducts);
+export default requiresLogin()(connect()(CSVProducts));
