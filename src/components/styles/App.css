@@ -5,3 +5,18 @@ body{
 .app-content{
   margin: 10px;
 }
+
+.image-div-normalizer{
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-div-normalizer img{
+  max-height: 250px;
+  max-width: 250px;
+}
