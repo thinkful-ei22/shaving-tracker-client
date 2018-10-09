@@ -26,6 +26,9 @@ class CSVProducts extends React.Component {
     const { products } = this.state;
     console.log(products);
     console.log('handledSubmit');
+    products.forEach(product => {
+
+    });
   }
 
   handleChange(e) {

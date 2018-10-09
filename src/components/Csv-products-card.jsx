@@ -68,12 +68,6 @@ const CSVProductsCard = props => {
         <span className={`collection-item-type ${subtypeError ? 'red' : ''}`}>
           Subtype:
         </span>
-        <input 
-          type="text" 
-          value={subtype} 
-          name={`subtype ${index}`} 
-          onChange={handleChange}
-        />
         <select 
           defaultValue={subtype || 'none'} 
           name={`subtype ${index}`}
