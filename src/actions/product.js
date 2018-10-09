@@ -18,9 +18,8 @@ export const addProductRequest = () => ({
   type: ADD_PRODUCT_REQUEST,
 });
 
-export const addProduct = product => (dispatch, getState) => {
+export const addProduct = (product, closeModal) => (dispatch, getState) => {
   dispatch(addProductRequest());
-  console.log(product);
 
   const { authToken } = getState().auth;
   return (
@@ -34,16 +33,18 @@ export const addProduct = product => (dispatch, getState) => {
       body: JSON.stringify(product),
     })
       .then((res) => {
-        console.log(res);
         if (!res.ok) {
-          return Promise.reject('Unable to reach server');
+          return res.json().then(res => Promise.reject(res));
         }
         return res.json();
       })
       .then((data) => {
         dispatch(addProductSuccess(data));
+        closeModal();
       })
-      .catch(error => dispatch(addProductError(error)))
+      .catch(error => { 
+        dispatch(addProductError(error.message))
+      })
   );
 };
 
@@ -61,17 +62,17 @@ export const fetchProductsError = error => ({
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST';
 export const fetchProductsRequest = () => ({
-  type: FETCH_PRODUCTS_SUCCESS,
+  type: FETCH_PRODUCTS_REQUEST,
 });
 
 export const fetchProducts = () => (dispatch, getState) => {
   dispatch(fetchProductsRequest());
   const { authToken } = getState().auth;
-  return (
-    fetch(`${API_BASE_URL}/products/personal`, {
+  return fetch(`${API_BASE_URL}/products/personal`, {
       method: 'GET',
       headers: {
         // Provide our auth token as credentials
+        'content-type': 'application/json',
         Authorization: `Bearer ${authToken}`,
       },
     })
@@ -84,6 +85,10 @@ export const fetchProducts = () => (dispatch, getState) => {
       .then((data) => {
         dispatch(fetchProductsSuccess(data));
       })
-      .catch(err => dispatch(fetchProductsError(err)))
-  );
+      .catch(err => dispatch(fetchProductsError(err)));
 };
+
+export const CLEAR_ERR = 'CLEAR_ERR';
+export const clearErr = () => ({
+  type: CLEAR_ERR,
+})

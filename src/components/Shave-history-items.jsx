@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment-timezone';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import EditShaves from './Edit-shave';
 import { deleteShaves } from '../actions/shaves';
 
 class ShaveHistoryItems extends React.Component {
@@ -76,6 +77,7 @@ class ShaveHistoryItems extends React.Component {
       items.push(
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
+          <img src={shaveHistory[i].imageUrl} alt="" />
           <div className="shave-list-item-products">
             {username}
             <span className="shave-list-item-products--label">Rating: </span>
@@ -101,8 +103,16 @@ class ShaveHistoryItems extends React.Component {
 
             {share}
 
+            <span className="shave-list-item-products--label">Comments: </span>
+            <span>{sortedShaveHist[i].comments}</span>
+
           </div>
-          {deleteButton}
+          <div>
+            {deleteButton}
+          </div>
+          <div>
+            <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} />
+          </div>
         </div>,
       );
     }

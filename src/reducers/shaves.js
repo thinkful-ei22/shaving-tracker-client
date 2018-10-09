@@ -9,11 +9,14 @@ import {
   SET_SHAVE_FILTER_START,
   SET_SHAVE_FILTER_END,
   RESET_SHAVE_FILTER,
+  UPDATE_SHAVE_SUCCESS,
+  UPDATE_SHAVE_REQUEST,
+  UPDATE_SHAVE_ERROR,
 } from '../actions/shaves';
 
 const initialState = {
-  startFilter: null,
-  endFilter: null,
+  startFilter: '',
+  endFilter: '',
   shaveHistory: [],
   isLoading: true,
   error: null,
@@ -87,8 +90,34 @@ export default function shaveReducer(state = initialState, action) {
     case RESET_SHAVE_FILTER:
       return {
         ...state,
-        startFilter: null,
-        endFilter: null,
+        startFilter: '',
+        endFilter: '',
+      }
+
+    case UPDATE_SHAVE_REQUEST:
+      return {
+        ...state,
+        error: null,
+        isLoading: true,
+      };
+
+    case UPDATE_SHAVE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        isLoading: false,
+      };
+
+    case UPDATE_SHAVE_SUCCESS:
+      const newItem = action.data;
+      const newShaveHistory = state.shaveHistory
+        .filter(shaveItem => newItem.id !== shaveItem.id);
+      newShaveHistory.push(newItem);
+      return {
+        ...state,
+        shaveHistory: newShaveHistory,
+        error: null,
+        isLoading: false,
       };
 
     default:

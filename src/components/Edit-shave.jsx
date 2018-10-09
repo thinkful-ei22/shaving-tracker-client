@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactModal from 'react-modal';
+import moment from 'moment-timezone';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import ReactModal from 'react-modal';
 import { fetchProducts } from '../actions/product';
 import './styles/form.css';
 import './styles/stars.css';
-import requiresLogin from './requires-login';
-import ImageUpload from './Image-upload';
-import { addShave } from '../actions/shaves';
+import { updateShave } from '../actions/shaves';
 
-class ShaveForm extends React.Component {
+class EditShaves extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -34,29 +32,33 @@ class ShaveForm extends React.Component {
     dispatch(fetchProducts());
   }
 
-  onSubmit(e) {
+  handleEdit(e, id) {
     e.preventDefault();
-    const { dispatch, image } = this.props;
-    const today = moment().format('YYYY-M-D');
+
+    const today = moment().format('YYYY-MM-DD');
     const data = {
-      razorId: e.target.razor.value ? e.target.razor.value : null,
-      bladeId: e.target.blade.value ? e.target.blade.value : null,
+      razorId: e.target.razor.value ? e.target.razor.value : undefined,
+      bladeId: e.target.blade.value ? e.target.blade.value : undefined,
       brushId: e.target.brush.value ? e.target.brush.value : null,
       latherId: e.target.lather.value ? e.target.lather.value : null,
       aftershaveId: e.target.aftershave.value ? e.target.aftershave.value : null,
       additionalCareId: e.target.additionalcare.value ? e.target.additionalcare.value : null,
-      share: e.target.share.checked,
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
-      imageUrl: image ? image.secure_url : null,
-      comments: e.target.comment.value,
+      share: e.target.share.checked,
+      comments:e.target.comment.value,
     };
-    dispatch(addShave(data));
+    Object.keys(data).forEach(key =>{
+      if(typeof data[key] === 'string' && data[key].toLowerCase() === 'none')
+        data[key] = null;
+    });
+    const { dispatch, shaveId } = this.props;
+    dispatch(updateShave(data, shaveId));
   }
 
   render() {
     const productsObj = {};
-    const { userProducts, loading, error } = this.props;
+    const { userProducts, loading, error, shaveId, shaveItem } = this.props;
     if (userProducts) {
       // initializes productsObj
       userProducts.forEach((product) => {
@@ -88,102 +90,133 @@ class ShaveForm extends React.Component {
       );
     }
 
+    const defaultRazor = shaveItem.razor ? shaveItem.razor.id : '';
+    const defaultBlade = shaveItem.blade ? shaveItem.blade.id : '';
+    const defaultBrush = shaveItem.brush ? shaveItem.brush.id : '';
+    const defaultLather = shaveItem.lather ? shaveItem.lather.id : '';
+    const defaultAftershave = shaveItem.aftershave ? shaveItem.aftershave.id : '';
+    const defaultAdditionalCare = shaveItem.additionalCare ? shaveItem.additionalCare.id : '';
+
     return (
       <div>
-        <button className="add-shave-button" onClick={this.handleOpenModal}>+ Shave</button>
+        <button type="button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
         <ReactModal
           isOpen={this.state.showModal}
-          contentLabel="Minimal Modal Example"
+          contentLabel="Edit Shave"
           className="Modal"
           overlayClassName="Overlay"
           ariaHideApp={false}
         >
-          <form className="form" onSubmit={e => this.onSubmit(e)}>
-            <h3>Add Shave</h3>
+          <form className="form" onSubmit={e => this.handleEdit(e)}>
             {errorMessage}
-            <ImageUpload />
+            <h3>Add Shave</h3>
             <label htmlFor="date">
               <span>Date</span>
             </label>
-            <input className="col-5" type="date" id="date" name="date" defaultValue={moment().format('YYYY-MM-DD')}
+            <input className="col-5" type="date" id="date" name="date"
+              defaultValue={moment(shaveItem.date).tz('Atlantic/Azores').format('YYYY-MM-DD')}
             />
+
             <label htmlFor="razor">
               <span>Select Razor:</span>
             </label>
-            <select defaultValue="" className="col-5" id="razor" name="razor" required>
+            <select defaultValue={defaultRazor} className="col-5" id="razor" name="razor" required>
               <option value="" disabled>Select...</option>
               {productsObj ? productsObj.razor : null}
             </select>
+
             <label htmlFor="blade">
               <span>Select Blade:</span>
             </label>
-            <select defaultValue="" className="col-5" id="blade" name="blade" required>
+            <select defaultValue={defaultBlade} className="col-5" id="blade" name="blade" required>
               <option value="" disabled>Select...</option>
               {productsObj ? productsObj.blade : null}
             </select>
+
             <label htmlFor="brush">
               <span>Select Brush:</span>
             </label>
-            <select defaultValue="" className="col-5" id="brush" name="brush">
-              <option value="" >None</option>
+            <select defaultValue={defaultBrush} className="col-5" id="brush" name="brush">
+              <option value="">None</option>
               {productsObj ? productsObj.brush : null}
             </select>
+
             <label htmlFor="lather">
               <span>Select Lather:</span>
             </label>
-            <select defaultValue="" className="col-5" id="lather" name="lather">
+            <select defaultValue={defaultLather} className="col-5" id="lather" name="lather">
               <option value="" >None</option>
               {productsObj ? productsObj.lather : null}
             </select>
+
             <label htmlFor="aftershave">
               <span>Select Aftershave:</span>
             </label>
-            <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
+            <select defaultValue={defaultAftershave} className="col-5" id="aftershave" name="aftershave">
               <option value="" >None</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
+            
             <label htmlFor="additionalcare">
               <span>Select Additional Care:</span>
             </label>
-            <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
+            <select defaultValue={defaultAdditionalCare} className="col-5" id="additionalcare" name="additionalcare">
               <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
-            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
+            <textarea className="col-5"
+              id="comment"
+              name="comment"
+              placeholder="Comment/Notes"
+              defaultValue={shaveItem.comments}
+            />
             <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" defaultChecked={true}/>
+            <input type="checkbox" name="share" value="share"
+              defaultChecked={shaveItem.share}
+            />
 
-            <fieldset className="rating">
+            <fieldset className="rating" defaultValue={shaveItem.rating}>
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" />
+              <input type="radio" id="star5" name="rating" value="5" 
+                defaultChecked={shaveItem.rating === 5 ? true : false}
+              />
               <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" />
+              <input type="radio" id="star4" name="rating" value="4" 
+                defaultChecked={shaveItem.rating === 4 ? true : false}
+              />
               <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" />
+              <input type="radio" id="star3" name="rating" value="3" 
+                defaultChecked={shaveItem.rating === 3 ? true : false}
+              />
               <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2" />
+              <input type="radio" id="star2" name="rating" value="2"
+                defaultChecked={shaveItem.rating === 2 ? true : false}
+              />
               <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1" />
+              <input type="radio" id="star1" name="rating" value="1"
+                defaultChecked={shaveItem.rating === 1 ? true : false}
+              />
               <label htmlFor="star1" className="full" />
             </fieldset>
-            <div>
-              <input type="submit" value="Submit" />
-              <button type="button" onClick={this.handleCloseModal}>Close</button>
-            </div>
-            </form>
-          </ReactModal>
-        </div>
-      
+            <button type="button" onClick={this.handleCloseModal}>Close</button>
+            <button type="submit">Submit</button>
+          </form>
+        </ReactModal>
+      </div>
+
     );
   }
 }
 
-ShaveForm.propTypes = {
+EditShaves.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.shape({
     status: PropTypes.number,
     message: PropTypes.string,
   }),
+  // shaveItem: PropTypes.shape({
+
+  // }),
   userProducts: PropTypes.arrayOf(
     PropTypes.shape({
       nickname: PropTypes.string,
@@ -196,23 +229,17 @@ ShaveForm.propTypes = {
     }),
   ),
   dispatch: PropTypes.func.isRequired,
-  image: PropTypes.shape({
-    secure_url: PropTypes.string,
-  }),
 };
-
-ShaveForm.defaultProps = {
+EditShaves.defaultProps = {
   loading: false,
   error: {},
   userProducts: [],
-  image: {},
 };
 
 const mapStateToProps = state => ({
   loading: state.product.loading,
   error: state.product.error,
   userProducts: state.product.userProducts,
-  image: state.image.image,
 });
 
-export default requiresLogin()(connect(mapStateToProps)(ShaveForm));
+export default connect(mapStateToProps)(EditShaves);
