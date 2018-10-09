@@ -51,7 +51,7 @@ class ShaveForm extends React.Component {
       imageUrl: image ? image.secure_url : null,
       comments: e.target.comment.value,
     };
-    dispatch(addShave(data));
+    dispatch(addShave(data, this.handleCloseModal));
   }
 
   render() {
