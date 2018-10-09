@@ -5,9 +5,14 @@ const CollectionCard = (props) => {
   const {
     brand, model, subtype, nickname, comment, imageUrl,
   } = props;
+
+  const usedImageUrl = imageUrl ? imageUrl : 'https://i.imgur.com/QvDFh9r.png';
+
   return (
     <div className="collection-item">
-      <img src={imageUrl} alt="" />
+      <div className="image-div-normalizer">
+        <img src={usedImageUrl} alt="" />
+      </div>
       <h3>{brand}</h3>
       <p>
         <span className="collection-item-type">Model:</span>
