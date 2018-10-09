@@ -49,6 +49,7 @@ class ShaveForm extends React.Component {
       rating: e.target.rating.value,
       date: e.target.date.value ? e.target.date.value : today,
       imageUrl: image ? image.secure_url : null,
+      comments: e.target.comment.value,
     };
     dispatch(addShave(data));
   }
@@ -104,52 +105,53 @@ class ShaveForm extends React.Component {
             <label htmlFor="date">
               <span>Date</span>
             </label>
-            <input className="col-5" type="date" id="date" name="date" />
+            <input className="col-5" type="date" id="date" name="date" defaultValue={moment().format('YYYY-MM-DD')}
+            />
             <label htmlFor="razor">
               <span>Select Razor:</span>
             </label>
-            <select defaultValue="" className="col-5" id="razor" name="razor">
-              <option value="" disabled>Razor</option>
+            <select defaultValue="" className="col-5" id="razor" name="razor" required>
+              <option value="" disabled>Select...</option>
               {productsObj ? productsObj.razor : null}
             </select>
             <label htmlFor="blade">
               <span>Select Blade:</span>
             </label>
-            <select defaultValue="" className="col-5" id="blade" name="blade">
-              <option value="" disabled>Blade</option>
+            <select defaultValue="" className="col-5" id="blade" name="blade" required>
+              <option value="" disabled>Select...</option>
               {productsObj ? productsObj.blade : null}
             </select>
             <label htmlFor="brush">
               <span>Select Brush:</span>
             </label>
             <select defaultValue="" className="col-5" id="brush" name="brush">
-              <option value="" disabled>Brush</option>
+              <option value="" >None</option>
               {productsObj ? productsObj.brush : null}
             </select>
             <label htmlFor="lather">
               <span>Select Lather:</span>
             </label>
             <select defaultValue="" className="col-5" id="lather" name="lather">
-              <option value="" disabled>Lather</option>
+              <option value="" >None</option>
               {productsObj ? productsObj.lather : null}
             </select>
             <label htmlFor="aftershave">
               <span>Select Aftershave:</span>
             </label>
             <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
-              <option value="" disabled>Aftershave</option>
+              <option value="" >None</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
             <label htmlFor="additionalcare">
               <span>Select Additional Care:</span>
             </label>
             <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
-              <option value="" disabled>Additional Care</option>
+              <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
-
+            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
             <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" />
+            <input type="checkbox" name="share" value="share" defaultChecked={true}/>
 
             <fieldset className="rating">
               <legend>Rating:</legend>
