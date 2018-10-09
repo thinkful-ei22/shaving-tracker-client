@@ -67,7 +67,7 @@
 
 .Modal {
   position: fixed;
-  overflow: scroll;
+  overflow: auto;
   top: 120px;
   left: 150px;
   right: 150px;
