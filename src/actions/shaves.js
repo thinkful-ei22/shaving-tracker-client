@@ -147,7 +147,7 @@ export const deleteShaves = id => (dispatch, getState) => {
     });
 };
 
-export const addShave = shave => (dispatch, getState) => {
+export const addShave = (shave, closeModal) => (dispatch, getState) => {
   dispatch(addShaveRequest());
   const { authToken } = getState().auth;
   return (
@@ -166,7 +166,10 @@ export const addShave = shave => (dispatch, getState) => {
         }
         return res.json();
       })
-      .then(data => dispatch(addShaveSuccess(data)))
+      .then(data => {
+        dispatch(addShaveSuccess(data))
+        closeModal();
+      })
       .catch(error => dispatch(getShavesError(`Error: ${error}`)))
   );
 };
