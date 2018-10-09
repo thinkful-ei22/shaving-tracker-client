@@ -109,7 +109,7 @@ class EditShaves extends React.Component {
         >
           <form className="form" onSubmit={e => this.handleEdit(e)}>
             {errorMessage}
-            <h3>Add Shave</h3>
+            <h3>Edit Shave</h3>
             <label htmlFor="date">
               <span>Date</span>
             </label>
