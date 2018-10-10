@@ -20,3 +20,7 @@ body{
   max-height: 250px;
   max-width: 250px;
 }
+
+input, select, textarea {
+  font-size: 14px;
+}

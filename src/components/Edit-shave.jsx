@@ -170,11 +170,12 @@ class EditShaves extends React.Component {
               placeholder="Comment/Notes"
               defaultValue={shaveItem.comments}
             />
-            <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share"
-              defaultChecked={shaveItem.share}
-            />
-
+            <div className="community-checkbox">
+              <label>Share with community?</label>
+              <input type="checkbox" name="share" value="share"
+                defaultChecked={shaveItem.share}
+              />
+            </div>
             <fieldset className="rating" defaultValue={shaveItem.rating}>
               <legend>Rating:</legend>
               <div>
