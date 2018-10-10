@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CollectionCard = (props) => {
   const {
-    brand, model, subtype, nickname, comment, imageUrl,
+    brand, model, subtype, nickname, comment, imageUrl, totalUsage,
   } = props;
 
   const usedImageUrl = imageUrl ? imageUrl : 'https://i.imgur.com/QvDFh9r.png';
@@ -15,24 +15,19 @@ const CollectionCard = (props) => {
       </div>
       <h3>{brand}</h3>
       <p>
-        <span className="collection-item-type">Model:</span>
-        {' '}
-        {model}
+        <span className="collection-item-type">Model:</span> {model}
       </p>
       <p>
-        <span className="collection-item-type">Subtype:</span>
-        {' '}
-        {subtype}
+        <span className="collection-item-type">Subtype:</span> {subtype}
       </p>
       <p>
-        <span className="collection-item-type">Nickname:</span>
-        {' '}
-        {nickname}
+        <span className="collection-item-type">Nickname:</span> {nickname}
       </p>
       <p>
-        <span className="collection-item-type">Comment:</span>
-        {' '}
-        {comment}
+        <span className="collection-item-type">Comment:</span> {comment}
+      </p>
+      <p>
+        <span className="collection-item-type">Uses:</span> {totalUsage}
       </p>
     </div>
   );
