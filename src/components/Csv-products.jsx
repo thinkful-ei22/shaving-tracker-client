@@ -4,7 +4,7 @@ import 'react-tabs/style/react-tabs.css';
 import './styles/mycollections.css';
 import CSVReader from './Csv-reader';
 import CSVProductsCard from './Csv-products-card';
-import { addProduct } from '../actions/product';
+import { addManyProducts } from '../actions/product';
 import requiresLogin from './requires-login';
 
 
@@ -62,11 +62,8 @@ class CSVProducts extends React.Component {
     });
 
     if (errors.length < 1) {
-      // if no errors, then we can submit otherwise spit out a error message
-      products.forEach(product => {
-        this.props.dispatch(addProduct(product))
-      })
-      this.setState({products: [], errors: []})
+      this.props.dispatch(addManyProducts(products))
+      this.setState({products:[], errors: []})
     }
   }
 
@@ -103,6 +100,17 @@ class CSVProducts extends React.Component {
   }
 
   render() {
+    const { addManyProductResponse } = this.props;
+    let submitResponse
+    if (addManyProductResponse.length > 0) {
+      submitResponse = addManyProductResponse.map((res, i) => {
+        if (res.status !== 200) {
+          return <div className="login-error" key={`res-${i}`}>{`Product ${i+1} already exist`}</div>
+        } else {
+          return <div key={`res-${i}`}>{`${res.product.nickname} successfully created!`}</div>
+        }
+      })
+    }
     const { products, errors, filename } = this.state;
     const errorResponse = errors.map((error, i) => {
       const {errorMsg, index} = error;
@@ -138,11 +146,15 @@ class CSVProducts extends React.Component {
         {reader}
         {response}
         {errorResponse}
+        {submitResponse}
         {submit}
       </form>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  addManyProductResponse: state.product.manyProductsResponse,
+})
 
-export default requiresLogin()(connect()(CSVProducts));
+export default requiresLogin()(connect(mapStateToProps)(CSVProducts));
