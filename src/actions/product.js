@@ -41,6 +41,11 @@ export const addManyProducts = products => (dispatch, getState) => {
     })
     .then(data => {
       dispatch(addManyProductsSuccess(data));
+      data.forEach(productRes => {
+        if (productRes.status === 200) {
+          dispatch(addProductSuccess(productRes.product));
+        }
+      })
     })
     .catch(err => console.log(err))
   )
@@ -119,4 +124,9 @@ export const fetchProducts = () => (dispatch, getState) => {
 export const CLEAR_ERR = 'CLEAR_ERR';
 export const clearErr = () => ({
   type: CLEAR_ERR,
+})
+
+export const CLEAR_ADD_MANY_RESPONSE = 'CLEAR_ADD_MANY_RESPONSE';
+export const clearAddManyResponse = () => ({
+  type: CLEAR_ADD_MANY_RESPONSE,
 })

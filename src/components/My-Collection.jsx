@@ -9,6 +9,7 @@ import requiresLogin from './requires-login';
 import './styles/mycollections.css';
 import { fetchProducts } from '../actions/product';
 import CollectionCard from './Collection-card';
+import CsvProducts from './Csv-products';
 
 class MyCollection extends React.Component {
   componentDidMount() {
@@ -55,6 +56,7 @@ class MyCollection extends React.Component {
     return (
       <Tabs className="product-list">
         <ProductForm />
+        <CsvProducts />
         <TabList>
           <Tab>All</Tab>
           <Tab>Razors</Tab>

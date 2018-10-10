@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactModal from 'react-modal';
 import 'react-tabs/style/react-tabs.css';
 import './styles/mycollections.css';
 import CSVReader from './Csv-reader';
 import CSVProductsCard from './Csv-products-card';
-import { addManyProducts } from '../actions/product';
+import { addManyProducts, clearAddManyResponse } from '../actions/product';
 import requiresLogin from './requires-login';
 
 
@@ -16,11 +17,24 @@ class CSVProducts extends React.Component {
       products: [],
       filename: '',
       errors: [],
+      showModal: false,
     }
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
+    this.props.dispatch(clearAddManyResponse());
   }
 
   handleUpload(data, filename) {
     this.setState({products: data, filename});
+    this.props.dispatch(clearAddManyResponse());
   }
 
   handleSubmit(e) {
@@ -107,7 +121,7 @@ class CSVProducts extends React.Component {
         if (res.status !== 200) {
           return <div className="login-error" key={`res-${i}`}>{`Product ${i+1} already exist`}</div>
         } else {
-          return <div key={`res-${i}`}>{`${res.product.nickname} successfully created!`}</div>
+          return <div key={`res-${i}`}>{`Product ${i+1} successfully created!`}</div>
         }
       })
     }
@@ -142,13 +156,25 @@ class CSVProducts extends React.Component {
     }
     const submit = this.state.products.length > 0 ? <button type="submit">+ Add All</button> : null;
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
-        {reader}
-        {response}
-        {errorResponse}
-        {submitResponse}
-        {submit}
-      </form>
+      <div>
+        <button className="csv add-product-button" onClick={this.handleOpenModal}>CSV + Product</button>
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="Minimal Modal Example"
+          className="Modal"
+          overlayClassName="Overlay"
+          ariaHideApp={false}
+        >
+          <form onSubmit={e => this.handleSubmit(e)}>
+            {reader}
+            {response}
+            {errorResponse}
+            {submitResponse}
+            {submit}
+            <button type="button" onClick={this.handleCloseModal}>Close</button>
+          </form>
+        </ReactModal>
+      </div>
     );
   }
 }
