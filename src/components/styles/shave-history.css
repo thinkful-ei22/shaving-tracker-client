@@ -83,3 +83,25 @@
   right: 10px;
   bottom: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  .Modal {
+    top: 10%;
+    left: 0;
+    bottom: 10%;
+    right: 0;
+  }
+  .Modal > .form > select,
+  .Modal > .form > input,
+  .Modal > .form > textarea,
+  .Modal > .form > div > button,
+  .Modal > .form > div > input,
+  .Modal > .form > button,
+  #single {
+    /* background-color: burlywood; */
+  }
+}
+
+@media only screen and (min-width: 600px) {
+
+}

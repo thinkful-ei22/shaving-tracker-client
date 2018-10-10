@@ -166,13 +166,11 @@ class ShaveForm extends React.Component {
               <input type="radio" id="star1" name="rating" value="1" />
               <label htmlFor="star1" className="full" />
             </fieldset>
-            <div>
-              <input type="submit" value="Submit" />
-              <button type="button" onClick={this.handleCloseModal}>Close</button>
-            </div>
-            </form>
-          </ReactModal>
-        </div>
+            <button type="submit">Submit</button>
+            <button type="button" onClick={this.handleCloseModal}>Close</button>
+          </form>
+        </ReactModal>
+      </div>
       
     );
   }

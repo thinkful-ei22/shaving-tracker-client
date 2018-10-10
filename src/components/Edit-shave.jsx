@@ -198,8 +198,8 @@ class EditShaves extends React.Component {
               />
               <label htmlFor="star1" className="full" />
             </fieldset>
-            <button type="button" onClick={this.handleCloseModal}>Close</button>
             <button type="submit">Submit</button>
+            <button type="button" onClick={this.handleCloseModal}>Close</button>
           </form>
         </ReactModal>
       </div>

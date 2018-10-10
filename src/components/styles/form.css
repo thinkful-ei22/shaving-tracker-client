@@ -20,6 +20,10 @@
   min-width: 600px;
 }
 
+.form > textarea {
+  resize: none;
+  height: 100px;
+}
 .edit-form * {
   display: block;
 }
@@ -34,7 +38,6 @@
   margin-bottom: 20px;
   margin-left: 15px;
   float: right;
-  
 }
 
 
@@ -50,3 +53,4 @@
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+
