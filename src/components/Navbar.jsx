@@ -56,7 +56,7 @@ class NavBar extends Component {
     }
     if (isLogged) {
       loggedIn = (
-        <div>
+        <div className="topnav-links">
           <Link className="collection-nav" to="/mycollection">My Collection</Link>
           <Link className="nav--shaves" to="/shaves">Shaves</Link>
           <Link className="nav--community" to="/community/shaves">Community</Link>
@@ -82,18 +82,23 @@ class NavBar extends Component {
     }
     return (
       <div className="topnav" id="topnav">
-        <a
-          type="button"
-          aria-label="menu"
-          className="icon"
-          onClick={() => this.navIcon()}
-        >
-          <i className="fa fa-bars" />
-        </a>
-        <h1><Link className="home-nav" id="home-nav" to="/">Beardy Wicked</Link></h1>
-        {errorMsg}
-        {loggedIn}
-        {loggedOut}
+        <div className="site-banner">
+          <h1><Link className="home-nav" id="home-nav" to="/">Beardy Wicked</Link></h1>
+        </div>
+        <div className="topnav-navbar">
+          <a
+            type="button"
+            aria-label="menu"
+            className="icon"
+            onClick={() => this.navIcon()}
+          >
+            <i className="fa fa-bars" />
+          </a>
+          
+          {errorMsg}
+          {loggedIn}
+          {loggedOut}
+        </div>
       </div>
     );
   }

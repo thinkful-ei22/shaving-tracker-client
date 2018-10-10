@@ -9,35 +9,47 @@
 
 /* Nav Bar Styles */
 .topnav {
-  overflow: hidden;
-  background-color: #5D4037;
-  border-bottom: 1px solid #2F0F07
+  /* background-color: #5D4037; */
+  border-bottom: 1px solid #2F0F07;
 }
 
 /* Navbar links */
 .topnav a {
-  float: left;
-  display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
+.site-banner{
+  display: flex;
+  background: #5D4037;
+  padding-bottom: 10px;
+  justify-content: center;
+}
+.site-banner h1{
+  display: block;
+  margin: auto;
+}
+
+.topnav-links{
+  /* display: flex;
+  align-items: flex-end; */
+}
+
 /* Navbar links on mouse-over */
-.topnav a:hover {
+/* .topnav a:hover {
   background-color: #795548;
   color: white;
-}
+} */
 
 .form-login, .logout-btn {
   float: right;
 }
 
 #user, #password {
-  padding: 6px;
-  margin-top: 8px;
+  /* padding: 6px;
+  margin-top: 8px; */
   font-size: 17px;
   border: none;
   width: 150px;
@@ -45,9 +57,9 @@
 
 .logout-btn, .form-login button {
   float: right;
-  padding: 6px;
+  /* padding: 6px;
   margin-top: 8px;
-  margin-right: 16px;
+  margin-right: 16px; */
   background: #795548;
   font-size: 17px;
   border: none;
@@ -59,8 +71,7 @@
   color: white;
   font-size: 20px;
   font-weight: bold;
-  margin-top: 0px;
-  margin-bottom: 1px;
+  margin: 0;
 }
 
 .topnav .icon {
