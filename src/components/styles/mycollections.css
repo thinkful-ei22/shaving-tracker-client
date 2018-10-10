@@ -105,3 +105,9 @@
   color: #BBBBBB;
   margin: 20px 0 0 auto;
 }
+.collection-footer a:link,
+.collection-footer a:visited,
+.collection-footer a:hover,
+.collection-footer a:active{
+  color: white;
+}
