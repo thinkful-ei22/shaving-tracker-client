@@ -73,35 +73,29 @@
   right: 150px;
   bottom: 150px;
   background-color: #fffcf2;
-  
-  }
+  border: 2px solid black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.Modal:focus {
+  outline: none;
+}
 
 .Overlay {
+  background: rgba(73, 71, 69, 0.308);
   position: fixed;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 663.636px) {
   .Modal {
-    top: 10%;
+    top: 120px;
     left: 0;
-    bottom: 10%;
+    bottom: 150px;
     right: 0;
   }
-  .Modal > .form > select,
-  .Modal > .form > input,
-  .Modal > .form > textarea,
-  .Modal > .form > div > button,
-  .Modal > .form > div > input,
-  .Modal > .form > button,
-  #single {
-    /* background-color: burlywood; */
-  }
-}
-
-@media only screen and (min-width: 600px) {
-
 }

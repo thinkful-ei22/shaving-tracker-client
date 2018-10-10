@@ -53,7 +53,7 @@ class ImageUpload extends React.Component {
     }
     return (
       <div>
-        <div>{errorResponse}</div>
+        {errorResponse}
         {response}
         <label htmlFor="single">
           <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />

@@ -155,16 +155,18 @@ class ShaveForm extends React.Component {
 
             <fieldset className="rating">
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" />
-              <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" />
-              <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" />
-              <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2" />
-              <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1" />
-              <label htmlFor="star1" className="full" />
+              <div>
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label htmlFor="star5" className="full" />
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label htmlFor="star4" className="full" />
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label htmlFor="star3" className="full" />
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label htmlFor="star2" className="full" />
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label htmlFor="star1" className="full" />
+              </div>
             </fieldset>
             <button type="submit">Submit</button>
             <button type="button" onClick={this.handleCloseModal}>Close</button>
