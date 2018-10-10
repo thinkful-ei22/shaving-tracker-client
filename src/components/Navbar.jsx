@@ -57,27 +57,33 @@ class NavBar extends Component {
     if (isLogged) {
       loggedIn = (
         <div className="topnav-links">
-          <Link className="collection-nav" to="/mycollection">My Collection</Link>
-          <Link className="nav--shaves" to="/shaves">Shaves</Link>
-          <Link className="nav--community" to="/community/shaves">Community</Link>
-          <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
-            LOG OUT
-          </LinkButton>
+          <div className="topnav-links-content">
+            <Link className="collection-nav" to="/mycollection">My Collection</Link>
+            <Link className="nav--shaves" to="/shaves">Shaves</Link>
+            <Link className="nav--community" to="/community/shaves">Community</Link>
+            <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
+              LOG OUT
+            </LinkButton>
+          </div>
         </div>
       );
     } else {
       loggedOut = (
-        <form className="form-login" onSubmit={e => this.onSubmit(e)}>
-          <label htmlFor="user">
-            Username:
-            <input type="text" id="user" name="username" required />
-          </label>
-          <label htmlFor="password">
-            Password:
-            <input type="password" id="password" name="password" required />
-          </label>
-          <button type="submit" className="login-button">Login</button>
-        </form>
+        <div className="topnav-links">
+          <div className="form-login-container">
+            <form className="form-login" onSubmit={e => this.onSubmit(e)}>
+              <label htmlFor="user">
+                Username:
+                <input type="text" id="user" name="username" required />
+              </label>
+              <label htmlFor="password">
+                Password:
+                <input type="password" id="password" name="password" required />
+              </label>
+              <button type="submit" className="login-button">Login</button>
+            </form>
+          </div>
+        </div>
       );
     }
     return (
