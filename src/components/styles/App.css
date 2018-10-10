@@ -21,20 +21,3 @@ body{
   max-width: 250px;
 }
 
-input,
-select,
-textarea {
-    background-color: #fff;
-    border-color: #e0e0e0;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
-    border-width: 1px;
-    border-style: solid;
-    color: #474e57;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 10px;
-    margin: 3px;
-}
