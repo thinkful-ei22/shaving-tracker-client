@@ -10,6 +10,13 @@ import './styles/mycollections.css';
 import { fetchProducts } from '../actions/product';
 import CollectionCard from './Collection-card';
 
+import razorIcon from './icons/razor.png';
+import bladeIcon from './icons/blade.png';
+import brushIcon from './icons/brush.png';
+import latherIcon from './icons/lather1.png';
+import afterIcon from './icons/after1.png';
+import additionalIcon from './icons/additional.png';
+
 class MyCollection extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -55,22 +62,32 @@ class MyCollection extends React.Component {
     ));
 
     return (
-      <Tabs className="product-list">
-        <ProductForm />
-        {newUserIntro}
-        <div className="collection-content">
-          <TabList className="product-tabs">
-            <Tab>All</Tab>
-            <Tab>Razors</Tab>
-            <Tab>Blades</Tab>
-            <Tab>Brushes</Tab>
-            <Tab>Lathers</Tab>
-            <Tab>Aftershaves</Tab>
-            <Tab>Addtional Cares</Tab>
-          </TabList>
-          {collections}
-        </div>
-      </Tabs>
+      <div className="product-container">
+        <div className="add-product-button"><ProductForm /></div>
+        <Tabs className="product-list">
+          {newUserIntro}
+          <div className="collection-content">
+            <TabList className="product-tabs">
+              <Tab>All</Tab>
+              <Tab><img src={razorIcon} height="18" alt="Razor"></img></Tab>
+              <Tab><img src={bladeIcon} height="18" alt=""></img></Tab>
+              <Tab><img src={brushIcon} height="18" alt=""></img></Tab>
+              <Tab><img src={latherIcon} height="18" alt=""></img></Tab>
+              <Tab><img src={afterIcon} height="18" alt=""></img></Tab>
+              <Tab><img src={additionalIcon} height="18" alt=""></img></Tab>
+              
+              {/* <Tab>All</Tab>
+              <Tab>Razors</Tab>
+              <Tab>Blades</Tab>
+              <Tab>Brushes</Tab>
+              <Tab>Lathers</Tab>
+              <Tab>Aftershaves</Tab>
+              <Tab>Addtional Cares</Tab> */}
+            </TabList>
+            {collections}
+          </div>
+        </Tabs>
+      </div>
     );
   }
 }
