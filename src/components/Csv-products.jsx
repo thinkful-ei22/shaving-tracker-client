@@ -30,6 +30,7 @@ class CSVProducts extends React.Component {
   handleCloseModal() {
     this.setState({ showModal: false });
     this.props.dispatch(clearAddManyResponse());
+    this.setState({products:[], errors: []});
   }
 
   handleUpload(data, filename) {
