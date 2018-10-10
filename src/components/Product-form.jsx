@@ -13,7 +13,8 @@ class ProductForm extends React.Component {
     super(props);
 
     this.state = {
-      types: ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'],
+      // types: ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge'],
+      types: [],
       brand: '',
       model: '',
       nickname: '',
@@ -116,7 +117,13 @@ class ProductForm extends React.Component {
             {loadingWheel}
             <ImageUpload />
             <label className="form-label" htmlFor="productType">Select Product Type: </label>
-            <select defaultValue="" className="col-5" onChange={e => this.handleProductChange(e)} name="productType" id="productType">
+            <select defaultValue=""
+              className="col-5"
+              onChange={e => this.handleProductChange(e)}
+              name="productType"
+              id="productType"
+              required
+            >
               <option value="" disabled>Product Type</option>
               <option value="razor">Razor</option>
               <option value="blade">Blade</option>
@@ -126,18 +133,23 @@ class ProductForm extends React.Component {
               <option value="additionalcare">Additional Care</option>
             </select>
             <label className="form-label"  htmlFor="subtype">Select Product Subtype:</label>
-            <select defaultValue="" className="col-5" id="subtype" name="subtype">
+            <select defaultValue=""
+              className="col-5"
+              id="subtype"
+              name="subtype"
+              required={this.state.types.length > 0}
+            >
               <option value="" disabled>Subtype</option>
               {typeList}
             </select>
             <label className="form-label" htmlFor="brand">
               <span>Brand</span>
             </label>
-            <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} />
+            <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} required />
             <label className="form-label"  htmlFor="model">
               <span>Model</span>
             </label>
-            <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} />
+            <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} required />
             <label className="form-label" htmlFor="nickname">
               <span>Nickname</span>
             </label>

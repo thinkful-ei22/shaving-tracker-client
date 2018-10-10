@@ -14,6 +14,7 @@ class ShaveHistoryItems extends React.Component {
   render() {
     const {
       canDelete,
+      canEdit,
       showUsername,
       showShare,
       shaveHistory,
@@ -60,6 +61,9 @@ class ShaveHistoryItems extends React.Component {
         ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
         : '';
 
+      const editButton = canEdit
+        ? <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} nickName={nicknames} />
+        : '';
       const username = showUsername
         ? [
           <span className="shave-list-item-products--label" key="usernameLabel">User: </span>,
@@ -74,10 +78,19 @@ class ShaveHistoryItems extends React.Component {
         ]
         : '';
 
+      console.log(sortedShaveHist[i].imageUrl);
+      const imgUrl = sortedShaveHist[i].imageUrl
+        ? sortedShaveHist[i].imageUrl
+        : 'https://i.imgur.com/QvDFh9r.png'
+
       items.push(
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
-          <img src={shaveHistory[i].imageUrl} alt="" />
+
+          <div className="image-div-normalizer">
+            <img src={imgUrl} alt="" />
+          </div>
+
           <div className="shave-list-item-products">
             {username}
             <span className="shave-list-item-products--label">Rating: </span>
@@ -111,7 +124,7 @@ class ShaveHistoryItems extends React.Component {
             {deleteButton}
           </div>
           <div>
-            <EditShaves shaveItem={sortedShaveHist[i]} shaveId={sortedShaveHist[i].id} />
+            {editButton}
           </div>
         </div>,
       );
@@ -129,6 +142,7 @@ ShaveHistoryItems.propTypes = {
   startFilter: PropTypes.string,
   endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
   canDelete: PropTypes.bool,
+  canEdit: PropTypes.bool,
   showUsername: PropTypes.bool,
   showShare: PropTypes.bool,
   shaveHistory: PropTypes.arrayOf(Object),
@@ -139,6 +153,7 @@ ShaveHistoryItems.defaultProps = {
   startFilter: null,
   endFilter: null,
   canDelete: false,
+  canEdit: false,
   showUsername: false,
   showShare: false,
   shaveHistory: [],

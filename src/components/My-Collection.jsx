@@ -39,6 +39,13 @@ class MyCollection extends React.Component {
       return tempObj;
     }, categorizedProducts);
 
+    const newUserIntro = 
+      categorizedProducts.razor.length === 0 || categorizedProducts.blade.length === 0
+      ? <div className="no-products-message">
+          <p>New to --SITENAME--? To begin, add a razor, a blade, and any other products you wish using the +Product button!</p>
+        </div> 
+      : '';
+    
     const collections = Object.keys(productType).map(product => (
       <TabPanel key={product} className="collection-list">
         {productType[product].map(item => <div key={item.id}><CollectionCard {...item} /></div>)}
@@ -57,6 +64,7 @@ class MyCollection extends React.Component {
           <Tab>Aftershaves</Tab>
           <Tab>Addtional Cares</Tab>
         </TabList>
+        {newUserIntro}
         {collections}
       </Tabs>
     );
