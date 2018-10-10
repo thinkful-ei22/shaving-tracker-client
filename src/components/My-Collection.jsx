@@ -48,24 +48,28 @@ class MyCollection extends React.Component {
     
     const collections = Object.keys(productType).map(product => (
       <TabPanel key={product} className="collection-list">
-        {productType[product].map(item => <div key={item.id}><CollectionCard {...item} /></div>)}
+        <div className="collection-list-container">
+          {productType[product].map(item => <CollectionCard {...item} key={item.id} />)}
+        </div>
       </TabPanel>
     ));
 
     return (
       <Tabs className="product-list">
         <ProductForm />
-        <TabList>
-          <Tab>All</Tab>
-          <Tab>Razors</Tab>
-          <Tab>Blades</Tab>
-          <Tab>Brushes</Tab>
-          <Tab>Lathers</Tab>
-          <Tab>Aftershaves</Tab>
-          <Tab>Addtional Cares</Tab>
-        </TabList>
         {newUserIntro}
-        {collections}
+        <div className="collection-content">
+          <TabList className="product-tabs">
+            <Tab>All</Tab>
+            <Tab>Razors</Tab>
+            <Tab>Blades</Tab>
+            <Tab>Brushes</Tab>
+            <Tab>Lathers</Tab>
+            <Tab>Aftershaves</Tab>
+            <Tab>Addtional Cares</Tab>
+          </TabList>
+          {collections}
+        </div>
       </Tabs>
     );
   }
