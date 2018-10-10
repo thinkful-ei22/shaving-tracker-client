@@ -18,6 +18,7 @@ class ImageUpload extends React.Component {
 
   onChange(e) {
     const { dispatch } = this.props;
+    dispatch(removeImage());
     const errs = [];
     const file = Array.from(e.target.files)[0];
     const formData = new FormData();
@@ -56,7 +57,8 @@ class ImageUpload extends React.Component {
         {errorResponse}
         {response}
         <label htmlFor="single">
-          <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
+          Select Image:
+          <input className="col-5" type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
         </label>
       </div>
     );
