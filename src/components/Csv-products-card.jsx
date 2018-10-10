@@ -13,19 +13,19 @@ const CSVProductsCard = props => {
   let falseOption;
   let subtypeError = false;
 
-  if (productType === 'razor') {
+  if (productType.toLowerCase() === 'razor') {
     types = razorTypes;
     if (!new RegExp(razorTypes.join('|'), 'i').test(subtype)) {
       subtypeError = true;
       types.unshift(subtype);
     }
-  } else if (productType === 'brush') {
+  } else if (productType.toLowerCase() === 'brush') {
     types = brushTypes
     if (!new RegExp(brushTypes.join('|'), 'i').test(subtype)) {
       subtypeError = true;
       types.unshift(subtype);
     }
-  } else if (productType === 'lather') {
+  } else if (productType.toLowerCase() === 'lather') {
     types = latherTypes;
     if (!new RegExp(latherTypes.join('|'), 'i').test(subtype)) {
       subtypeError = true;
@@ -57,7 +57,7 @@ const CSVProductsCard = props => {
           Product Type:
         </span>
         <select 
-          defaultValue={productTypeStyle ? '': productType} 
+          defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
           name={`productType ${index}`}
           onChange={handleChange}
         >
@@ -75,7 +75,7 @@ const CSVProductsCard = props => {
           Subtype:
         </span>
         <select 
-          defaultValue={subtype || 'none'} 
+          defaultValue={subtype.toLowerCase() || 'none'} 
           name={`subtype ${index}`}
           onChange={handleChange}
         >

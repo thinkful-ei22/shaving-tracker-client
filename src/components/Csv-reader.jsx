@@ -33,7 +33,7 @@ const CSVReader = ({
           for (let j=0; j < csvData.data[i].length; j++) {
             Object.keys(csvDataObj).forEach(key => {
               if (csvDataObj[key].index === j) {
-                formattedData[key] = csvData.data[i][j];
+                key === 'productType' ? formattedData[key] = csvData.data[i][j].toLowerCase() : formattedData[key] = csvData.data[i][j];
               }
             })
           }
