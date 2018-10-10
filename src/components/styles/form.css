@@ -5,7 +5,7 @@
 
 .form * {
   display: block;
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 .form-label {
@@ -54,3 +54,16 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+.close:before {
+  content: '✕';
+}
+
+.close {
+  font-size: 1.5em;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  cursor: pointer;
+  background: #fffcf2;
+}

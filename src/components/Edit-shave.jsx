@@ -201,7 +201,7 @@ class EditShaves extends React.Component {
               </div>
             </fieldset>
             <button type="submit">Submit</button>
-            <button type="button" onClick={this.handleCloseModal}>Close</button>
+            <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>
       </div>
