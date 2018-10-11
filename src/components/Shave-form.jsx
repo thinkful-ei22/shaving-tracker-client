@@ -10,7 +10,7 @@ import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
 import { addShave } from '../actions/shaves';
 
-class ShaveForm extends React.Component {
+export class ShaveForm extends React.Component {
   constructor() {
     super();
     this.state = {

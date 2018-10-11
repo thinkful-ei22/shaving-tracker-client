@@ -137,6 +137,10 @@ CSVProductsCard.propTypes = {
   subtype: PropTypes.string,
   nickname: PropTypes.string,
   comment: PropTypes.string,
+  productType: PropTypes.string,
+  index: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 };
 
 CSVProductsCard.defaultProps = {
@@ -145,6 +149,9 @@ CSVProductsCard.defaultProps = {
   subtype: '',
   nickname: '',
   comment: '',
+  productType: '',
 };
+
+// brand, model, subtype, nickname, comment, productType, index, handleChange, handleRemove,
 
 export default CSVProductsCard;

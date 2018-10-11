@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
+import PropTypes from 'prop-types';
 import 'react-tabs/style/react-tabs.css';
 import './styles/mycollections.css';
 import CSVReader from './Csv-reader';
@@ -8,9 +9,7 @@ import CSVProductsCard from './Csv-products-card';
 import { addManyProducts, clearAddManyResponse } from '../actions/product';
 import requiresLogin from './requires-login';
 
-
-
-class CSVProducts extends React.Component {
+export class CSVProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -120,7 +119,7 @@ class CSVProducts extends React.Component {
     if (addManyProductResponse.length > 0) {
       submitResponse = addManyProductResponse.map((res, i) => {
         if (res.status !== 200) {
-          return <div className="login-error" key={`res-${i}`}>{`Product ${i+1} already exist`}</div>
+          return <div className="login-error" key={`res-${i}`}>{`Product ${i+1} already exists`}</div>
         } else {
           return <div key={`res-${i}`}>{`Product ${i+1} successfully created!`}</div>
         }
@@ -179,6 +178,10 @@ class CSVProducts extends React.Component {
       </div>
     );
   }
+}
+
+CSVProducts.propTypes = {
+  addManyProductResponse: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
