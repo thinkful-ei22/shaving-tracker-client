@@ -42,7 +42,7 @@ const CSVProductsCard = props => {
     <option value={type.toLowerCase()} key={type}>{type}</option>
   ));
 
-  if (!/(.*razor.*)|(.*blade.*)|(.*brush.*)|(.*lather.*)|(.*aftershave.*)|(.*additionalcare.*)/i.test(productType)) {
+  if (!/(.*razor.*)|(.*blade.*)|(.*brush.*)|(.*lather.*)|(.*aftershave.*)|(.*additional\s?care.*)/i.test(productType)) {
     productTypeStyle = 'red';
     subtypeError = true;
     falseOption = <option value={null}>{`${productType} not a valid Product Type`}</option>
@@ -53,8 +53,10 @@ const CSVProductsCard = props => {
       <button onClick={handleRemove} type="button" name={`remove-item ${index}`}>- remove product</button>
       <h3>{`Product ${index+1}`}</h3>
       <p>
-        <span className={`collection-item-type ${productTypeStyle}`}>
+        <span className="collection-item-type">
           Product Type:
+        </span>
+        <div className={productTypeStyle}>
           <select 
             defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
             name={`productType ${index}`}
@@ -68,20 +70,22 @@ const CSVProductsCard = props => {
             <option value="aftershave">Aftershave</option>
             <option value="additionalcare">Additional Care</option>
           </select>
-        </span>
+        </div>
       </p>
       <p>
-        <span className={`collection-item-type ${subtypeError ? 'red' : ''}`}>
+        <span className="collection-item-type">
           Subtype:
+        </span>
+        <div className={subtypeError ? 'red' : ''}>
           <select 
             defaultValue={subtype.toLowerCase() || 'none'} 
             name={`subtype ${index}`}
             onChange={handleChange}
+            className={subtypeError ? 'red' : ''}
           >
             {typeList}
           </select>
-        </span>
-        
+        </div>
       </p>
       <p>
         <span className="collection-item-type">

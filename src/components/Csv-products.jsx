@@ -39,7 +39,7 @@ export class CSVProducts extends React.Component {
 
   handleSubmit(e) {
     // handlesubmit will just upload the files from the store
-    const possibleProductType = ['razor','blade','brush','lather','aftershave','additionalcare'];
+    const possibleProductType = ['razor','blade','brush','lather','aftershave','additionalcare', 'additional care'];
     const possibleRazorType = ['Double Edge', 'Straight Razor', 'Shavette', 'Cartidge', 'Single Edge']
     const possibleBrushType = ['Badger', 'Boar', 'Horse', 'Synthetic'];
     const possibleLatherTypes = ['Cream', 'Soap', 'Oil'];
