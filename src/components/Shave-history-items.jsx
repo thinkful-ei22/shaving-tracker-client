@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import EditShaves from './Edit-shave';
 import { deleteShaves } from '../actions/shaves';
 
-class ShaveHistoryItems extends React.Component {
+export class ShaveHistoryItems extends React.Component {
   onClick(id) {
     const { dispatch } = this.props;
     dispatch(deleteShaves(id));

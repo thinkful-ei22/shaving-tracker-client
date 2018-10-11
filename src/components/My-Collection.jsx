@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
-import ProductForm from './Product-form';
+import PropTypes from 'prop-types';
+
 import 'react-tabs/style/react-tabs.css';
-import requiresLogin from './requires-login';
 import './styles/mycollections.css';
-import { fetchProducts } from '../actions/product';
+import requiresLogin from './requires-login';
+import ProductForm from './Product-form';
 import CollectionCard from './Collection-card';
+import { fetchProducts } from '../actions/product';
 import CSVProducts from './Csv-products';
 
 import razorIcon from './icons/razor.png';
@@ -18,7 +20,7 @@ import latherIcon from './icons/lather1.png';
 import afterIcon from './icons/after1.png';
 import additionalIcon from './icons/additional.png';
 
-class MyCollection extends React.Component {
+export class MyCollection extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -110,6 +112,29 @@ class MyCollection extends React.Component {
       </div>
     );
   }
+}
+
+MyCollection.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      brand: PropTypes.string,
+      comment: PropTypes.string,
+      currentUsage: PropTypes.number,
+      id: PropTypes.string,
+      imageUrl: PropTypes.string,
+      model: PropTypes.string,
+      nickname: PropTypes.string,
+      productId: PropTypes.string,
+      productType: PropTypes.string,
+      subtype: PropTypes.string,
+      totalUsage: PropTypes.number,
+    })
+  ),
+  dispatch: PropTypes.func.isRequired,
+}
+
+MyCollection.defaultProps = {
+  products: [],
 }
 
 const mapStateToProps = state => ({

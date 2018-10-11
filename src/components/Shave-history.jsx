@@ -12,7 +12,7 @@ import {
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
 
-class ShaveHistory extends React.Component {
+export class ShaveHistory extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getShaves());

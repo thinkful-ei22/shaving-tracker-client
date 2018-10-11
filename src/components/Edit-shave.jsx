@@ -8,7 +8,7 @@ import './styles/form.css';
 import './styles/stars.css';
 import { updateShave } from '../actions/shaves';
 
-class EditShaves extends React.Component {
+export class EditShaves extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -164,6 +164,7 @@ class EditShaves extends React.Component {
               <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
+
             <textarea className="col-5"
               id="comment"
               name="comment"
@@ -211,15 +212,39 @@ class EditShaves extends React.Component {
   }
 }
 
+const productShape = {
+  brand: PropTypes.string,
+  comment: PropTypes.string,
+  currentUsage: PropTypes.number,
+  id: PropTypes.string,
+  imageUrl: PropTypes.string,
+  model: PropTypes.string,
+  nickname: PropTypes.string,
+  productId: PropTypes.string,
+  productType: PropTypes.string,
+  subtype: PropTypes.string,
+  totalUsage: PropTypes.number,
+};
+
 EditShaves.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.shape({
     status: PropTypes.number,
     message: PropTypes.string,
   }),
-  // shaveItem: PropTypes.shape({
-
-  // }),
+  shaveItem: PropTypes.shape({
+    additionalCare: PropTypes.shape(productShape),
+    aftershave: PropTypes.shape(productShape),
+    blade: PropTypes.shape(productShape),
+    brush: PropTypes.shape(productShape),
+    date: PropTypes.string,
+    id: PropTypes.string,
+    imageUrl: PropTypes.string,
+    lather: PropTypes.shape(productShape),
+    rating: PropTypes.number,
+    razor: PropTypes.shape(productShape),
+    share: PropTypes.bool,
+  }).isRequired,
   userProducts: PropTypes.arrayOf(
     PropTypes.shape({
       nickname: PropTypes.string,
