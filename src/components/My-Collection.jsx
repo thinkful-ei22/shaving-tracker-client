@@ -9,6 +9,7 @@ import requiresLogin from './requires-login';
 import './styles/mycollections.css';
 import { fetchProducts } from '../actions/product';
 import CollectionCard from './Collection-card';
+import CSVProducts from './Csv-products';
 
 import razorIcon from './icons/razor.png';
 import bladeIcon from './icons/blade.png';
@@ -93,6 +94,7 @@ class MyCollection extends React.Component {
 
     return (
       <div className="product-container">
+        <CSVProducts />
         <div className="add-product-button"><ProductForm /></div>
         <Tabs className="product-list">
           {newUserIntro}
