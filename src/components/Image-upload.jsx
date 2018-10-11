@@ -43,7 +43,7 @@ class ImageUpload extends React.Component {
     const errorResponse = errors.map((error, i) => <div key={i}>{error}</div>);
     let response;
     if (loading) {
-      response = <div>Loading annimation here!</div>;
+      response = <div className="loader"/>;
     } else if (error) {
       response = <div>{error}</div>;
     } else if (image) {
