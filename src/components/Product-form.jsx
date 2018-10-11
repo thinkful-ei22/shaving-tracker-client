@@ -8,7 +8,7 @@ import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
 import { addProduct, clearErr } from '../actions/product';
 
-class ProductForm extends React.Component {
+export class ProductForm extends React.Component {
   constructor(props) {
     super(props);
 

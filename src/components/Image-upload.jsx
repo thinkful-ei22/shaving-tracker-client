@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addImage, removeImage } from '../actions/image';
 
-class ImageUpload extends React.Component {
+export class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

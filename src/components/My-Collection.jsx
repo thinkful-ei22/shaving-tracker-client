@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
-import ProductForm from './Product-form';
-import 'react-tabs/style/react-tabs.css';
-import requiresLogin from './requires-login';
-import './styles/mycollections.css';
-import { fetchProducts } from '../actions/product';
-import CollectionCard from './Collection-card';
+import PropTypes from 'prop-types';
 
-class MyCollection extends React.Component {
+import 'react-tabs/style/react-tabs.css';
+import './styles/mycollections.css';
+import requiresLogin from './requires-login';
+import ProductForm from './Product-form';
+import CollectionCard from './Collection-card';
+import { fetchProducts } from '../actions/product';
+
+export class MyCollection extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchProducts());
@@ -69,6 +71,29 @@ class MyCollection extends React.Component {
       </Tabs>
     );
   }
+}
+
+MyCollection.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      brand: PropTypes.string,
+      comment: PropTypes.string,
+      currentUsage: PropTypes.number,
+      id: PropTypes.string,
+      imageUrl: PropTypes.string,
+      model: PropTypes.string,
+      nickname: PropTypes.string,
+      productId: PropTypes.string,
+      productType: PropTypes.string,
+      subtype: PropTypes.string,
+      totalUsage: PropTypes.number,
+    })
+  ),
+  dispatch: PropTypes.func.isRequired,
+}
+
+MyCollection.defaultProps = {
+  products: [],
 }
 
 const mapStateToProps = state => ({

@@ -7,7 +7,7 @@ import './styles/navbar.css';
 import LinkButton from './LinkButton';
 import { login, clearAuth, loadAuthToken } from '../actions/auth';
 
-class NavBar extends Component {
+export class NavBar extends Component {
   constructor() {
     super();
     this.logOut = this.logOut.bind(this);
