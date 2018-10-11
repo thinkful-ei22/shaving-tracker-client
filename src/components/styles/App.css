@@ -6,6 +6,11 @@ body{
   margin: 10px;
 }
 
+.red {
+  border: 1px solid red;
+  color: red;
+}
+
 .image-div-normalizer{
   height: 250px;
   width: 250px;
@@ -20,3 +25,4 @@ body{
   max-height: 250px;
   max-width: 250px;
 }
+

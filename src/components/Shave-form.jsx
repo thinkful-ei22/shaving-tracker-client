@@ -150,29 +150,32 @@ export class ShaveForm extends React.Component {
               {productsObj ? productsObj.additionalcare : null}
             </select>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
-            <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" defaultChecked={true}/>
-
+            <div className="community-checkbox">
+              <label htmlFor="share">Share with community?</label>
+              <input type="checkbox" name="share" value="share" id="share"
+                defaultChecked={true}
+              />
+            </div>
             <fieldset className="rating">
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" />
-              <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" />
-              <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" />
-              <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2" />
-              <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1" />
-              <label htmlFor="star1" className="full" />
+              <div>
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label htmlFor="star5" className="full" />
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label htmlFor="star4" className="full" />
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label htmlFor="star3" className="full" />
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label htmlFor="star2" className="full" />
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label htmlFor="star1" className="full" />
+              </div>
             </fieldset>
-            <div>
-              <input type="submit" value="Submit" />
-              <button type="button" onClick={this.handleCloseModal}>Close</button>
-            </div>
-            </form>
-          </ReactModal>
-        </div>
+            <button type="submit">Submit</button>
+            <button className="close" type="button" onClick={this.handleCloseModal} />
+          </form>
+        </ReactModal>
+      </div>
       
     );
   }

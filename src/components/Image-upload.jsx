@@ -18,6 +18,7 @@ export class ImageUpload extends React.Component {
 
   onChange(e) {
     const { dispatch } = this.props;
+    dispatch(removeImage());
     const errs = [];
     const file = Array.from(e.target.files)[0];
     const formData = new FormData();
@@ -43,7 +44,7 @@ export class ImageUpload extends React.Component {
     const errorResponse = errors.map((error, i) => <div key={i}>{error}</div>);
     let response;
     if (loading) {
-      response = <div>Loading annimation here!</div>;
+      response = <div className="loader"/>;
     } else if (error) {
       response = <div>{error}</div>;
     } else if (image) {
@@ -53,10 +54,11 @@ export class ImageUpload extends React.Component {
     }
     return (
       <div>
-        <div>{errorResponse}</div>
+        {errorResponse}
         {response}
         <label htmlFor="single">
-          <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
+          Select Image:
+          <input className="col-5" type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
         </label>
       </div>
     );
