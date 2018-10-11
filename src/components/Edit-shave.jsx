@@ -171,8 +171,8 @@ class EditShaves extends React.Component {
               defaultValue={shaveItem.comments}
             />
             <div className="community-checkbox">
-              <label>Share with community?</label>
-              <input type="checkbox" name="share" value="share"
+              <label htmlFor="share">Share with community?</label>
+              <input type="checkbox" name="share" value="share" id="share"
                 defaultChecked={shaveItem.share}
               />
             </div>

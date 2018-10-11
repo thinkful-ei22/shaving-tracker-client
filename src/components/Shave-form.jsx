@@ -151,8 +151,10 @@ class ShaveForm extends React.Component {
             </select>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
             <div className="community-checkbox">
-              <label>Share with community?</label>
-              <input type="checkbox" name="share" value="share" defaultChecked={true}/>
+              <label htmlFor="share">Share with community?</label>
+              <input type="checkbox" name="share" value="share" id="share"
+                defaultChecked={true}
+              />
             </div>
             <fieldset className="rating">
               <legend>Rating:</legend>
