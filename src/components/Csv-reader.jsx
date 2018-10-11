@@ -65,4 +65,5 @@ CSVReader.defaultProps = {
   label: '',
   inputId: '',
 };
+
 export default CSVReader;
