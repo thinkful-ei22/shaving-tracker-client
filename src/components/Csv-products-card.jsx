@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles/csv-products.css';
 
 const CSVProductsCard = props => {
   const {
@@ -42,45 +43,51 @@ const CSVProductsCard = props => {
     <option value={type.toLowerCase()} key={type}>{type}</option>
   ));
 
-  if (!/(.*razor.*)|(.*blade.*)|(.*brush.*)|(.*lather.*)|(.*aftershave.*)|(.*additionalcare.*)/i.test(productType)) {
+  if (!/(.*razor.*)|(.*blade.*)|(.*brush.*)|(.*lather.*)|(.*aftershave.*)|(.*additional\s?care.*)/i.test(productType)) {
     productTypeStyle = 'red';
     subtypeError = true;
     falseOption = <option value={null}>{`${productType} not a valid Product Type`}</option>
   } 
   
   return (
-    <div className="collection-item">
-      <button onClick={handleRemove} type="button" name={`remove-item ${index}`}>- remove product</button>
+    <div className="collection-item relative csv-item">
+      <button className="close-item" onClick={handleRemove} type="button" name={`remove-item ${index}`}/>
       <h3>{`Product ${index+1}`}</h3>
       <p>
-        <span className={`collection-item-type ${productTypeStyle}`}>
+        <span className="collection-item-type">
           Product Type:
         </span>
-        <select 
-          defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
-          name={`productType ${index}`}
-          onChange={handleChange}
-        >
-          {falseOption}
-          <option value="razor">Razor</option>
-          <option value="blade">Blade</option>
-          <option value="brush">Brush</option>
-          <option value="lather">Lather</option>
-          <option value="aftershave">Aftershave</option>
-          <option value="additionalcare">Additional Care</option>
-        </select>
+        <div className={productTypeStyle}>
+          <select 
+            defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
+            name={`productType ${index}`}
+            onChange={handleChange}
+            className="col-6"
+          >
+            {falseOption}
+            <option value="razor">Razor</option>
+            <option value="blade">Blade</option>
+            <option value="brush">Brush</option>
+            <option value="lather">Lather</option>
+            <option value="aftershave">Aftershave</option>
+            <option value="additionalcare">Additional Care</option>
+          </select>
+        </div>
       </p>
       <p>
-        <span className={`collection-item-type ${subtypeError ? 'red' : ''}`}>
+        <span className="collection-item-type">
           Subtype:
         </span>
-        <select 
-          defaultValue={subtype.toLowerCase() || 'none'} 
-          name={`subtype ${index}`}
-          onChange={handleChange}
-        >
-          {typeList}
-        </select>
+        <div className={subtypeError ? 'red' : ''}>
+          <select 
+            defaultValue={subtype.toLowerCase() || 'none'} 
+            name={`subtype ${index}`}
+            onChange={handleChange}
+            className={subtypeError ? 'red' : ''}
+          >
+            {typeList}
+          </select>
+        </div>
       </p>
       <p>
         <span className="collection-item-type">
