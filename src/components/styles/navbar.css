@@ -9,58 +9,85 @@
 
 /* Nav Bar Styles */
 .topnav {
-  overflow: hidden;
-  background-color: #5D4037;
-  border-bottom: 1px solid #2F0F07
+  /* background-color: #5D4037; */
 }
 
 /* Navbar links */
 .topnav a {
-  float: left;
-  display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  /* font-size: 17px; */
+}
+
+.site-banner{
+  display: flex;
+  background: #5D4037;
+  justify-content: center;
+}
+.site-banner h1{
+  display: block;
+  margin: 7px auto;
+}
+
+
+.topnav-links{
+  background: #3D2A24;
+  padding: 5px 20px;
+}
+
+.topnav-links-content{
+  max-width: 1000px;
+  display: flex;
+  align-items: flex-end;
+  margin: auto;
+}
+
+.topnav-links a{
+  margin: 0 10px;
+}
+
+.topnav-links a:hover,
+.logout-btn:hover
+{
+  color: #D7D0C1;
+}
+
+.logout-btn{
+  margin-left: auto;
 }
 
 /* Navbar links on mouse-over */
-.topnav a:hover {
-  background-color: #795548;
-  color: white;
-}
 
-.form-login, .logout-btn {
-  float: right;
-}
 
 #user, #password {
-  padding: 6px;
-  margin-top: 8px;
+  /* padding: 6px;
+  margin-top: 8px; */
   font-size: 17px;
   border: none;
   width: 150px;
 }
 
 .logout-btn, .form-login button {
-  float: right;
-  padding: 6px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #795548;
+  background: #3D2A24;
   font-size: 17px;
   border: none;
   cursor: pointer;
   color: white;
 }
 
-#home-nav	{
+.form-login-container{
+  display: flex;
+  justify-content: right;
+}
+
+
+.form-login{
+  display: inline-block;
+}
+
+.form-login label{
   color: white;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 0px;
-  margin-bottom: 1px;
 }
 
 .topnav .icon {
