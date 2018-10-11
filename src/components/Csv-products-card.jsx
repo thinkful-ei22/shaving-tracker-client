@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles/csv-products.css';
 
 const CSVProductsCard = props => {
   const {
@@ -49,8 +50,8 @@ const CSVProductsCard = props => {
   } 
   
   return (
-    <div className="collection-item">
-      <button onClick={handleRemove} type="button" name={`remove-item ${index}`}>- remove product</button>
+    <div className="collection-item relative csv-item">
+      <button className="close-item" onClick={handleRemove} type="button" name={`remove-item ${index}`}/>
       <h3>{`Product ${index+1}`}</h3>
       <p>
         <span className="collection-item-type">
@@ -61,6 +62,7 @@ const CSVProductsCard = props => {
             defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
             name={`productType ${index}`}
             onChange={handleChange}
+            className="col-6"
           >
             {falseOption}
             <option value="razor">Razor</option>

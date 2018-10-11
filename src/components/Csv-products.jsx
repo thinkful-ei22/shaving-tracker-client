@@ -168,7 +168,9 @@ export class CSVProducts extends React.Component {
           <form className="form" onSubmit={e => this.handleSubmit(e)}>
             <h2>Upload your Products</h2>
             {reader}
-            {response}
+            <div className="csv-container">
+              {response}
+            </div>
             {errorResponse}
             {submitResponse}
             {submit}

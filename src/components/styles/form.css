@@ -58,19 +58,27 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-.close:before {
+.close:before, .close-item::before {
   content: '✕';
 }
 
-.close {
+.close, .close-item {
   font-size: 1.5em;
   border: none;
   position: absolute;
   top: 0;
   right: 10px;
   cursor: pointer;
+}
+
+.close {
   background: #fffcf2;
 }
+
+.close-item {
+  background: #D7D0C1
+}
+
 
 .form input,
 .form select,
@@ -91,4 +99,8 @@
 
 .form select {
   height: 35px;
+}
+
+.relative {
+  position: relative;
 }
