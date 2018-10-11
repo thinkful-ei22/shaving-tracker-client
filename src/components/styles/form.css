@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 .form {
   background: #fffcf2;
   text-align: center;
@@ -79,7 +81,6 @@
   background: #D7D0C1
 }
 
-
 .form input,
 .form select,
 .form textarea {
@@ -103,4 +104,27 @@
 
 .relative {
   position: relative;
+}
+
+.form > label,
+.form > div > label {
+  width: 41.66%;
+  text-align: left;
+}
+
+.form > label,
+.form > span,
+.form > div > label,
+.form > fieldset > legend {
+  margin-bottom: 5px;
+  padding-left: 8px;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 15px;
+}
+
+.form > input, 
+.form > select,
+.form > textarea,
+#single {
+  margin-top: 5px;
 }

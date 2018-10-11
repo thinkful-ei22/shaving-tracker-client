@@ -58,8 +58,8 @@ export class ImageUpload extends React.Component {
         {response}
         <label htmlFor="single">
           Select Image:
-          <input className="col-5" type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
         </label>
+        <input className="col-5" type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
       </div>
     );
   }
