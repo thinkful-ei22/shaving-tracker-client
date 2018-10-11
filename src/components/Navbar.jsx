@@ -48,7 +48,6 @@ class NavBar extends Component {
     let loggedIn;
     let loggedOut;
     if (error) {
-      console.log(error);
       errorMsg = (
         <div className="login-error" aria-live="polite">
           {JSON.stringify(error)}

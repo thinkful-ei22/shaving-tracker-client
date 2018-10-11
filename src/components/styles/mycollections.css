@@ -1,36 +1,12 @@
-.collection-list{
+
+
+.product-container{
+  margin: auto;
   max-width: 1000px;
-  border: 1px solid black;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
-  margin: 0 auto;
-}
-
-.collection-list > * {
-  display: inline-block;
-}
-
-.collection-item{
-  margin: 10px;
-  padding: 10px;
-  width: 300px;
-  border: 1px solid darkgreen;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
-  text-align: center;
-  display: inline-block;
-  font-family: 'Charmonman', cursive;
-}
-
-.collection-item > img {
-  width: 250px;
-}
-
-.collection-item-type {
-  font-variant: small-caps;
-  text-decoration: underline;
 }
 
 .product-list {
-  width: 100%;
+  max-width: 100%;
 }
 
 .product-form-link {
@@ -46,4 +22,92 @@
 
 .product-form-link::after {
   clear: both;
+}
+
+.add-product-button{
+  display: block;
+  margin-left: auto;
+}
+
+.product-tabs{
+  margin: 0 0;
+  padding: 0;
+}
+
+.react-tabs__tab{
+  position: relative;
+  top: 2px;
+  margin: 0 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border: 2px solid #2F0F07;
+  background: #4C2920;
+  border-bottom: none;
+  color: #BBBBBB;
+}
+
+.product-tabs li:first-child{
+  margin-left: 0;
+  border-left: 2px solid #2F0F07;
+}
+
+.product-tabs li:last-child{
+  margin-right: 0;
+  border-right: 2px solid #2F0F07;
+}
+
+.react-tabs__tab--selected{
+  background: #5B3226;
+  border-bottom: none;
+  color: #EEEEEE;
+}
+
+.collection-content{
+  display: block;
+}
+
+.collection-list{
+  /* box-shadow: 0 2px 4px 0 rgba(0,0,0,.1); */
+}
+
+.collection-list-container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border: 2px solid #2F0F07;
+  background: #5B3226;
+}
+
+.collection-item{
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  background: #D7D0C1;
+  border: 1px solid #2F0F07;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+  text-align: center;
+  display: inline-block;
+  font-family: 'Charmonman', cursive;
+}
+
+.collection-item > img {
+  width: 250px;
+}
+
+.collection-item-type {
+  font-variant: small-caps;
+  text-decoration: underline;
+}
+
+.collection-footer{
+  font-size: .8em;
+  display: block;
+  color: #BBBBBB;
+  margin: 20px 0 0 auto;
+}
+.collection-footer a:link,
+.collection-footer a:visited,
+.collection-footer a:hover,
+.collection-footer a:active{
+  color: white;
 }
