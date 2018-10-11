@@ -78,10 +78,6 @@
   padding-bottom: 20px;
 }
 
-.Modal:focus {
-  outline: none;
-}
-
 .Overlay {
   background: rgba(73, 71, 69, 0.308);
   position: fixed;
