@@ -50,48 +50,13 @@ export class NavBar extends Component {
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
-          {JSON.stringify(error)}
+          {error.message}
         </div>
       );
     }
     if (isLogged) {
       loggedIn = (
         <div className="topnav-links">
-          <div className="topnav-links-content">
-            <Link className="collection-nav" to="/mycollection">My Collection</Link>
-            <Link className="nav--shaves" to="/shaves">Shaves</Link>
-            <Link className="nav--community" to="/community/shaves">Community</Link>
-            <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
-              LOG OUT
-            </LinkButton>
-          </div>
-        </div>
-      );
-    } else {
-      loggedOut = (
-        <div className="topnav-links">
-          <div className="form-login-container">
-            <form className="form-login" onSubmit={e => this.onSubmit(e)}>
-              <label htmlFor="user">
-                Username:
-                <input type="text" id="user" name="username" required />
-              </label>
-              <label htmlFor="password">
-                Password:
-                <input type="password" id="password" name="password" required />
-              </label>
-              <button type="submit" className="login-button">Login</button>
-            </form>
-          </div>
-        </div>
-      );
-    }
-    return (
-      <div className="topnav" id="topnav">
-        <div className="site-banner">
-          <h1><Link className="home-nav" id="home-nav" to="/">Beardy Wicked</Link></h1>
-        </div>
-        <div className="topnav-navbar">
           <a
             type="button"
             aria-label="menu"
@@ -100,8 +65,44 @@ export class NavBar extends Component {
           >
             <i className="fa fa-bars" />
           </a>
-          
-          {errorMsg}
+          <Link className="collection-nav" to="/mycollection">My Collection</Link>
+          <Link className="nav--shaves" to="/shaves">Shaves</Link>
+          <Link className="nav--community" to="/community/shaves">Community</Link>
+          <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
+            Log Out
+          </LinkButton>
+        </div>
+      );
+    } else {
+      loggedOut = (
+        <div className="topnav-links">
+          <div className="form-login-container">
+            <form className="form-login" onSubmit={e => this.onSubmit(e)}>
+              {errorMsg}
+              <label htmlFor="user">
+                <span>Username:</span>
+                <input type="text" id="user" name="username" required />
+              </label>
+              <label htmlFor="password">
+                Password:
+                <input type="password" id="password" name="password" required />
+              </label>
+              <div>
+                <button type="submit" className="login-button">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="topnav" id="topnav">
+        <Link className="home-nav" id="home-nav" to="/">
+          <h1>
+            Beardy Wicked
+          </h1>
+        </Link>
+        <div className="topnav-navbar">
           {loggedIn}
           {loggedOut}
         </div>
