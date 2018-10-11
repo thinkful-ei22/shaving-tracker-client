@@ -166,13 +166,14 @@ class CSVProducts extends React.Component {
           overlayClassName="Overlay"
           ariaHideApp={false}
         >
-          <form onSubmit={e => this.handleSubmit(e)}>
+          <form className="form" onSubmit={e => this.handleSubmit(e)}>
+            <h2>Upload your Products</h2>
             {reader}
             {response}
             {errorResponse}
             {submitResponse}
             {submit}
-            <button type="button" onClick={this.handleCloseModal}>Close</button>
+            <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>
       </div>

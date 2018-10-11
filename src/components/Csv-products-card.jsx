@@ -55,32 +55,33 @@ const CSVProductsCard = props => {
       <p>
         <span className={`collection-item-type ${productTypeStyle}`}>
           Product Type:
+          <select 
+            defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
+            name={`productType ${index}`}
+            onChange={handleChange}
+          >
+            {falseOption}
+            <option value="razor">Razor</option>
+            <option value="blade">Blade</option>
+            <option value="brush">Brush</option>
+            <option value="lather">Lather</option>
+            <option value="aftershave">Aftershave</option>
+            <option value="additionalcare">Additional Care</option>
+          </select>
         </span>
-        <select 
-          defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
-          name={`productType ${index}`}
-          onChange={handleChange}
-        >
-          {falseOption}
-          <option value="razor">Razor</option>
-          <option value="blade">Blade</option>
-          <option value="brush">Brush</option>
-          <option value="lather">Lather</option>
-          <option value="aftershave">Aftershave</option>
-          <option value="additionalcare">Additional Care</option>
-        </select>
       </p>
       <p>
         <span className={`collection-item-type ${subtypeError ? 'red' : ''}`}>
           Subtype:
+          <select 
+            defaultValue={subtype.toLowerCase() || 'none'} 
+            name={`subtype ${index}`}
+            onChange={handleChange}
+          >
+            {typeList}
+          </select>
         </span>
-        <select 
-          defaultValue={subtype.toLowerCase() || 'none'} 
-          name={`subtype ${index}`}
-          onChange={handleChange}
-        >
-          {typeList}
-        </select>
+        
       </p>
       <p>
         <span className="collection-item-type">
