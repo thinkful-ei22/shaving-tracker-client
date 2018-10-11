@@ -12,10 +12,31 @@ import ProductForm from './Product-form';
 import CollectionCard from './Collection-card';
 import { fetchProducts } from '../actions/product';
 
+import razorIcon from './icons/razor.png';
+import bladeIcon from './icons/blade.png';
+import brushIcon from './icons/brush.png';
+import latherIcon from './icons/lather1.png';
+import afterIcon from './icons/after1.png';
+import additionalIcon from './icons/additional.png';
+
 export class MyCollection extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      useIcons: window.innerWidth <= 760
+    }
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchProducts());
+
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
+  }
+
+  resize() {
+    this.setState({useIcons: window.innerWidth <= 760});
   }
 
   render() {
@@ -50,25 +71,43 @@ export class MyCollection extends React.Component {
     
     const collections = Object.keys(productType).map(product => (
       <TabPanel key={product} className="collection-list">
-        {productType[product].map(item => <div key={item.id}><CollectionCard {...item} /></div>)}
+        <div className="collection-list-container">
+          {productType[product].map(item => <CollectionCard {...item} key={item.id} />)}
+        </div>
       </TabPanel>
     ));
 
+    const tabs = this.state.useIcons
+      ?
+        ([<Tab key="razor"><img src={razorIcon} height="18" alt="Razors"></img></Tab>,
+        <Tab key="blade"><img src={bladeIcon} height="18" alt="Blades"></img></Tab>,
+        <Tab key="brush"><img src={brushIcon} height="18" alt="Brushes"></img></Tab>,
+        <Tab key="lather"><img src={latherIcon} height="18" alt="Lathers"></img></Tab>,
+        <Tab key="after"><img src={afterIcon} height="18" alt="Aftershaves"></img></Tab>,
+        <Tab key="additional"><img src={additionalIcon} height="18" alt="Additional Cares"></img></Tab>])
+      :
+        ([<Tab key="razor">Razors</Tab>,
+        <Tab key="blade">Blades</Tab>,
+        <Tab key="brush">Brushes</Tab>,
+        <Tab key="lather">Lathers</Tab>,
+        <Tab key="after">Aftershaves</Tab>,
+        <Tab key="additional">Additional Cares</Tab>]);
+
     return (
-      <Tabs className="product-list">
-        <ProductForm />
-        <TabList>
-          <Tab>All</Tab>
-          <Tab>Razors</Tab>
-          <Tab>Blades</Tab>
-          <Tab>Brushes</Tab>
-          <Tab>Lathers</Tab>
-          <Tab>Aftershaves</Tab>
-          <Tab>Addtional Cares</Tab>
-        </TabList>
-        {newUserIntro}
-        {collections}
-      </Tabs>
+      <div className="product-container">
+        <div className="add-product-button"><ProductForm /></div>
+        <Tabs className="product-list">
+          {newUserIntro}
+          <div className="collection-content">
+            <TabList className="product-tabs">
+              <Tab>All</Tab>
+              {tabs}
+            </TabList>
+            {collections}
+          </div>
+        </Tabs>
+        <div className="collection-footer">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></div>
+      </div>
     );
   }
 }
