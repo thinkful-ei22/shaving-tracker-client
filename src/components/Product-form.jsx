@@ -103,7 +103,7 @@ class ProductForm extends React.Component {
 
     return (
       <div>
-        <button className="add-product-button" onClick={this.handleOpenModal}>+ Product</button>
+        <button className="add-product-button" onClick={this.handleOpenModal}>+</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"

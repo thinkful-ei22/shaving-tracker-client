@@ -33,12 +33,19 @@
   right: 30px;
   font-size: 22px;
 }
-/* 
+
 .add-product-button {
-  margin-bottom: 20px;
-  margin-left: 15px;
+  font-size: 16px;
   float: right;
-} */
+  height: 32px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-top: 1px;
+  border: 2px solid #2F0F07;
+  border-bottom: none;
+  color: #BBBBBB;
+  background: #4C2920
+}
 
 .community-checkbox > * {
   display: inline;
@@ -92,3 +99,16 @@
 .form select {
   height: 35px;
 }
+
+@media only screen and (max-width: 760px) {
+  .add-product-button {
+    height: 34.6px;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  .add-product-button::before {
+    content: ' Product';
+  }
+}
+

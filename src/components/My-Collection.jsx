@@ -93,7 +93,8 @@ class MyCollection extends React.Component {
 
     return (
       <div className="product-container">
-        <div className="add-product-button"><ProductForm /></div>
+        <h2>My Collection</h2>
+        <ProductForm />
         <Tabs className="product-list">
           {newUserIntro}
           <div className="collection-content">
