@@ -159,7 +159,7 @@ class ProductForm extends React.Component {
             </label>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
             <button className="col-3" type="submit">Submit</button>
-            <button type="button" onClick={this.handleCloseModal}>Close</button>
+            <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>
       </div>

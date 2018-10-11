@@ -5,7 +5,7 @@
 
 .form * {
   display: block;
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 .form-label {
@@ -20,6 +20,10 @@
   min-width: 600px;
 }
 
+.form > textarea {
+  resize: none;
+  height: 100px;
+}
 .edit-form * {
   display: block;
 }
@@ -34,9 +38,12 @@
   margin-bottom: 20px;
   margin-left: 15px;
   float: right;
-  
 } */
 
+.community-checkbox > * {
+  display: inline;
+  margin: 4px;
+}
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -50,3 +57,38 @@
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+
+.close:before {
+  content: '✕';
+}
+
+.close {
+  font-size: 1.5em;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  cursor: pointer;
+  background: #fffcf2;
+}
+
+.form input,
+.form select,
+.form textarea {
+    background-color: #fff;
+    border-color: #e0e0e0;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-width: 1px;
+    border-style: solid;
+    color: #474e57;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px;
+}
+
+.form select {
+  height: 35px;
+}
