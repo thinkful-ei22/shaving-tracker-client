@@ -33,7 +33,7 @@
 
 .shave-nav{
   position: fixed;
-  border: 2px solid black;
+  border: 2px solid #1E0904;
   background: #EFE7E1;
   border-radius: 4px;
   padding: 15px 20px;
@@ -61,7 +61,7 @@
 
 .shave-list-content{
   display: flex;
-  border: 2px solid #2F0F07;
+  border: 2px solid #1E0904;
   margin: auto;
   background: #5B3226;
   border-radius: 4px;
@@ -74,7 +74,7 @@
   padding: 24px;
   display: inline-block;
   width: 300px;
-  border: 1px solid #2F0F07;
+  border: 1px solid #1E0904;
   border-radius: 4px;
   background: #EFE7E1;
 }
@@ -93,6 +93,16 @@
 
 .shave-list-item-products--label{
   /* text-align: right; */
+}
+
+.shave-list-item-buttons{
+  margin-top: 15px;
+  display:flex;
+}
+
+.delete-shave-history-btn{
+  margin-left: auto;
+  background: darkred;
 }
 
 .shave-form-link {

@@ -17,7 +17,7 @@
 .edit-form {
   display: inline-block;
   max-width: 1000px;
-  border: 1px solid #2F0F07;
+  border: 1px solid #1E0904;
   background: #EFE7E1;
   min-width: 600px;
 }
@@ -94,10 +94,10 @@
     padding: 8px;
 }
 
-.submit-button{
+.weighty-button{
   font-family: 'Merriweather', serif;
   background-color: #ff7700;
-  padding: 14px 20px;
+  padding: 7px 10px;
   border: none;
   cursor: pointer;
   opacity: 0.9;
