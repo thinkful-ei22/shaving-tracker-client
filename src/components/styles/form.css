@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .form {
-  background: #fffcf2
+  background: #fffcf2;
+  text-align: center;
 }
 
 .form * {
@@ -41,7 +42,6 @@
   display: inline;
   margin: 4px;
 }
-
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}

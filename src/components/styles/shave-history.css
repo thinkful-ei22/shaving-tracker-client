@@ -124,15 +124,9 @@
   right: 150px;
   bottom: 150px;
   background-color: #fffcf2;
-  display: flex;
-  justify-content: center;  
   border: 2px solid black;
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-.Modal:focus {
-  outline: thin dotted;
 }
 
 .Overlay {
@@ -181,4 +175,3 @@
   } 
 
 }
-
