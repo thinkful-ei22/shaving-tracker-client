@@ -5,8 +5,6 @@ import requiresLogin from './requires-login';
 import './styles/shave-history.css';
 import {
   getShaves,
-  setShaveFilterStart,
-  setShaveFilterEnd,
   resetShaveFilter,
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
@@ -21,7 +19,7 @@ export class ShaveHistory extends React.Component {
 
 
   render() {
-    const { dispatch, isLoading, error } = this.props;
+    const { isLoading, error } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
       : (<ShaveHistoryItems canDelete canEdit showShare />);

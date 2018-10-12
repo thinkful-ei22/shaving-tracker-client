@@ -13,8 +13,6 @@ class CommunityShaveNav extends React.Component{
   render(){
     const {
       dispatch,
-      isLoading,
-      error,
       startFilter,
       endFilter,
     } = this.props;

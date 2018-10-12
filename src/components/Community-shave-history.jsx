@@ -20,11 +20,8 @@ export class CommunityShaveHistory extends React.Component {
 
   render() {
     const {
-      dispatch,
       isLoading,
       error,
-      startFilter,
-      endFilter,
     } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
