@@ -59,6 +59,7 @@
   border: none;
   cursor: pointer;
   color: white;
+  font-family: 'Lato', sans-serif;
 }
 
 .logout-btn {
@@ -68,13 +69,14 @@
 .form-login-container{
   /* display: flex; */
   justify-content: right;
-  padding-right: 20px;
+  padding-right: 36px;
 }
 
 
 .form-login >  label {
   display: inline-block;
   margin: 10px;
+  font-size: 20px;
 }
 
 .form-login > label > * {
@@ -92,6 +94,7 @@
   font-weight: bold;
   margin-top: 0px;
   margin-bottom: 1px;
+  margin-left: 20px;
 }
 
 .topnav .icon {
