@@ -10,7 +10,7 @@ import {
 import ShaveHistoryItems from './Shave-history-items';
 import CommunityShaveNav from './Community-shave-nav';
 
-class ShaveHistory extends React.Component {
+export class CommunityShaveHistory extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     const oneMonthAgo = moment().subtract(1, 'months').format('YYYY-MM-DD');
@@ -58,7 +58,7 @@ class ShaveHistory extends React.Component {
   }
 }
 
-ShaveHistory.propTypes = {
+CommunityShaveHistory.propTypes = {
   startFilter: PropTypes.string,
   endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
   dispatch: PropTypes.func.isRequired,
@@ -66,7 +66,7 @@ ShaveHistory.propTypes = {
   error: PropTypes.string,
 };
 
-ShaveHistory.defaultProps = {
+CommunityShaveHistory.defaultProps = {
   startFilter: '',
   endFilter: '',
   isLoading: false,
@@ -81,4 +81,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default requiresLogin()(connect(mapStateToProps)(ShaveHistory));
+export default requiresLogin()(connect(mapStateToProps)(CommunityShaveHistory));

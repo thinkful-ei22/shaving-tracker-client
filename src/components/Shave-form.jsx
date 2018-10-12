@@ -10,7 +10,7 @@ import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
 import { addShave } from '../actions/shaves';
 
-class ShaveForm extends React.Component {
+export class ShaveForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -103,76 +103,79 @@ class ShaveForm extends React.Component {
             {errorMessage}
             <ImageUpload />
             <label htmlFor="date">
-              <span>Date</span>
+              Date
             </label>
             <input className="col-5" type="date" id="date" name="date" defaultValue={moment().format('YYYY-MM-DD')}
             />
             <label htmlFor="razor">
-              <span>Select Razor:</span>
+              Select Razor:
             </label>
             <select defaultValue="" className="col-5" id="razor" name="razor" required>
               <option value="" disabled>Select...</option>
               {productsObj ? productsObj.razor : null}
             </select>
             <label htmlFor="blade">
-              <span>Select Blade:</span>
+              Select Blade:
             </label>
             <select defaultValue="" className="col-5" id="blade" name="blade" required>
               <option value="" disabled>Select...</option>
               {productsObj ? productsObj.blade : null}
             </select>
             <label htmlFor="brush">
-              <span>Select Brush:</span>
+              Select Brush:
             </label>
             <select defaultValue="" className="col-5" id="brush" name="brush">
               <option value="" >None</option>
               {productsObj ? productsObj.brush : null}
             </select>
             <label htmlFor="lather">
-              <span>Select Lather:</span>
+              Select Lather:
             </label>
             <select defaultValue="" className="col-5" id="lather" name="lather">
               <option value="" >None</option>
               {productsObj ? productsObj.lather : null}
             </select>
             <label htmlFor="aftershave">
-              <span>Select Aftershave:</span>
+              Select Aftershave:
             </label>
             <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
               <option value="" >None</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
             <label htmlFor="additionalcare">
-              <span>Select Additional Care:</span>
+              Select Additional Care:
             </label>
             <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
               <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
-            <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share" defaultChecked={true}/>
-
+            <div className="community-checkbox">
+              <label htmlFor="share">Share with community?</label>
+              <input type="checkbox" name="share" value="share" id="share"
+                defaultChecked={true}
+              />
+            </div>
             <fieldset className="rating">
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" />
-              <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" />
-              <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" />
-              <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2" />
-              <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1" />
-              <label htmlFor="star1" className="full" />
+              <div>
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label htmlFor="star5" className="full" />
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label htmlFor="star4" className="full" />
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label htmlFor="star3" className="full" />
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label htmlFor="star2" className="full" />
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label htmlFor="star1" className="full" />
+              </div>
             </fieldset>
-            <div>
-              <input type="submit" value="Submit" />
-              <button type="button" onClick={this.handleCloseModal}>Close</button>
-            </div>
-            </form>
-          </ReactModal>
-        </div>
+            <button type="submit">Submit</button>
+            <button className="close" type="button" onClick={this.handleCloseModal} />
+          </form>
+        </ReactModal>
+      </div>
       
     );
   }

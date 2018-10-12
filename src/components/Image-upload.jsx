@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addImage, removeImage } from '../actions/image';
 
-class ImageUpload extends React.Component {
+export class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +18,7 @@ class ImageUpload extends React.Component {
 
   onChange(e) {
     const { dispatch } = this.props;
+    dispatch(removeImage());
     const errs = [];
     const file = Array.from(e.target.files)[0];
     const formData = new FormData();
@@ -43,7 +44,7 @@ class ImageUpload extends React.Component {
     const errorResponse = errors.map((error, i) => <div key={i}>{error}</div>);
     let response;
     if (loading) {
-      response = <div>Loading annimation here!</div>;
+      response = <div className="loader"/>;
     } else if (error) {
       response = <div>{error}</div>;
     } else if (image) {
@@ -53,11 +54,12 @@ class ImageUpload extends React.Component {
     }
     return (
       <div>
-        <div>{errorResponse}</div>
+        {errorResponse}
         {response}
         <label htmlFor="single">
-          <input type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
+          Select Image:
         </label>
+        <input className="col-5" type="file" id="single" name="singleImage" onChange={e => this.onChange(e)} />
       </div>
     );
   }
