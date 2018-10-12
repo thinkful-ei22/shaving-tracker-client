@@ -78,6 +78,14 @@ export class NavBar extends Component {
     } else {
       loggedOut = (
         <div className="topnav-links">
+          <a
+            type="button"
+            aria-label="menu"
+            className="js-toggle-login-form"
+            onClick={() => this.navIcon()}
+          >
+            Login
+          </a>
           <div className="form-login-container">
             <form className="form-login" onSubmit={e => this.onSubmit(e)}>
               {errorMsg}
@@ -89,9 +97,7 @@ export class NavBar extends Component {
                 <span>Password:</span>
                 <input type="password" id="password" name="password" required />
               </label>
-              <div>
-                <button type="submit" className="login-button">Login</button>
-              </div>
+              <button type="submit" className="login-button">Login</button>
             </form>
           </div>
         </div>

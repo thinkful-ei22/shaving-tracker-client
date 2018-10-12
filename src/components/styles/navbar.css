@@ -32,8 +32,8 @@
 /* Navbar links on mouse-over */
 
 .login-button {
-  display: block;
-  float: right;
+  /* display: block; */
+  /* float: right; */
 }
 
 .form-login {
@@ -75,7 +75,7 @@
 .form-login >  label {
   display: inline-block;
   margin: 10px;
-  font-size: 1em;
+  font-size: .8em;
 }
 
 .form-login > label > * {
@@ -100,7 +100,44 @@
   display: none;
 }
 
+.topnav .js-toggle-login-form {
+  display: none;
+}
+
 /* Media Queries */
+
+@media screen and (max-width: 720px) {
+  .topnav .js-toggle-login-form {
+    position: absolute;
+    display: block;
+    right: 26px;
+    top: 20px;
+  }
+  .topnav .form-login {
+    display: none;
+  }
+  .login-button {
+    display: flex;
+  }
+  .topnav.responsive .form-login-container {
+    background-color: red;
+    display: absolute;
+    right: 20px;
+    top: 50px;
+  }
+  .topnav.responsive .form-login {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-login { display: none; }
+  .form-login {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 @media screen and (max-width: 870px) {
   .topnav .right-align a, .topnav .logout-btn {display: none;}
