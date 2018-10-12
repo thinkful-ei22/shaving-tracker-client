@@ -31,7 +31,7 @@ export const registerUser = data => (dispatch) => {
   })
     .then((res) => {
       if (!res.ok) {
-        return Promise.reject(res.statusText);
+        return res.json().then(err => Promise.reject(err));
       }
       return (res.json());
     })
