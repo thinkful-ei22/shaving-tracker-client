@@ -103,47 +103,47 @@ export class ShaveForm extends React.Component {
             {errorMessage}
             <ImageUpload />
             <label htmlFor="date">
-              <span>Date</span>
+              Date
             </label>
             <input className="col-5" type="date" id="date" name="date" defaultValue={moment().format('YYYY-MM-DD')}
             />
             <label htmlFor="razor">
-              <span>Select Razor:</span>
+              Select Razor:
             </label>
             <select defaultValue="" className="col-5" id="razor" name="razor" required>
               <option value="" disabled>Select...</option>
               {productsObj ? productsObj.razor : null}
             </select>
             <label htmlFor="blade">
-              <span>Select Blade:</span>
+              Select Blade:
             </label>
             <select defaultValue="" className="col-5" id="blade" name="blade" required>
               <option value="" disabled>Select...</option>
               {productsObj ? productsObj.blade : null}
             </select>
             <label htmlFor="brush">
-              <span>Select Brush:</span>
+              Select Brush:
             </label>
             <select defaultValue="" className="col-5" id="brush" name="brush">
               <option value="" >None</option>
               {productsObj ? productsObj.brush : null}
             </select>
             <label htmlFor="lather">
-              <span>Select Lather:</span>
+              Select Lather:
             </label>
             <select defaultValue="" className="col-5" id="lather" name="lather">
               <option value="" >None</option>
               {productsObj ? productsObj.lather : null}
             </select>
             <label htmlFor="aftershave">
-              <span>Select Aftershave:</span>
+              Select Aftershave:
             </label>
             <select defaultValue="" className="col-5" id="aftershave" name="aftershave">
               <option value="" >None</option>
               {productsObj ? productsObj.aftershave : null}
             </select>
             <label htmlFor="additionalcare">
-              <span>Select Additional Care:</span>
+              Select Additional Care:
             </label>
             <select defaultValue="" className="col-5" id="additionalcare" name="additionalcare">
               <option value="" >None</option>
