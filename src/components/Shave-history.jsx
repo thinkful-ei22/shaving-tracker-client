@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ShaveForm from './Shave-form';
 import { PropTypes } from 'prop-types';
 import requiresLogin from './requires-login';
 import './styles/shave-history.css';
 import {
   getShaves,
-  setShaveFilterStart,
-  setShaveFilterEnd,
   resetShaveFilter,
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
+import ShaveNav from './Shave-nav';
 
 export class ShaveHistory extends React.Component {
   componentWillMount() {
@@ -21,40 +19,34 @@ export class ShaveHistory extends React.Component {
 
 
   render() {
-    const { dispatch, isLoading, error } = this.props;
+    const { isLoading, error } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
       : (<ShaveHistoryItems canDelete canEdit showShare />);
 
     return (
       <div className="shave-history">
-        <h2>Shaves</h2>
-        {error}
-        <ShaveForm/> 
-        <div className="shave-date-filter-container">
-          <h3>Date Filter: </h3>
-          <label>Start Date: </label>
-          <input
-            type="date"
-            onChange={(e) => {
-              dispatch(setShaveFilterStart(e.target.value));
-            }}
-          />
-
-          <br />
-          <label>End Date: </label>
-          <input
-            type="date"
-            onChange={(e) => {
-              dispatch(setShaveFilterEnd(e.target.value));
-            }}
-          />
+        <div className="empty">
+          {/* DO NOT DELETE THIS! It helps the column styles work! */}
         </div>
-        <div className="shave-list">
-          <div className="shave-list-content">
-            {shaveContent}
+
+        <div className="shave-header">
+          <h2>Community Shaves</h2>
+          {error}
+        </div>
+
+        <div className="shave-nav-container">
+          <ShaveNav />
+        </div>
+
+        <div className="shave-content">
+          <div className="shave-list">
+            <div className="shave-list-content">
+              {shaveContent}
+            </div>
           </div>
         </div>
+        
       </div>
     );
   }

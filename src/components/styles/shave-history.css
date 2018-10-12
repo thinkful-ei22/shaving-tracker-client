@@ -1,10 +1,61 @@
 .shave-history {
   margin: auto;
   max-width: 1000px;
+
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: repeat(auto-fill, auto);
+  grid-row-gap: .8em;
+  grid-column-gap: .6em;
 }
 
-.shave-list{
-  /* border: 1px solid #2F0F07; */
+.shave-content{
+  
+}
+
+.shave-history h2 {
+  width: 100%;
+  /* text-align: center; */
+}
+
+.add-shave-button {
+  /* margin-left: auto; */
+}
+
+.shave-nav-container{
+  width: 200px;
+}
+
+.shave-nav{
+  /* display: flex;
+  flex-direction: column;
+  float:left; */
+
+  position: fixed;
+  border: 2px solid black;
+  background: white;
+  /* margin-right: 5px; */
+  padding: 15px 20px;
+}
+
+.shave-nav > * {
+  margin: 5px 0;
+}
+
+.shave-date-filter-container{
+  display: inline-flex;
+  /* float: left; */
+  /* margin-left: auto; */
+  flex-direction: column;
+  justify-content: right;
+}
+
+.shave-date-filter-container input{
+  display: block;
+}
+
+.shave-date-filter{
+  margin-top: 5px;
 }
 
 .shave-list-content{
@@ -78,10 +129,6 @@
   padding-bottom: 20px;
 }
 
-.Modal:focus {
-  outline: thin dotted;
-}
-
 .Overlay {
   background: rgba(73, 71, 69, 0.308);
   position: fixed;
@@ -98,4 +145,33 @@
     bottom: 150px;
     right: 0;
   }
+
+  .shave-history{
+    grid-template-columns: auto;
+  }
+
+  .shave-nav-container{
+    width: 100%;
+  }
+
+  .shave-nav{
+    position: static;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+  }
+  
+  .shave-header{
+    text-align: center;
+  }
+
+  .shave-date-filter-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .shave-date-filter{
+    margin: 0 10px;
+  } 
+
 }
