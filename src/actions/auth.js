@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import jwtDecode from 'jwt-decode';
-
 import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -54,16 +54,17 @@ export const login = data => (dispatch) => {
     },
     body: JSON.stringify(data),
   })
-    // Reject any requests which don't return a 200 status, creating
-    // errors which follow a consistent format
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      return (res.json());
+    .then(res => {
+      return normalizeResponseErrors(res)
     })
+    .then(res => res.json())
     .then(({ authToken }) => dispatch(storeAuthInfo(authToken)))
     .catch((err) => {
+      const { status } = err;
+      err.message = 
+        status === 401 
+          ? 'Incorrect username or password'
+          : 'Unable to login, please try again';
       dispatch(authError(err));
     });
 };
@@ -79,12 +80,8 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       Authorization: `Bearer ${authToken}`,
     },
   })
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      return (res.json());
-    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
     .then(({ authToken }) => dispatch(storeAuthInfo(authToken))) // eslint-disable-line no-shadow
     .catch((err) => {
       // We couldn't get a refresh token because our current credentials
