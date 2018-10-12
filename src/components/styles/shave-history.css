@@ -1,12 +1,15 @@
-.shave-history {
+.shave-history, .product-container {
   margin: auto;
   max-width: 1000px;
 
   display: grid;
-  grid-template-columns: 200px auto;
   grid-template-rows: repeat(auto-fill, auto);
   grid-row-gap: .8em;
   grid-column-gap: .6em;
+}
+
+.shave-history {
+  grid-template-columns: 200px auto;
 }
 
 .shave-content{
@@ -24,7 +27,7 @@
   /* margin-left: auto; */
 }
 
-.shave-nav-container{
+.shave-nav-container {
   width: 200px;
 }
 
@@ -68,7 +71,7 @@
 
 .shave-list-item{
   margin: 10px;
-  padding: 10px;
+  padding: 24px;
   display: inline-block;
   width: 300px;
   border: 1px solid #2F0F07;
@@ -76,8 +79,8 @@
   background: #EFE7E1;
 }
 
-.shave-list-item > img {
-  width: 280px;
+.shave-list-item h3{
+  text-align: center;
 }
 
 .shave-list-item-products{
@@ -146,22 +149,22 @@
     right: 0;
   }
 
-  .shave-history{
+  .shave-history {
     grid-template-columns: auto;
   }
 
-  .shave-nav-container{
+  .shave-nav-container {
     width: 100%;
   }
 
-  .shave-nav{
+  .shave-nav {
     position: static;
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
   }
   
-  .shave-header{
+  .shave-header {
     text-align: center;
   }
 

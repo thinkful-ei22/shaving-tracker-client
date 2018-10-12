@@ -9,8 +9,7 @@ import {
   setShaveFilterEnd,
 } from '../actions/shaves';
 
-class ShaveNav extends React.Component{
-
+export class ShaveNav extends React.Component{
 
   render(){
     const {
@@ -39,20 +38,20 @@ class ShaveNav extends React.Component{
             />
           </div>
         </div>
-        <ShaveForm/> 
+        <ShaveForm/>
       </div>
     );
   }
 }
 
 
-ShaveForm.propTypes = {
+ShaveNav.propTypes = {
   dispatch: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   error: PropTypes.string,
 };
 
-ShaveForm.defaultProps = {
+ShaveNav.defaultProps = {
   isLoading: false,
   error: null,
 };

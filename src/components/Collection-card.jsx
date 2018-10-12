@@ -1,34 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/collection-card.css';
+
 const CollectionCard = (props) => {
-  const {
+  let {
     brand, model, subtype, nickname, comment, imageUrl, totalUsage,
   } = props;
 
   const usedImageUrl = imageUrl ? imageUrl : 'https://i.imgur.com/QvDFh9r.png';
 
+  subtype = subtype ? subtype : 'n/a';
+  comment = comment ? comment : 'n/a';
+
   return (
     <div className="collection-item">
+      <h3>{nickname}</h3>
       <div className="image-div-normalizer">
         <img src={usedImageUrl} alt="" />
       </div>
-      <h3>{nickname}</h3>
-      <p>
-        <span className="collection-item-type">Brand:</span> {brand}
-      </p>
-      <p>
-        <span className="collection-item-type">Model:</span> {model}
-      </p>
-      <p>
-        <span className="collection-item-type">Subtype:</span> {subtype}
-      </p>
-      <p>
-        <span className="collection-item-type">Comment:</span> {comment}
-      </p>
-      <p>
-        <span className="collection-item-type">Uses:</span> {totalUsage}
-      </p>
+      
+      <div className="collection-item-info">
+        <span className="collection-item-info--label">Brand:</span> 
+        <span className="collection-item-info--value">{brand}</span> 
+      
+        <span className="collection-item-info--label">Model:</span>
+        <span className="collection-item-info--value">{model}</span> 
+
+        <span className="collection-item-info--label">Subtype:</span>
+        <span className="collection-item-info--value">{subtype}</span>
+
+        <span className="collection-item-info--label">Comment:</span>
+        <span className="collection-item-info--value">{comment}</span> 
+        
+        <span className="collection-item-info--label">Uses:</span>
+        <span className="collection-item-info--value">{totalUsage}</span> 
+      </div>
     </div>
   );
 };
