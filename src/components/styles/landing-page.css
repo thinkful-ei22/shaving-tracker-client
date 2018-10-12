@@ -1,0 +1,92 @@
+.landing-page-body {
+    background: url(./image/img2.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .app-content {
+    padding: 0;
+    margin: 0;
+  }
+
+  .welcome-header {
+    margin-top: 0px;
+    padding: 0px 0px;
+    color: #fffcf7;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #000, 3px 3px 5px #000; 
+  }
+
+  .sign-up-container {
+      display: flex;
+      justify-content: center;
+      width: 60%;
+      margin: 30px auto;
+      padding: 16px;
+      height: auto;
+      background: white;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+      font-family: 'Merriweather', serif;
+      box-shadow: 5px 10px 8px;
+      border-radius: 10px;
+  }
+
+  .sign-up-header {
+    text-align: center;
+    font-variant: small-caps;
+    color: #ff7700;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .register-button {
+    font-family: 'Merriweather', serif;
+    background-color: #ff7700;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 5px 10px 8px #888888;
+  }
+
+  .register-button:hover {
+    opacity: 1;
+  }
+
+  #email, #register-user, #register-password {
+      margin: 5px 0 22px 0;
+      padding: 15px;
+      border: none;
+      background: #f1f1f1;
+  }
+
+  .landing-page-footer {
+    font-family: 'Merriweather', serif;
+    background-color: black;
+    text-align: center;
+    color: white;
+    height: auto;
+    padding: 10px 10px;
+  }
+
+ .footer-first-row {
+    display: flex;
+    justify-content: space-evenly;
+ }
+
+ .footer-second-row {
+  display: flex;
+  justify-content: space-evenly;
+ }
