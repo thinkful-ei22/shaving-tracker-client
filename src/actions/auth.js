@@ -55,7 +55,6 @@ export const login = data => (dispatch) => {
     body: JSON.stringify(data),
   })
     .then(res => {
-      console.log(res);
       return normalizeResponseErrors(res)
     })
     .then(res => res.json())
