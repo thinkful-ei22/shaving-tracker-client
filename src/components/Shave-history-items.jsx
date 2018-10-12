@@ -78,7 +78,6 @@ export class ShaveHistoryItems extends React.Component {
         ]
         : '';
 
-      console.log(sortedShaveHist[i].imageUrl);
       const imgUrl = sortedShaveHist[i].imageUrl
         ? sortedShaveHist[i].imageUrl
         : 'https://i.imgur.com/QvDFh9r.png'
