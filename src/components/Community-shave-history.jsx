@@ -8,6 +8,7 @@ import {
   setShaveFiltersGetCommunityShaves,
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
+import CommunityShaveNav from './Community-shave-nav';
 
 class ShaveHistory extends React.Component {
   componentWillMount() {
@@ -31,36 +32,27 @@ class ShaveHistory extends React.Component {
 
     return (
       <div className="shave-history">
-        <h2>Shaves</h2>
-        {error}
-        <div className="shave-date-filter-container">
-          <h3>Date Filter: </h3>
-          <label>Start Date: </label>
-          <input
-            type="date"
-            value={startFilter}
-            onChange={(e) => {
-              const newStart = e.target.value || moment().subtract(1, 'months').format('YYYY-MM-DD')
-              dispatch(setShaveFiltersGetCommunityShaves(newStart, endFilter));
-            }}
-          />
+        <div className="empty">
 
-          <br />
-          <label>End Date: </label>
-          <input
-            type="date"
-            value={endFilter}
-            onChange={(e) => {
-              const newEnd = e.target.value || moment().format('YYYY-MM-DD');
-              dispatch(setShaveFiltersGetCommunityShaves(startFilter, newEnd));
-            }}
-          />
         </div>
-        <div className="shave-list">
-          <div className="shave-list-content">
-            {shaveContent}
+
+        <div className="shave-header">
+          <h2>Community Shaves</h2>
+          {error}
+        </div>
+
+        <div className="shave-nav-container">
+          <CommunityShaveNav />
+        </div>
+
+        <div className="shave-content">
+          <div className="shave-list">
+            <div className="shave-list-content">
+              {shaveContent}
+            </div>
           </div>
         </div>
+        
       </div>
     );
   }
