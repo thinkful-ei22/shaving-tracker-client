@@ -65,12 +65,14 @@ export class NavBar extends Component {
           >
             <i className="fa fa-bars" />
           </a>
-          <Link className="collection-nav" to="/mycollection">My Collection</Link>
-          <Link className="nav--shaves" to="/shaves">Shaves</Link>
-          <Link className="nav--community" to="/community/shaves">Community</Link>
-          <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
-            Log Out
-          </LinkButton>
+          <div className="right-align">
+            <Link className="collection-nav" to="/mycollection">My Collection</Link>
+            <Link className="nav--shaves" to="/shaves">Shaves</Link>
+            <Link className="nav--community" to="/community/shaves">Community</Link>
+            <LinkButton to="/" className="logout-btn" type="button" onClick={this.logOut}>
+              Log Out
+            </LinkButton>
+          </div>
         </div>
       );
     } else {

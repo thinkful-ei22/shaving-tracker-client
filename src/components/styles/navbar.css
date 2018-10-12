@@ -24,12 +24,17 @@
   font-size: 17px;
 }
 
+.right-align {
+  float: right;
+  padding: 20px;
+  padding-top: 40px;
+}
+
 /* Navbar links on mouse-over */
 
 .login-button {
   display: block;
   float: right;
-  padding-bottom: 15px;
 }
 
 .form-login {
@@ -54,6 +59,10 @@
   border: none;
   cursor: pointer;
   color: white;
+}
+
+.logout-btn {
+  padding: 14px 16px;
 }
 
 .form-login-container{
@@ -91,8 +100,8 @@
 
 /* Media Queries */
 
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child), .topnav button {display: none;}
+@media screen and (max-width: 870px) {
+  .topnav .right-align a, .topnav button {display: none;}
   .topnav a.icon {
     position: absolute;
     float: right;
@@ -102,7 +111,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 870px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -110,25 +119,19 @@
     right: 0;
     top: 0;
   }
-  .topnav.responsive > .topnav-navbar > .topnav-links > .topnav-links-content:nth-child(2) {
-    margin-top: 20px;
-  }
-  .topnav.responsive a:not(:first-child), .topnav.responsive .logout-btn {
+
+  .topnav.responsive .right-align a, .topnav.responsive .logout-btn {
     display: block;
     text-align: right;
   }
 
-  .topnav.responsive a:not(:first-child) {
+  .topnav.responsive .right-align a {
     float: none;
   }
 
   .topnav.responsive .logout-btn {
     float: right;
     padding: 14px 16px;
-  }
-
-  .topnav.topnav.responsive .collection-nav {
-    padding-top: 130px;
   }
 
 }
