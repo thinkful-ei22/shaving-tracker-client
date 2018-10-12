@@ -18,6 +18,39 @@ export const addProductRequest = () => ({
   type: ADD_PRODUCT_REQUEST,
 });
 
+export const ADD_MANY_PRODUCTS_SUCCESS = 'ADD_MANY_PRODUCTS_SUCCESS';
+export const addManyProductsSuccess = data => ({
+  type: ADD_MANY_PRODUCTS_SUCCESS,
+  data,
+});
+
+export const addManyProducts = products => (dispatch, getState) => {
+  const { authToken } = getState().auth;
+  return (
+    fetch(`${API_BASE_URL}/products/personal/many`, {
+      method: 'POST',
+      headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(products),
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      dispatch(addManyProductsSuccess(data));
+      data.forEach(productRes => {
+        if (productRes.status === 200) {
+          dispatch(addProductSuccess(productRes.product));
+        }
+      })
+    })
+    .catch(err => console.log(err))
+  )
+}
+
 export const addProduct = (product, closeModal) => (dispatch, getState) => {
   dispatch(addProductRequest());
 
@@ -91,4 +124,9 @@ export const fetchProducts = () => (dispatch, getState) => {
 export const CLEAR_ERR = 'CLEAR_ERR';
 export const clearErr = () => ({
   type: CLEAR_ERR,
+})
+
+export const CLEAR_ADD_MANY_RESPONSE = 'CLEAR_ADD_MANY_RESPONSE';
+export const clearAddManyResponse = () => ({
+  type: CLEAR_ADD_MANY_RESPONSE,
 })

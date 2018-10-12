@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/register';
 
-class LandingPage extends React.Component {
+export class LandingPage extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const data = {

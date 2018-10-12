@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const LinkButton = (props) => {
+export const LinkButton = (props) => {
   const {
     history,
     location,
