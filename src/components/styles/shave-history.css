@@ -76,8 +76,8 @@
   background: #D7D0C1;
 }
 
-.shave-list-item > img {
-  width: 280px;
+.shave-list-item h3{
+  text-align: center;
 }
 
 .shave-list-item-products{
