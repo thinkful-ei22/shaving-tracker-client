@@ -4,7 +4,7 @@
 
 .test {
   color: orange;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 /* Nav Bar Styles */
@@ -21,7 +21,7 @@
   color: white;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 .right-align {
@@ -48,14 +48,14 @@
 #user, #password {
   padding: 6px;
   margin-top: 8px;
-  font-size: 17px;
+  font-size: 1em;
   border: none;
   width: 150px;
 }
 
 .logout-btn, .form-login button {
   background: #3D2A24;
-  font-size: 20px;
+  font-size: 1em;
   border: none;
   cursor: pointer;
   color: white;
@@ -76,7 +76,7 @@
 .form-login >  label {
   display: inline-block;
   margin: 10px;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 .form-login > label > * {
@@ -90,7 +90,7 @@
 
 #home-nav	{
   color: white;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: bold;
   margin-top: 0px;
   margin-bottom: 1px;

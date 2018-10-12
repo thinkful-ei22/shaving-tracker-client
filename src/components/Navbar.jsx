@@ -86,7 +86,7 @@ export class NavBar extends Component {
                 <input type="text" id="user" name="username" required />
               </label>
               <label htmlFor="password">
-                Password:
+                <span>Password:</span>
                 <input type="password" id="password" name="password" required />
               </label>
               <div>
