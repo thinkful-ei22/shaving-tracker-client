@@ -113,6 +113,9 @@
   .add-product-button {
     height: 34.6px;
   }
+  .csv::before {
+    content: '+';
+  }
 }
 
 @media only screen and (min-width: 760px) {
@@ -121,7 +124,7 @@
   }
 
   .csv::before {
-    content: ' Many';
+    content: 'Many';
   }
 }
 
