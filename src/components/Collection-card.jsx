@@ -13,15 +13,15 @@ const CollectionCard = (props) => {
       <div className="image-div-normalizer">
         <img src={usedImageUrl} alt="" />
       </div>
-      <h3>{brand}</h3>
+      <h3>{nickname}</h3>
+      <p>
+        <span className="collection-item-type">Brand:</span> {brand}
+      </p>
       <p>
         <span className="collection-item-type">Model:</span> {model}
       </p>
       <p>
         <span className="collection-item-type">Subtype:</span> {subtype}
-      </p>
-      <p>
-        <span className="collection-item-type">Nickname:</span> {nickname}
       </p>
       <p>
         <span className="collection-item-type">Comment:</span> {comment}
