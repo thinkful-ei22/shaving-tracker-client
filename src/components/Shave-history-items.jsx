@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import EditShaves from './Edit-shave';
 import { deleteShaves } from '../actions/shaves';
 
-class ShaveHistoryItems extends React.Component {
+export class ShaveHistoryItems extends React.Component {
   onClick(id) {
     const { dispatch } = this.props;
     dispatch(deleteShaves(id));
@@ -87,12 +87,9 @@ class ShaveHistoryItems extends React.Component {
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
 
-          <img src={sortedShaveHist[i].imageUrl} alt="" />
-
           <div className="image-div-normalizer">
             <img src={imgUrl} alt="" />
           </div>
-          
 
           <div className="shave-list-item-products">
             {username}

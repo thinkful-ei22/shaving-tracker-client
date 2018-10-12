@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../actions/register';
 
-class LandingPage extends React.Component {
+export class LandingPage extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const data = {
@@ -18,14 +18,12 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    const { error, didRegisterSucceed, loggedIn } = this.props;
+    const { error, loggedIn } = this.props;
     let errorMsg;
-    let registrationSuccessDisplay;
 
     if (loggedIn) {
       return <Redirect to="/mycollection" />;
     }
-
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
@@ -33,11 +31,7 @@ class LandingPage extends React.Component {
         </div>
       );
     }
-    if (didRegisterSucceed) {
-      registrationSuccessDisplay = (
-        <div className="test">Register Success</div>
-      );
-    }
+    
     return (
       <div className = "landing-page-body">
         <p className ="welcome-header">Welcome!</p>
@@ -60,7 +54,6 @@ class LandingPage extends React.Component {
               <input className="col-12" type="password" id="register-password" name="registerpassword" required />
             </label><br/>
             <input type="submit" value="Register" className="register-button col-12" />
-            {registrationSuccessDisplay}
           </form>
         </div>
         <footer className="landing-page-footer">
@@ -75,7 +68,6 @@ LandingPage.propTypes = {
   // loading: PropTypes.bool,
   loggedIn: PropTypes.bool,
   error: PropTypes.string,
-  didRegisterSucceed: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -83,12 +75,10 @@ LandingPage.defaultProps = {
   // loading: false,
   loggedIn: false,
   error: '',
-  didRegisterSucceed: false,
 };
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,
-  didRegisterSucceed: state.user.isLogged,
   loading: state.user.loading,
   error: state.user.error,
 });

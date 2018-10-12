@@ -8,7 +8,7 @@ import './styles/form.css';
 import './styles/stars.css';
 import { updateShave } from '../actions/shaves';
 
-class EditShaves extends React.Component {
+export class EditShaves extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -111,14 +111,14 @@ class EditShaves extends React.Component {
             {errorMessage}
             <h3>Edit Shave</h3>
             <label htmlFor="date">
-              <span>Date</span>
+              Date
             </label>
             <input className="col-5" type="date" id="date" name="date"
               defaultValue={moment(shaveItem.date).tz('Atlantic/Azores').format('YYYY-MM-DD')}
             />
 
             <label htmlFor="razor">
-              <span>Select Razor:</span>
+              Select Razor:
             </label>
             <select defaultValue={defaultRazor} className="col-5" id="razor" name="razor" required>
               <option value="" disabled>Select...</option>
@@ -126,7 +126,7 @@ class EditShaves extends React.Component {
             </select>
 
             <label htmlFor="blade">
-              <span>Select Blade:</span>
+              Select Blade:
             </label>
             <select defaultValue={defaultBlade} className="col-5" id="blade" name="blade" required>
               <option value="" disabled>Select...</option>
@@ -134,7 +134,7 @@ class EditShaves extends React.Component {
             </select>
 
             <label htmlFor="brush">
-              <span>Select Brush:</span>
+              Select Brush:
             </label>
             <select defaultValue={defaultBrush} className="col-5" id="brush" name="brush">
               <option value="">None</option>
@@ -142,7 +142,7 @@ class EditShaves extends React.Component {
             </select>
 
             <label htmlFor="lather">
-              <span>Select Lather:</span>
+              Select Lather:
             </label>
             <select defaultValue={defaultLather} className="col-5" id="lather" name="lather">
               <option value="" >None</option>
@@ -150,7 +150,7 @@ class EditShaves extends React.Component {
             </select>
 
             <label htmlFor="aftershave">
-              <span>Select Aftershave:</span>
+              Select Aftershave:
             </label>
             <select defaultValue={defaultAftershave} className="col-5" id="aftershave" name="aftershave">
               <option value="" >None</option>
@@ -158,48 +158,52 @@ class EditShaves extends React.Component {
             </select>
             
             <label htmlFor="additionalcare">
-              <span>Select Additional Care:</span>
+              Select Additional Care:
             </label>
             <select defaultValue={defaultAdditionalCare} className="col-5" id="additionalcare" name="additionalcare">
               <option value="" >None</option>
               {productsObj ? productsObj.additionalcare : null}
             </select>
+
             <textarea className="col-5"
               id="comment"
               name="comment"
               placeholder="Comment/Notes"
               defaultValue={shaveItem.comments}
             />
-            <label>Share with community?</label>
-            <input type="checkbox" name="share" value="share"
-              defaultChecked={shaveItem.share}
-            />
-
+            <div className="community-checkbox">
+              <label htmlFor="share">Share with community?</label>
+              <input type="checkbox" name="share" value="share" id="share"
+                defaultChecked={shaveItem.share}
+              />
+            </div>
             <fieldset className="rating" defaultValue={shaveItem.rating}>
               <legend>Rating:</legend>
-              <input type="radio" id="star5" name="rating" value="5" 
-                defaultChecked={shaveItem.rating === 5 ? true : false}
-              />
-              <label htmlFor="star5" className="full" />
-              <input type="radio" id="star4" name="rating" value="4" 
-                defaultChecked={shaveItem.rating === 4 ? true : false}
-              />
-              <label htmlFor="star4" className="full" />
-              <input type="radio" id="star3" name="rating" value="3" 
-                defaultChecked={shaveItem.rating === 3 ? true : false}
-              />
-              <label htmlFor="star3" className="full" />
-              <input type="radio" id="star2" name="rating" value="2"
-                defaultChecked={shaveItem.rating === 2 ? true : false}
-              />
-              <label htmlFor="star2" className="full" />
-              <input type="radio" id="star1" name="rating" value="1"
-                defaultChecked={shaveItem.rating === 1 ? true : false}
-              />
-              <label htmlFor="star1" className="full" />
+              <div>
+                <input type="radio" id="star5" name="rating" value="5" 
+                  defaultChecked={shaveItem.rating === 5 ? true : false}
+                />
+                <label htmlFor="star5" className="full" />
+                <input type="radio" id="star4" name="rating" value="4" 
+                  defaultChecked={shaveItem.rating === 4 ? true : false}
+                />
+                <label htmlFor="star4" className="full" />
+                <input type="radio" id="star3" name="rating" value="3" 
+                  defaultChecked={shaveItem.rating === 3 ? true : false}
+                />
+                <label htmlFor="star3" className="full" />
+                <input type="radio" id="star2" name="rating" value="2"
+                  defaultChecked={shaveItem.rating === 2 ? true : false}
+                />
+                <label htmlFor="star2" className="full" />
+                <input type="radio" id="star1" name="rating" value="1"
+                  defaultChecked={shaveItem.rating === 1 ? true : false}
+                />
+                <label htmlFor="star1" className="full" />
+              </div>
             </fieldset>
-            <button type="button" onClick={this.handleCloseModal}>Close</button>
             <button type="submit">Submit</button>
+            <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>
       </div>
@@ -208,15 +212,39 @@ class EditShaves extends React.Component {
   }
 }
 
+const productShape = {
+  brand: PropTypes.string,
+  comment: PropTypes.string,
+  currentUsage: PropTypes.number,
+  id: PropTypes.string,
+  imageUrl: PropTypes.string,
+  model: PropTypes.string,
+  nickname: PropTypes.string,
+  productId: PropTypes.string,
+  productType: PropTypes.string,
+  subtype: PropTypes.string,
+  totalUsage: PropTypes.number,
+};
+
 EditShaves.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.shape({
     status: PropTypes.number,
     message: PropTypes.string,
   }),
-  // shaveItem: PropTypes.shape({
-
-  // }),
+  shaveItem: PropTypes.shape({
+    additionalCare: PropTypes.shape(productShape),
+    aftershave: PropTypes.shape(productShape),
+    blade: PropTypes.shape(productShape),
+    brush: PropTypes.shape(productShape),
+    date: PropTypes.string,
+    id: PropTypes.string,
+    imageUrl: PropTypes.string,
+    lather: PropTypes.shape(productShape),
+    rating: PropTypes.number,
+    razor: PropTypes.shape(productShape),
+    share: PropTypes.bool,
+  }).isRequired,
   userProducts: PropTypes.arrayOf(
     PropTypes.shape({
       nickname: PropTypes.string,

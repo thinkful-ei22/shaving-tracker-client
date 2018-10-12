@@ -8,8 +8,9 @@ import {
   setShaveFiltersGetCommunityShaves,
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
+import CommunityShaveNav from './Community-shave-nav';
 
-class ShaveHistory extends React.Component {
+export class CommunityShaveHistory extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     const oneMonthAgo = moment().subtract(1, 'months').format('YYYY-MM-DD');
@@ -19,11 +20,8 @@ class ShaveHistory extends React.Component {
 
   render() {
     const {
-      dispatch,
       isLoading,
       error,
-      startFilter,
-      endFilter,
     } = this.props;
     const shaveContent = isLoading
       ? (<p>Loading...</p>)
@@ -31,42 +29,33 @@ class ShaveHistory extends React.Component {
 
     return (
       <div className="shave-history">
-        <h2>Shaves</h2>
-        {error}
-        <div className="shave-date-filter-container">
-          <h3>Date Filter: </h3>
-          <label>Start Date: </label>
-          <input
-            type="date"
-            value={startFilter}
-            onChange={(e) => {
-              const newStart = e.target.value || moment().subtract(1, 'months').format('YYYY-MM-DD')
-              dispatch(setShaveFiltersGetCommunityShaves(newStart, endFilter));
-            }}
-          />
-
-          <br />
-          <label>End Date: </label>
-          <input
-            type="date"
-            value={endFilter}
-            onChange={(e) => {
-              const newEnd = e.target.value || moment().format('YYYY-MM-DD');
-              dispatch(setShaveFiltersGetCommunityShaves(startFilter, newEnd));
-            }}
-          />
+        <div className="empty">
+          {/* DO NOT DELETE THIS! It helps the column styles work! */}
         </div>
-        <div className="shave-list">
-          <div className="shave-list-content">
-            {shaveContent}
+
+        <div className="shave-header">
+          <h2>Community Shaves</h2>
+          {error}
+        </div>
+
+        <div className="shave-nav-container">
+          <CommunityShaveNav />
+        </div>
+
+        <div className="shave-content">
+          <div className="shave-list">
+            <div className="shave-list-content">
+              {shaveContent}
+            </div>
           </div>
         </div>
+        
       </div>
     );
   }
 }
 
-ShaveHistory.propTypes = {
+CommunityShaveHistory.propTypes = {
   startFilter: PropTypes.string,
   endFilter: PropTypes.string, // filters are YYYY-MM-DD dates stored as strings
   dispatch: PropTypes.func.isRequired,
@@ -74,7 +63,7 @@ ShaveHistory.propTypes = {
   error: PropTypes.string,
 };
 
-ShaveHistory.defaultProps = {
+CommunityShaveHistory.defaultProps = {
   startFilter: '',
   endFilter: '',
   isLoading: false,
@@ -89,4 +78,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default requiresLogin()(connect(mapStateToProps)(ShaveHistory));
+export default requiresLogin()(connect(mapStateToProps)(CommunityShaveHistory));
