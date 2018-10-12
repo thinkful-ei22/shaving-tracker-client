@@ -87,7 +87,16 @@
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   text-align: center;
   display: inline-block;
-  font-family: 'Charmonman', cursive;
+  /* font-family: 'Charmonman', cursive; */
+}
+
+.collection-item-info{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: repeat(auto-fill, auto);
+  grid-row-gap: .8em;
+  grid-column-gap: .6em;
+  text-align: left;
 }
 
 .collection-item > img {
