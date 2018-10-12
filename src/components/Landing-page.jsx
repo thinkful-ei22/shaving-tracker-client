@@ -27,7 +27,7 @@ export class LandingPage extends React.Component {
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
-          {error}
+          {error.message}
         </div>
       );
     }
@@ -67,7 +67,10 @@ export class LandingPage extends React.Component {
 LandingPage.propTypes = {
   // loading: PropTypes.bool,
   loggedIn: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.shape({
+    status: PropTypes.number,
+    message: PropTypes.string,
+  }),
   dispatch: PropTypes.func.isRequired,
 };
 
