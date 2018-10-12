@@ -96,18 +96,40 @@ export class MyCollection extends React.Component {
 
     return (
       <div className="product-container">
-        <CSVProducts />
-        <div className="add-product-button"><ProductForm /></div>
-        <Tabs className="product-list">
+        <div className="empty">
+          {/* DO NOT DELETE THIS! It helps the column styles work! */}
+        </div>
+
+        <div className="product-header">
+          <h2>My Collection</h2>
           {newUserIntro}
-          <div className="collection-content">
-            <TabList className="product-tabs">
-              <Tab>All</Tab>
-              {tabs}
-            </TabList>
-            {collections}
+        </div>
+
+        <div className="product-nav-container">
+          <div className="product-nav">
+            <ProductForm />
+            <CSVProducts />
           </div>
-        </Tabs>
+        </div>
+
+        <div className="product-content">
+          <div className="product-list">
+              
+              <Tabs className="product-list">
+                <div className="collection-content">
+                  <TabList className="product-tabs">
+                    <Tab>All</Tab>
+                    {tabs}
+                  </TabList>
+                  {collections}
+                </div>
+              </Tabs>
+
+          </div>
+        </div>
+        <div className="empty">
+          {/* DO NOT DELETE THIS! It helps the column styles work! */}
+        </div>
         <div className="collection-footer">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></div>
       </div>
     );
