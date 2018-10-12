@@ -63,6 +63,9 @@ class LandingPage extends React.Component {
             {registrationSuccessDisplay}
           </form>
         </div>
+        <footer className="landing-page-footer">
+          <p>&copy; Hetokibo 2018</p>
+        </footer>
       </div>
     );
   }
