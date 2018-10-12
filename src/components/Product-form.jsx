@@ -158,7 +158,7 @@ export class ProductForm extends React.Component {
               Comments
             </label>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
-            <button className="col-3" type="submit">Submit</button>
+            <button className="submit-button" type="submit">Submit</button>
             <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>

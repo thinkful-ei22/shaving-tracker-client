@@ -202,7 +202,7 @@ export class EditShaves extends React.Component {
                 <label htmlFor="star1" className="full" />
               </div>
             </fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit" className="submit-button">Submit</button>
             <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>
