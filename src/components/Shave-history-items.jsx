@@ -78,7 +78,6 @@ export class ShaveHistoryItems extends React.Component {
         ]
         : '';
 
-      console.log(sortedShaveHist[i].imageUrl);
       const imgUrl = sortedShaveHist[i].imageUrl
         ? sortedShaveHist[i].imageUrl
         : 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'

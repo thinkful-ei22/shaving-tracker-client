@@ -26,14 +26,19 @@ export class MyCollection extends React.Component {
     this.state = {
       useIcons: window.innerWidth <= 760
     }
+    this.resize = this.resize.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchProducts());
 
-    window.addEventListener("resize", this.resize.bind(this));
+    window.addEventListener("resize", this.resize);
     this.resize();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
   }
 
   resize() {
