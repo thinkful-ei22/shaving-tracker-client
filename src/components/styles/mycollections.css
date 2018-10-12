@@ -79,15 +79,14 @@
 }
 
 .collection-item{
+  display: inline-block;
   margin: 10px;
-  padding: 10px;
+  padding: 24px;
   width: 300px;
   background: #D7D0C1;
   border: 1px solid #2F0F07;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   text-align: center;
-  display: inline-block;
-  /* font-family: 'Charmonman', cursive; */
 }
 
 .collection-item-info{
@@ -102,12 +101,6 @@
 .collection-item > img {
   width: 250px;
 }
-
-.collection-item-type {
-  font-variant: small-caps;
-  text-decoration: underline;
-}
-
 
 .collection-footer{
   font-size: .8em;
