@@ -101,7 +101,7 @@
 /* Media Queries */
 
 @media screen and (max-width: 870px) {
-  .topnav .right-align a, .topnav button {display: none;}
+  .topnav .right-align a, .topnav .logout-btn {display: none;}
   .topnav a.icon {
     position: absolute;
     float: right;
