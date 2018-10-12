@@ -21,13 +21,12 @@
   color: white;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .right-align {
   float: right;
   padding: 20px;
-  padding-top: 40px;
 }
 
 /* Navbar links on mouse-over */
@@ -55,7 +54,7 @@
 
 .logout-btn, .form-login button {
   background: #3D2A24;
-  font-size: 1em;
+  font-size: 1.2em;
   border: none;
   cursor: pointer;
   color: white;
@@ -90,7 +89,7 @@
 
 #home-nav	{
   color: white;
-  font-size: 1em;
+  font-size: 0.75em;
   font-weight: bold;
   margin-top: 0px;
   margin-bottom: 1px;
