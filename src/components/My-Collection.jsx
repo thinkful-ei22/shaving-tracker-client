@@ -45,6 +45,24 @@ export class MyCollection extends React.Component {
     this.setState({useIcons: window.innerWidth <= 760});
   }
 
+  generateContent(productType, product){
+    if(productType[product].length > 0)
+      return productType[product].map(item => <CollectionCard {...item} key={item.id} />)
+    else if(product === 'all'){
+      return (
+        <div className="no-products-message">
+          <p>First time here? Add a razor, a blade, and any other products you wish with +Product!</p>
+        </div>
+      )
+    }
+    else
+      return (
+        <div className="no-products-message">
+          <p>No products found. Add some products with +Product!</p>
+        </div> 
+      )
+  }
+
   render() {
     const { products } = this.props;
     const categorizedProducts = {
@@ -68,20 +86,34 @@ export class MyCollection extends React.Component {
       return tempObj;
     }, categorizedProducts);
 
-    const newUserIntro = 
-      categorizedProducts.razor.length === 0 || categorizedProducts.blade.length === 0
-      ? <div className="no-products-message">
-          <p>New to --SITENAME--? To begin, add a razor, a blade, and any other products you wish using the +Product button!</p>
-        </div> 
-      : '';
+    // const newUserIntro = 
+    //   categorizedProducts.razor.length === 0 || categorizedProducts.blade.length === 0
+      // ? <div className="no-products-message">
+      //     <p>New to ShaveReducer? To begin, add a razor, a blade, and any other products you wish using the +Product button!</p>
+      //   </div> 
+    //   : '';
+
     
-    const collections = Object.keys(productType).map(product => (
+    let collections = Object.keys(productType).map(product => (
       <TabPanel key={product} className="collection-list">
         <div className="collection-list-container">
-          {productType[product].map(item => <CollectionCard {...item} key={item.id} />)}
+          {this.generateContent(productType, product)}
+          {/* {productType[product].map(item => <CollectionCard {...item} key={item.id} />)} */}
+          {/* {
+            if(productType[product].length > 0)
+              return productType[product].map(item => <CollectionCard {...item} key={item.id} />);
+            else
+              return (
+                <div className="no-products-message">
+                  <p>No items found. To add some, press +Product!</p>
+                </div> 
+              );
+          } */}
         </div>
       </TabPanel>
     ));
+
+    console.log(collections);
 
     const tabs = this.state.useIcons
       ?
@@ -107,7 +139,6 @@ export class MyCollection extends React.Component {
 
         <div className="product-header">
           <h2>My Collection</h2>
-          {newUserIntro}
         </div>
 
         <div className="product-nav-container">

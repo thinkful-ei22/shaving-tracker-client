@@ -8,7 +8,7 @@ const CollectionCard = (props) => {
     brand, model, subtype, nickname, comment, imageUrl, totalUsage,
   } = props;
 
-  const usedImageUrl = imageUrl ? imageUrl : 'https://i.imgur.com/QvDFh9r.png';
+  const usedImageUrl = imageUrl ? imageUrl : 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
 
   subtype = subtype ? subtype : 'n/a';
   comment = comment ? comment : 'n/a';
