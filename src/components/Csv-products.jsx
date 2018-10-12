@@ -157,7 +157,7 @@ export class CSVProducts extends React.Component {
     const submit = this.state.products.length > 0 ? <button type="submit">+ Add All</button> : null;
     return (
       <div>
-        <button className="csv add-product-button" onClick={this.handleOpenModal}>CSV + Product</button>
+        <button className="csv add-product-button weighty-button" onClick={this.handleOpenModal}>Upload CSV</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"

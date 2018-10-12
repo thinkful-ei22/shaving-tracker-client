@@ -33,12 +33,10 @@ const CSVReader = ({
           for (let j=0; j < csvData.data[i].length; j++) {
             Object.keys(csvDataObj).forEach(key => {
               if (csvDataObj[key].index === j) {
-                if (key === 'productType') {
+                if (key === 'productType' || key === 'subtype') {
                   formattedData[key] = csvData.data[i][j].toLowerCase().split(' ').join(''); 
-                } else if (key === 'nickname') {
-                  formattedData[key] = csvData.data[i][j];
                 } else {
-                  formattedData[key] = csvData.data[i][j].split(' ').join('');
+                  formattedData[key] = csvData.data[i][j];
                 }
               }
             })

@@ -22,7 +22,8 @@
 }
 
 .rating > div > label { 
-  color: #ddd; 
+  /* color: #ddd; */
+  color: #aaa;
   float: right; 
 }
 

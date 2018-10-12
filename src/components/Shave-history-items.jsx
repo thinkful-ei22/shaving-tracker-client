@@ -58,7 +58,7 @@ export class ShaveHistoryItems extends React.Component {
       });
 
       const deleteButton = canDelete
-        ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+        ? <button type="button" className="delete-shave-history-btn weighty-button" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
         : '';
 
       const editButton = canEdit
@@ -78,10 +78,11 @@ export class ShaveHistoryItems extends React.Component {
         ]
         : '';
 
-      console.log(sortedShaveHist[i].imageUrl);
       const imgUrl = sortedShaveHist[i].imageUrl
         ? sortedShaveHist[i].imageUrl
         : 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
+
+      const comments = sortedShaveHist[i].comments ? sortedShaveHist[i].comments : 'n/a';
 
       items.push(
         <div className="shave-list-item" key={sortedShaveHist[i].id}>
@@ -117,15 +118,14 @@ export class ShaveHistoryItems extends React.Component {
             {share}
 
             <span className="shave-list-item-products--label">Comments: </span>
-            <span>{sortedShaveHist[i].comments}</span>
+            <span>{comments}</span>
 
           </div>
-          <div>
+          <div className="shave-list-item-buttons">
+            {editButton}
             {deleteButton}
           </div>
-          <div>
-            {editButton}
-          </div>
+          
         </div>,
       );
     }

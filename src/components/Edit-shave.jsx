@@ -99,7 +99,7 @@ export class EditShaves extends React.Component {
 
     return (
       <div>
-        <button type="button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
+        <button type="button" className="weighty-button" onClick={() => this.handleOpenModal(shaveId)}>Edit</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Edit Shave"
@@ -202,7 +202,7 @@ export class EditShaves extends React.Component {
                 <label htmlFor="star1" className="full" />
               </div>
             </fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit" className="weighty-button">Submit</button>
             <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>

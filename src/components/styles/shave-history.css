@@ -1,12 +1,15 @@
-.shave-history {
+.shave-history, .product-container {
   margin: auto;
   max-width: 1000px;
 
   display: grid;
-  grid-template-columns: 200px auto;
   grid-template-rows: repeat(auto-fill, auto);
   grid-row-gap: .8em;
   grid-column-gap: .6em;
+}
+
+.shave-history {
+  grid-template-columns: 200px auto;
 }
 
 .shave-content{
@@ -15,6 +18,8 @@
 
 .shave-history h2 {
   width: 100%;
+  color: white;
+  text-shadow: 1px 1px 1px #000, 3px 3px 5px #000; 
   /* text-align: center; */
 }
 
@@ -22,19 +27,15 @@
   /* margin-left: auto; */
 }
 
-.shave-nav-container{
+.shave-nav-container {
   width: 200px;
 }
 
 .shave-nav{
-  /* display: flex;
-  flex-direction: column;
-  float:left; */
-
   position: fixed;
-  border: 2px solid black;
-  background: white;
-  /* margin-right: 5px; */
+  border: 2px solid #1E0904;
+  background: #EFE7E1;
+  border-radius: 4px;
   padding: 15px 20px;
 }
 
@@ -60,24 +61,26 @@
 
 .shave-list-content{
   display: flex;
-  border: 2px solid #2F0F07;
+  border: 2px solid #1E0904;
   margin: auto;
   background: #5B3226;
+  border-radius: 4px;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
 .shave-list-item{
   margin: 10px;
-  padding: 10px;
+  padding: 24px;
   display: inline-block;
   width: 300px;
-  border: 1px solid #2F0F07;
-  background: #D7D0C1;
+  border: 1px solid #1E0904;
+  border-radius: 4px;
+  background: #EFE7E1;
 }
 
-.shave-list-item > img {
-  width: 280px;
+.shave-list-item h3{
+  text-align: center;
 }
 
 .shave-list-item-products{
@@ -90,6 +93,16 @@
 
 .shave-list-item-products--label{
   /* text-align: right; */
+}
+
+.shave-list-item-buttons{
+  margin-top: 15px;
+  display:flex;
+}
+
+.delete-shave-history-btn{
+  margin-left: auto;
+  background: darkred;
 }
 
 .shave-form-link {
@@ -123,7 +136,7 @@
   left: 150px;
   right: 150px;
   bottom: 150px;
-  background-color: #fffcf2;
+  background-color: #EFE7E1;
   border: 2px solid black;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -146,22 +159,22 @@
     right: 0;
   }
 
-  .shave-history{
+  .shave-history {
     grid-template-columns: auto;
   }
 
-  .shave-nav-container{
+  .shave-nav-container {
     width: 100%;
   }
 
-  .shave-nav{
+  .shave-nav {
     position: static;
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
   }
   
-  .shave-header{
+  .shave-header {
     text-align: center;
   }
 

@@ -107,7 +107,7 @@ export class NavBar extends Component {
       <div className="topnav" id="topnav">
         <Link className="home-nav" id="home-nav" to="/">
           <h1>
-            Beardy Wicked
+            ShaveReducer
           </h1>
         </Link>
         <div className="topnav-navbar">

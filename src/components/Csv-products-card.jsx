@@ -53,86 +53,74 @@ const CSVProductsCard = props => {
     <div className="collection-item relative csv-item">
       <button className="close-item" onClick={handleRemove} type="button" name={`remove-item ${index}`}/>
       <h3>{`Product ${index+1}`}</h3>
-      <p>
-        <span className="collection-item-type">
-          Product Type:
-        </span>
-        <div className={productTypeStyle}>
-          <select 
-            defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
-            name={`productType ${index}`}
-            onChange={handleChange}
-            className="col-6"
-          >
-            {falseOption}
-            <option value="razor">Razor</option>
-            <option value="blade">Blade</option>
-            <option value="brush">Brush</option>
-            <option value="lather">Lather</option>
-            <option value="aftershave">Aftershave</option>
-            <option value="additionalcare">Additional Care</option>
-          </select>
-        </div>
-      </p>
-      <p>
-        <span className="collection-item-type">
-          Subtype:
-        </span>
-        <div className={subtypeError ? 'red' : ''}>
-          <select 
-            defaultValue={subtype.toLowerCase() || 'none'} 
-            name={`subtype ${index}`}
-            onChange={handleChange}
-            className={subtypeError ? 'red' : ''}
-          >
-            {typeList}
-          </select>
-        </div>
-      </p>
-      <p>
-        <span className="collection-item-type">
-          Brand:
-        </span>
-        <input 
-          type="text" 
-          value={brand} 
-          name={`brand ${index}`} 
+      <span className="collection-item-type">
+        Product Type:
+      </span>
+      <div className={productTypeStyle}>
+        <select 
+          defaultValue={productTypeStyle ? '': productType.toLowerCase()} 
+          name={`productType ${index}`}
           onChange={handleChange}
-        />
-      </p>
-      <p>
-        <span className="collection-item-type">
-          Model:
-        </span>
-        <input 
-          type="text" 
-          value={model} 
-          name={`model ${index}`} 
+          className="col-6"
+        >
+          {falseOption}
+          <option value="razor">Razor</option>
+          <option value="blade">Blade</option>
+          <option value="brush">Brush</option>
+          <option value="lather">Lather</option>
+          <option value="aftershave">Aftershave</option>
+          <option value="additionalcare">Additional Care</option>
+        </select>
+      </div>
+      <span className="collection-item-type">
+        Subtype:
+      </span>
+      <div className={subtypeError ? 'red' : ''}>
+        <select 
+          defaultValue={subtype.toLowerCase() || 'none'} 
+          name={`subtype ${index}`}
           onChange={handleChange}
-        />
-      </p>
-      <p>
-        <span className="collection-item-type">
-          Nickname:
-        </span>
-        <input 
-          type="text" 
-          value={nickname} 
-          name={`nickname ${index}`} 
-          onChange={handleChange}
-        />
-        </p>
-      <p>
-        <span className="collection-item-type">
-          Comment:
-        </span>
-        <input 
-          type="text" 
-          value={comment} 
-          name={`comment ${index}`} 
-          onChange={handleChange}
-        />
-      </p>
+          className={subtypeError ? 'red' : ''}
+        >
+          {typeList}
+        </select>
+      </div>
+      <span className="collection-item-type">
+        Brand:
+      </span>
+      <input 
+        type="text" 
+        value={brand} 
+        name={`brand ${index}`} 
+        onChange={handleChange}
+      />
+      <span className="collection-item-type">
+        Model:
+      </span>
+      <input 
+        type="text" 
+        value={model} 
+        name={`model ${index}`} 
+        onChange={handleChange}
+      />
+      <span className="collection-item-type">
+        Nickname:
+      </span>
+      <input 
+        type="text" 
+        value={nickname} 
+        name={`nickname ${index}`} 
+        onChange={handleChange}
+      />
+      <span className="collection-item-type">
+        Comment:
+      </span>
+      <input 
+        type="text" 
+        value={comment} 
+        name={`comment ${index}`} 
+        onChange={handleChange}
+      />
     </div>
   );
 };
