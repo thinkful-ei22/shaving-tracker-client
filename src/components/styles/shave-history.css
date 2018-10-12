@@ -38,8 +38,6 @@
   padding: 15px 20px;
 }
 
-
-
 .shave-nav > * {
   margin: 5px 0;
 }
@@ -163,16 +161,11 @@
     align-items: flex-end;
     justify-content: space-evenly;
   }
-/* 
-  .shave-nav{
-    float: none;
-    margin-right: 0;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-end;
-    flex-wrap: wrap;
+  
+  .shave-header{
+    text-align: center;
   }
-*/
+
   .shave-date-filter-container{
     flex-direction: row;
     flex-wrap: wrap;
