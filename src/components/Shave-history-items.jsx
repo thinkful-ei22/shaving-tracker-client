@@ -58,7 +58,7 @@ export class ShaveHistoryItems extends React.Component {
       });
 
       const deleteButton = canDelete
-        ? <button type="button" className="delete-shave-history" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
+        ? <button type="button" className="delete-shave-history-btn weighty-button" onClick={() => this.onClick(sortedShaveHist[i].id)}>Delete</button>
         : '';
 
       const editButton = canEdit
@@ -121,12 +121,11 @@ export class ShaveHistoryItems extends React.Component {
             <span>{comments}</span>
 
           </div>
-          <div>
+          <div className="shave-list-item-buttons">
+            {editButton}
             {deleteButton}
           </div>
-          <div>
-            {editButton}
-          </div>
+          
         </div>,
       );
     }

@@ -30,10 +30,10 @@
       margin: 30px auto;
       padding: 16px;
       height: auto;
-      background: white;
+      background: #EFE7E1;
       box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
       font-family: 'Merriweather', serif;
-      box-shadow: 5px 10px 8px;
+      box-shadow: 5px 10px 16px #222222;
       border-radius: 10px;
   }
 
@@ -58,7 +58,7 @@
     color: white;
     font-size: 15px;
     font-weight: 500;
-    box-shadow: 5px 10px 8px #888888;
+    box-shadow: 5px 5px 8px #888888;
   }
 
   .register-button:hover {
@@ -69,7 +69,7 @@
       margin: 5px 0 22px 0;
       padding: 15px;
       border: none;
-      background: #f1f1f1;
+      background: white;
   }
 
   .landing-page-footer {

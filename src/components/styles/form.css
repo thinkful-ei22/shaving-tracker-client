@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .form {
-  background: #fffcf2;
+  background: #EFE7E1;
   text-align: center;
 }
 
@@ -17,8 +17,8 @@
 .edit-form {
   display: inline-block;
   max-width: 1000px;
-  border: 1px solid #2F0F07;
-  background: #fffcf2;
+  border: 1px solid #1E0904;
+  background: #EFE7E1;
   min-width: 600px;
 }
 
@@ -70,11 +70,11 @@
 }
 
 .close {
-  background: #fffcf2;
+  background: #EFE7E1;
 }
 
 .close-item {
-  background: #D7D0C1
+  background: #EFE7E1
 }
 
 .form input,
@@ -92,6 +92,20 @@
     font-size: 14px;
     font-weight: 400;
     padding: 8px;
+}
+
+.weighty-button{
+  font-family: 'Merriweather', serif;
+  background-color: #ff7700;
+  padding: 7px 10px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 5px 5px 8px #888888;
 }
 
 .form select {

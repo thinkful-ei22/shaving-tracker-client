@@ -103,7 +103,7 @@ export class ProductForm extends React.Component {
 
     return (
       <div>
-        <button className="add-product-button" onClick={this.handleOpenModal}>+ Product</button>
+        <button className="add-product-button weighty-button" onClick={this.handleOpenModal}>+ Product</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
@@ -158,7 +158,7 @@ export class ProductForm extends React.Component {
               Comments
             </label>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
-            <button className="col-3" type="submit">Submit</button>
+            <button className="weighty-button" type="submit">Submit</button>
             <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>

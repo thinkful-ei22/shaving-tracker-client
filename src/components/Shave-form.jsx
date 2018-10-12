@@ -90,7 +90,7 @@ export class ShaveForm extends React.Component {
 
     return (
       <div>
-        <button className="add-shave-button" onClick={this.handleOpenModal}>+ Shave</button>
+        <button className="add-shave-button weighty-button" onClick={this.handleOpenModal}>+ Shave</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
@@ -171,7 +171,7 @@ export class ShaveForm extends React.Component {
                 <label htmlFor="star1" className="full" />
               </div>
             </fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit" className="weighty-button">Submit</button>
             <button className="close" type="button" onClick={this.handleCloseModal} />
           </form>
         </ReactModal>
