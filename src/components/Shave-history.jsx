@@ -31,7 +31,7 @@ export class ShaveHistory extends React.Component {
         </div>
 
         <div className="shave-header">
-          <h2>Community Shaves</h2>
+          <h2>My Shaves</h2>
           {error}
         </div>
 
