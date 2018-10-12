@@ -69,15 +69,15 @@
 
 .shave-list-item{
   margin: 10px;
-  padding: 10px;
+  padding: 24px;
   display: inline-block;
   width: 300px;
   border: 1px solid #2F0F07;
   background: #D7D0C1;
 }
 
-.shave-list-item > img {
-  width: 280px;
+.shave-list-item h3{
+  text-align: center;
 }
 
 .shave-list-item-products{
