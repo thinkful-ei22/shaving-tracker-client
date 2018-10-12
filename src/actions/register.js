@@ -1,5 +1,6 @@
 /* eslint-env browser */
 import { API_BASE_URL } from '../config';
+import { login } from './auth';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const registerRequest = () => ({
@@ -34,6 +35,6 @@ export const registerUser = data => (dispatch) => {
       }
       return (res.json());
     })
-    .then(results => dispatch(registerSuccess(results)))
+    .then(() => dispatch(login(data)))
     .catch(err => dispatch(registerError(err)));
 };
