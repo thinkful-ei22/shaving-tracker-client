@@ -10,7 +10,7 @@
 /* Nav Bar Styles */
 .topnav {
   overflow: hidden;
-  background-color: #5D4037;
+  background-color: #3D2A24;
   border-bottom: 1px solid #2F0F07
 }
 
@@ -19,16 +19,26 @@
   float: left;
   display: block;
   color: white;
-  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
+.right-align {
+  float: right;
+  padding: 20px;
+  padding-top: 40px;
+}
+
 /* Navbar links on mouse-over */
-.topnav a:hover {
-  background-color: #795548;
-  color: white;
+
+.login-button {
+  display: block;
+  float: right;
+}
+
+.form-login {
+  text-align: right;
 }
 
 .form-login, .logout-btn {
@@ -44,15 +54,36 @@
 }
 
 .logout-btn, .form-login button {
-  float: right;
-  padding: 6px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #795548;
+  background: #3D2A24;
   font-size: 17px;
   border: none;
   cursor: pointer;
   color: white;
+}
+
+.logout-btn {
+  padding: 14px 16px;
+}
+
+.form-login-container{
+  /* display: flex; */
+  justify-content: right;
+  padding-right: 20px;
+}
+
+
+.form-login >  label {
+  display: inline-block;
+  margin: 10px;
+}
+
+.form-login > label > * {
+  display: block;
+}
+
+.form-login label{
+  color: white;
+  text-align: left;
 }
 
 #home-nav	{
@@ -69,25 +100,38 @@
 
 /* Media Queries */
 
-@media screen and (max-width: 600px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 870px) {
+  .topnav .right-align a, .topnav button {display: none;}
   .topnav a.icon {
-    float: left;
+    position: absolute;
+    float: right;
     display: block;
+    right: 0;
+    top: 0;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 870px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
-    position: block;
-    left: 0;
+    position: absolute;
+    display: block;
+    right: 0;
     top: 0;
   }
-  .topnav.responsive a {
-    float: none;
+
+  .topnav.responsive .right-align a, .topnav.responsive .logout-btn {
     display: block;
-    text-align: left;
+    text-align: right;
+  }
+
+  .topnav.responsive .right-align a {
+    float: none;
+  }
+
+  .topnav.responsive .logout-btn {
+    float: right;
+    padding: 14px 16px;
   }
 
 }
