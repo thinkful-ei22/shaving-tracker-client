@@ -12,7 +12,7 @@ import {
 } from '../actions/shaves';
 import ShaveHistoryItems from './Shave-history-items';
 
-class ShaveHistory extends React.Component {
+export class ShaveHistory extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getShaves());
@@ -32,23 +32,24 @@ class ShaveHistory extends React.Component {
         {error}
         <ShaveForm/> 
         <div className="shave-date-filter-container">
-          <h3>Date Filter: </h3>
-          <label>Start Date: </label>
-          <input
-            type="date"
-            onChange={(e) => {
-              dispatch(setShaveFilterStart(e.target.value));
-            }}
-          />
-
-          <br />
-          <label>End Date: </label>
-          <input
-            type="date"
-            onChange={(e) => {
-              dispatch(setShaveFilterEnd(e.target.value));
-            }}
-          />
+          <div className="shave-date-filter-start">
+            <label>Start Date: </label>
+            <input
+              type="date"
+              onChange={(e) => {
+                dispatch(setShaveFilterStart(e.target.value));
+              }}
+            />
+          </div>
+          <div className="shave-date-filter-end">
+            <label>End Date: </label>
+            <input
+              type="date"
+              onChange={(e) => {
+                dispatch(setShaveFilterEnd(e.target.value));
+              }}
+            />
+          </div>
         </div>
         <div className="shave-list">
           <div className="shave-list-content">
