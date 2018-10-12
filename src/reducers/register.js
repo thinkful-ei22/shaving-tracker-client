@@ -1,6 +1,5 @@
 import {
   REGISTER_REQUEST,
-  REGISTER_SUCCESS,
   REGISTER_ERROR,
 } from '../actions/register';
 
@@ -15,14 +14,6 @@ export default function userReducer(state = initialState, action) {
     return {
       ...state,
       loading: true,
-      error: null,
-    };
-  }
-  if (action.type === REGISTER_SUCCESS) {
-    return {
-      ...state,
-      isLogged: action.data,
-      loading: false,
       error: null,
     };
   }

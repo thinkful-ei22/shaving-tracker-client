@@ -18,14 +18,12 @@ export class LandingPage extends React.Component {
   }
 
   render() {
-    const { error, didRegisterSucceed, loggedIn } = this.props;
+    const { error, loggedIn } = this.props;
     let errorMsg;
-    let registrationSuccessDisplay;
 
     if (loggedIn) {
       return <Redirect to="/mycollection" />;
     }
-
     if (error) {
       errorMsg = (
         <div className="login-error" aria-live="polite">
@@ -33,11 +31,7 @@ export class LandingPage extends React.Component {
         </div>
       );
     }
-    if (didRegisterSucceed) {
-      registrationSuccessDisplay = (
-        <div className="test">Register Success</div>
-      );
-    }
+    
     return (
       <div>
         <h2>Welcome!</h2>
@@ -57,7 +51,6 @@ export class LandingPage extends React.Component {
               <input type="password" id="register-password" name="registerpassword" required />
             </label>
             <input type="submit" value="Register" className="register-button" />
-            {registrationSuccessDisplay}
           </form>
         </div>
       </div>
@@ -69,7 +62,6 @@ LandingPage.propTypes = {
   // loading: PropTypes.bool,
   loggedIn: PropTypes.bool,
   error: PropTypes.string,
-  didRegisterSucceed: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -77,12 +69,10 @@ LandingPage.defaultProps = {
   // loading: false,
   loggedIn: false,
   error: '',
-  didRegisterSucceed: false,
 };
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn,
-  didRegisterSucceed: state.user.isLogged,
   loading: state.user.loading,
   error: state.user.error,
 });
