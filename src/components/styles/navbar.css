@@ -120,7 +120,6 @@
     display: flex;
   }
   .topnav.responsive .form-login-container {
-    background-color: red;
     display: absolute;
     right: 20px;
     top: 50px;
