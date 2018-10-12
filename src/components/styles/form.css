@@ -1,6 +1,5 @@
 .form {
-  background: #fffcf2;
-  text-align: center;
+  background: #fffcf2
 }
 
 .form * {
@@ -36,6 +35,7 @@
   float: right;
   
 } */
+
 
 
 .col-1 {width: 8.33%;}

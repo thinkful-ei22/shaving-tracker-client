@@ -73,7 +73,8 @@
   right: 150px;
   bottom: 150px;
   background-color: #fffcf2;
-  
+  display: flex;
+  justify-content: center;  
   }
 
 .Overlay {

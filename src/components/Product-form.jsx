@@ -111,14 +111,14 @@ class ProductForm extends React.Component {
           overlayClassName="Overlay"
           ariaHideApp={false}
         >
-          <form className="form" onSubmit={e => this.onSubmit(e)}>
+          <form className="form col-6" onSubmit={e => this.onSubmit(e)}>
             <h3>Add Product</h3>
             {errorMessage}
             {loadingWheel}
             <ImageUpload />
             <label className="form-label" htmlFor="productType">Select Product Type: </label>
             <select defaultValue=""
-              className="col-5"
+              className="col-12"
               onChange={e => this.handleProductChange(e)}
               name="productType"
               id="productType"
@@ -134,7 +134,7 @@ class ProductForm extends React.Component {
             </select>
             <label className="form-label"  htmlFor="subtype">Select Product Subtype:</label>
             <select defaultValue=""
-              className="col-5"
+              className="col-12"
               id="subtype"
               name="subtype"
               required={this.state.types.length > 0}
@@ -145,19 +145,19 @@ class ProductForm extends React.Component {
             <label className="form-label" htmlFor="brand">
               <span>Brand</span>
             </label>
-            <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} required />
+            <input className="col-12" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} required />
             <label className="form-label"  htmlFor="model">
               <span>Model</span>
             </label>
-            <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} required />
+            <input className="col-12" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} required />
             <label className="form-label" htmlFor="nickname">
               <span>Nickname</span>
             </label>
-            <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
+            <input className="col-12" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
             <label htmlFor="comment">
               <span>Comments</span>
             </label>
-            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
+            <textarea className="col-12" id="comment" name="comment" placeholder="Comment/Notes" />
             <button className="col-3" type="submit">Submit</button>
             <button type="button" onClick={this.handleCloseModal}>Close</button>
           </form>
