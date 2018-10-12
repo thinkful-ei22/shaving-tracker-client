@@ -40,7 +40,6 @@ const CSVReader = ({
                 } else {
                   formattedData[key] = csvData.data[i][j].split(' ').join('');
                 }
-                // key === 'productType' ? formattedData[key] = csvData.data[i][j].toLowerCase().split(' ').join('') : formattedData[key] = csvData.data[i][j].split(' ').join('');
               }
             })
           }
