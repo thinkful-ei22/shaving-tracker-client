@@ -33,7 +33,14 @@ const CSVReader = ({
           for (let j=0; j < csvData.data[i].length; j++) {
             Object.keys(csvDataObj).forEach(key => {
               if (csvDataObj[key].index === j) {
-                key === 'productType' ? formattedData[key] = csvData.data[i][j].toLowerCase().split(' ').join('') : formattedData[key] = csvData.data[i][j].split(' ').join('');
+                if (key === 'productType') {
+                  formattedData[key] = csvData.data[i][j].toLowerCase().split(' ').join(''); 
+                } else if (key === 'nickname') {
+                  formattedData[key] = csvData.data[i][j];
+                } else {
+                  formattedData[key] = csvData.data[i][j].split(' ').join('');
+                }
+                // key === 'productType' ? formattedData[key] = csvData.data[i][j].toLowerCase().split(' ').join('') : formattedData[key] = csvData.data[i][j].split(' ').join('');
               }
             })
           }
