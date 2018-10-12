@@ -29,7 +29,7 @@ export class ShaveHistory extends React.Component {
     return (
       <div className="shave-history">
         <div className="empty">
-
+          {/* DO NOT DELETE THIS! It helps the column styles work! */}
         </div>
 
         <div className="shave-header">
