@@ -1,8 +1,17 @@
 
+.product-container {
+  grid-template-columns: 150px auto;
+}
 
-.product-container{
-  margin: auto;
-  max-width: 1000px;
+.product-nav-container {
+  width: 150px;
+}
+
+.product-nav {
+  position: fixed;
+  border: 2px solid black;
+  background: white;
+  padding: 15px 20px;
 }
 
 .product-list {
@@ -113,4 +122,28 @@
 .collection-footer a:hover,
 .collection-footer a:active{
   color: white;
+}
+
+
+@media only screen and (max-width: 803.636px) {
+
+  .product-container {
+    grid-template-columns: auto;
+  }
+
+  .product-nav-container {
+    width: 100%;
+  }
+
+  div.product-nav {
+    position: static;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+  }
+  
+  .product-header {
+    text-align: center;
+  }
+
 }
