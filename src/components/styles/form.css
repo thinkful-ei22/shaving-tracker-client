@@ -119,6 +119,10 @@
   .add-product-button::before {
     content: ' Product';
   }
+
+  .csv::before {
+    content: ' Many';
+  }
 }
 
 .relative {
