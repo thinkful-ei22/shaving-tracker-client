@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 .form {
   background: #fffcf2;
   text-align: center;
@@ -65,18 +67,25 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-.close:before {
+.close:before, .close-item::before {
   content: '✕';
 }
 
-.close {
+.close, .close-item {
   font-size: 1.5em;
   border: none;
   position: absolute;
   top: 0;
   right: 10px;
   cursor: pointer;
+}
+
+.close {
   background: #fffcf2;
+}
+
+.close-item {
+  background: #D7D0C1
 }
 
 .form input,
@@ -112,3 +121,29 @@
   }
 }
 
+.relative {
+  position: relative;
+}
+
+.form > label,
+.form > div > label {
+  width: 41.66%;
+  text-align: left;
+}
+
+.form > label,
+.form > span,
+.form > div > label,
+.form > fieldset > legend {
+  margin-bottom: 5px;
+  padding-left: 8px;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 15px;
+}
+
+.form > input, 
+.form > select,
+.form > textarea,
+#single {
+  margin-top: 5px;
+}

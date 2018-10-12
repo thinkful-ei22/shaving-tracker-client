@@ -8,7 +8,7 @@ import requiresLogin from './requires-login';
 import ImageUpload from './Image-upload';
 import { addProduct, clearErr } from '../actions/product';
 
-class ProductForm extends React.Component {
+export class ProductForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -143,19 +143,19 @@ class ProductForm extends React.Component {
               {typeList}
             </select>
             <label className="form-label" htmlFor="brand">
-              <span>Brand</span>
+              Brand
             </label>
             <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} required />
             <label className="form-label"  htmlFor="model">
-              <span>Model</span>
+              Model
             </label>
             <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} required />
             <label className="form-label" htmlFor="nickname">
-              <span>Nickname</span>
+              Nickname
             </label>
             <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
             <label htmlFor="comment">
-              <span>Comments</span>
+              Comments
             </label>
             <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
             <button className="col-3" type="submit">Submit</button>

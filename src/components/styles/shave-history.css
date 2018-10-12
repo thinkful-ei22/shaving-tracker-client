@@ -79,7 +79,7 @@
 }
 
 .Modal:focus {
-  outline: none;
+  outline: thin dotted;
 }
 
 .Overlay {

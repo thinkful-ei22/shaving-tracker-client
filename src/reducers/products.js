@@ -2,16 +2,19 @@ import {
   ADD_PRODUCT_ERROR,
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_REQUEST,
+  ADD_MANY_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_ERROR,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_REQUEST,
   CLEAR_ERR,
+  CLEAR_ADD_MANY_RESPONSE,
 } from '../actions/product';
 
 const initialState = {
   userProducts: [],
   loading: false,
   error: null,
+  manyProductsResponse: [],
 };
 
 export default function productReducer(state = initialState, action) {
@@ -36,6 +39,12 @@ export default function productReducer(state = initialState, action) {
       loading: false,
       error: action.error,
     });
+  }
+  if (action.type === ADD_MANY_PRODUCTS_SUCCESS) {
+    return ({
+      ...state,
+      manyProductsResponse: action.data,
+    })
   }
   if (action.type === FETCH_PRODUCTS_SUCCESS) {
     return ({
@@ -64,6 +73,12 @@ export default function productReducer(state = initialState, action) {
       ...state, 
       error: null,
       loading: false,
+    })
+  }
+  if (action.type === CLEAR_ADD_MANY_RESPONSE) {
+    return ({
+      ...state,
+      manyProductsResponse: [],
     })
   }
   return state;
