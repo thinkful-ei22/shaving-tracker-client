@@ -21,7 +21,8 @@ export class ShaveHistoryItems extends React.Component {
       startFilter,
       endFilter,
     } = this.props;
-    const noHistory = <div>No History!</div>
+
+    const noHistory = <div className="no-history-message"><p>No shaves found. Add a shave with +Shave!</p></div>
 
     if (!shaveHistory || !shaveHistory.length > 0) {
       return (noHistory);

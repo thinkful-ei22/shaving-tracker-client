@@ -129,6 +129,11 @@
   display: inline-block;
 }
 
+.no-history-message{
+  color: white;
+  height: 55px;
+}
+
 .Modal {
   position: fixed;
   overflow: auto;

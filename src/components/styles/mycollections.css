@@ -118,9 +118,11 @@
   text-align: left;
 }
 
-.collection-item > img {
-  width: 250px;
+.no-products-message{
+  color: white;
 }
+
+
 
 .collection-footer{
   font-size: .8em;
