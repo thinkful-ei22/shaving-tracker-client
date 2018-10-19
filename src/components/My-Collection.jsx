@@ -113,8 +113,6 @@ export class MyCollection extends React.Component {
       </TabPanel>
     ));
 
-    console.log(collections);
-
     const tabs = this.state.useIcons
       ?
         ([<Tab key="razor"><img src={razorIcon} height="18" alt="Razors"></img></Tab>,
