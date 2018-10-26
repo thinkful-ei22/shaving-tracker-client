@@ -150,6 +150,9 @@ export class ShaveForm extends React.Component {
                 <option value="" >None</option>
                 {productsObj ? productsObj.additionalcare : null}
               </select>
+              <label htmlFor="comment">
+                Comments:
+              </label>
               <textarea className="" id="comment" name="comment" placeholder="Comment/Notes" />
               <div className="community-checkbox">
                 <label htmlFor="share">Share with community?</label>
