@@ -141,3 +141,10 @@
   }
 
 }
+
+@media screen and (max-width: 675px){
+  .form-login {
+    display: flex;
+    flex-direction: column;
+  }
+}
