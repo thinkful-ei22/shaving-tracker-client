@@ -7,11 +7,6 @@ body{
   background-repeat: no-repeat;
 }
 
-.app-content{
-  margin: 10px;
-  /* background: url(./image/img2.jpg) no-repeat center center fixed;  */
-}
-
 .red {
   border: 1px solid red;
 }

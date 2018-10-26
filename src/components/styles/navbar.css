@@ -109,8 +109,9 @@
     float: right;
     display: block;
     right: 0;
-    top: 0;
+    top: 18px;
   }
+
 }
 
 @media screen and (max-width: 870px) {
@@ -119,7 +120,10 @@
     position: absolute;
     display: block;
     right: 0;
-    top: 0;
+    top: 18px;
+  }
+  .right-align{
+    margin-right: 20px;
   }
 
   .topnav.responsive .right-align a, .topnav.responsive .logout-btn {
