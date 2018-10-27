@@ -11,6 +11,12 @@ A place for shave enthusiasts to come together and create a community. There is 
   - [Shaves](#shaves)
   - [Products](#products)
 - [API Documentation](#api-examples)
+  - [User](#user)
+  - [Auth](#auth)
+  - [Products](#products)
+  - [Shaves](#shaves)
+  - [Community](#community)
+  - [Image](#image)
 - [Key Parts](#key-parts)
 
 
