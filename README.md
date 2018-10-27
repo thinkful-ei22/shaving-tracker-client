@@ -491,7 +491,6 @@ Response body:
         "rating": 4,
         "imageUrl": ""
     },
-    ...
 ]
 ```
 
