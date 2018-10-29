@@ -34,9 +34,15 @@ export class LandingPage extends React.Component {
     
     return (
       <div className = "landing-page-body">
-        <p className ="welcome-header">Welcome!</p>
-        <p className ="welcome-header">Join our shaving community and</p>
-        <p className ="welcome-header">keep track of all your products and shaves.</p>
+        <div className="welcome-header">
+          <h2>Welcome to ShaveReducer!</h2>
+          <p>
+            Are you a shaving enthusiast?
+            With ShaveReducer, you can keep track of all your shaving products
+            and keep detailed logs of your shaving history. You can then share your
+            shaves and see what products are popular among the community!
+          </p>
+        </div>
         <div className="sign-up-container">
           <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">
             {errorMsg}

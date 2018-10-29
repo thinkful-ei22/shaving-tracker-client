@@ -13,8 +13,10 @@
   }
 
   .welcome-header {
+    max-width: 630px;
+    margin: auto;
     margin-top: 0px;
-    padding: 0px 0px;
+    padding: 0px 15px;
     color: #fffcf7;
     text-align: center;
     font-family: 'Merriweather', serif;
