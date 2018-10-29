@@ -9,17 +9,17 @@ A place for shave enthusiasts to come together and create a community. There is 
 - [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
 - [Data Models](#data-models)
-  - [User Schema](#user)
-  - [User Product Schema](#user-products)
-  - [Shaves](#shaves)
-  - [Products](#products)
+  - [User Schema](#users)
+  - [User Product Schema](#user_products)
+  - [Shaves Schema](#shaves)
+  - [Products Schema](#products)
 - [API Documentation](#api-examples)
-  - [User](#user)
-  - [Auth](#auth)
-  - [Products](#products)
-  - [Shaves](#shaves)
-  - [Community](#community)
-  - [Image](#image)
+  - [User](#user-api)
+  - [Auth](#auth-api)
+  - [Products](#products-api)
+  - [Shaves](#shaves-api)
+  - [Community](#community-api)
+  - [Image](#image-api)
 - [Key Parts](#key-parts)
 
 ---
@@ -27,6 +27,8 @@ A place for shave enthusiasts to come together and create a community. There is 
 ## Description
 
  Here, users can add various shaving products and seperate them into catgeories. We also add other useful features, such as the shave history page, which allows users to keep a log of products used for a shave and leave comments and ratings for further use. These shaves can be shared with the community of users as well.
+
+[ [return to top](#table-of-contents) ]
 
  ---
 
@@ -42,6 +44,8 @@ The backend can be found here: https://github.com/thinkful-ei22/shaving-tracker-
   Username: beardy
   Password: wicked
 ```
+
+[ [return to top](#table-of-contents) ]
 
 ---
 
@@ -74,6 +78,8 @@ This app was created using React for the front-end, and Node for the back-end.
 *Front-end*: React was used to build the client side of this application, with Redux used for state-management. React stateful components are used to manage state for each indiviual component. React-router is used to route and connect the various components together. A react-tabs libray is used to create tabs which is used to filter the products viewed on our collection page. The react-modal libaray is used to create a modal when adding products and shaves. PapaParse is another technology used to parse data from a .csv file.
 
 *Back-end*: Node.js was used to create the server side of this application. Mongo was used to manage the database, with mlab to host the data. The express middleware was used to help modularize the server side. Some testing was done using mocha and chai.
+
+[ [return to top](#table-of-contents) ]
 
 ---
 
@@ -155,11 +161,20 @@ function validateEmail(email) {
 }
 ```
 
+[ [return to top](#table-of-contents) ]
+
 ---
 
 ## API EXAMPLES
 
-### USER
+- [User](#user-api)
+- [Auth](#auth-api)
+- [Products](#products-api)
+- [Shaves](#shaves-api)
+- [Community](#community-api)
+- [Image](#image-api)
+
+### USER API
 
 Used for creating new accounts.
 
@@ -196,7 +211,10 @@ Response body:
 }
 ```
 
-### AUTH
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
+### AUTH API
 
 Used for logging in.
 
@@ -223,6 +241,9 @@ Response body:
 }
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### POST /api/v1/refresh
 
 Purpose: refresh a user's JWT
@@ -235,7 +256,7 @@ Request header:
   "Authorization": "Bearer AUTH_TOKEN"
 ```
 
-Request body: 
+Request body:
 
 ```json
 {}
@@ -249,7 +270,10 @@ Response body:
 }
 ```
 
-### PRODUCTS
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
+### PRODUCTS API
 
 Used to manage products in the DB, modifying both the user's personal collection of products and the global product collection.
 
@@ -302,6 +326,9 @@ Response body:
 ]
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### POST /api/v1/products/personal
 
 Purpose: Adds a new item to the user's personal product collection. Has a dynamic between the user's personal products and the global products.
@@ -339,6 +366,9 @@ Response body:
 }
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### PUT /api/v1/products/personal/:id
 
 Purpose: Updates personal content of a product in user's product collection
@@ -365,6 +395,9 @@ Response body:
 }
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### DELETE /api/v1/products/personal/:id
 
 Purpose: Removes a product from someone's personal collection
@@ -385,7 +418,10 @@ Response body:
 }
 ```
 
-### SHAVES
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
+### SHAVES API
 
 Used to manage a user's shave events.
 
@@ -489,6 +525,9 @@ Response body:
 ]
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### POST /api/v1/shaves
 
 Purpose: Allows user to record a new shave event.
@@ -582,6 +621,9 @@ Response body:
 }
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### PUT /api/v1/shaves/:id
 
 Purpose: Updates info of a given shave
@@ -666,6 +708,9 @@ Response body:
 }
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 #### DELETE /api/v1/shaves/:id
 
 Purpose: Deletes a given shave by id
@@ -686,7 +731,10 @@ Response body:
 }
 ```
 
-### COMMUNITY
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
+### COMMUNITY API
 
 Used to fetch publicly-shared information from other users.
 
@@ -789,7 +837,10 @@ Response body:
 ]
 ```
 
-### IMAGE
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
+### IMAGE API
 
 Used for image uploads and management.
 
@@ -849,6 +900,9 @@ Response body:
 }
 ```
 
+[ [more examples](#api-examples) ]
+[ [return to top](#table-of-contents) ]
+
 ## Key Parts
 
 This application has several components. A few of the main components that are responsible for our features are: **CSV-Products**, **My-collection**, **Shave-history** , and **Product-form/Shave-form**.
@@ -861,4 +915,6 @@ _My-collection_: My-collection is responsible for handling the fetched data from
 
 _Shave-history_: Our Shave-history component handles the creation and displaying of the shave history of users. A shave history consists of the shaving products a user may use for his or her shave. The user may also leave a rating and comment to look back on in the future. These shaves may be shared with the "community" of users of the page. Users may also filter their shave's by the date of the shave.
 
-_Product-form/Shave-form_: These two components handle the modal that displays when adding (or editing) products and shaves. 
+_Product-form/Shave-form_: These two components handle the modal that displays when adding (or editing) products and shaves.
+
+[ [return to top](#table-of-contents) ]
