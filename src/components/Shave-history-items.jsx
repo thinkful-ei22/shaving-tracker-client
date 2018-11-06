@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import EditShaves from './Edit-shave';
 import { deleteShaves } from '../actions/shaves';
+import DEFAULT_IMAGE from '../images/No_image_available.svg';
 
 export class ShaveHistoryItems extends React.Component {
   onClick(id) {
@@ -81,7 +82,7 @@ export class ShaveHistoryItems extends React.Component {
 
       const imgUrl = sortedShaveHist[i].imageUrl
         ? sortedShaveHist[i].imageUrl
-        : 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
+        : DEFAULT_IMAGE;
 
       const comments = sortedShaveHist[i].comments ? sortedShaveHist[i].comments : 'n/a';
 
