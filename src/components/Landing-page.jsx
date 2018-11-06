@@ -44,7 +44,7 @@ export class LandingPage extends React.Component {
           </p>
         </div>
         <div className="sign-up-container">
-          <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container col-6">
+          <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">
             {errorMsg}
             <h3 className="sign-up-header">Join Us</h3>
             <label htmlFor="email">

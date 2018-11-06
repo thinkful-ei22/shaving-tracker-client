@@ -98,7 +98,7 @@ export class NavBar extends Component {
       );
     }
     return (
-      <div className="topnav" id="topnav">
+      <header className="topnav" id="topnav">
         <Link className="home-nav" id="home-nav" to="/">
           <h1>
             ShaveReducer
@@ -108,7 +108,7 @@ export class NavBar extends Component {
           {loggedIn}
           {loggedOut}
         </div>
-      </div>
+      </header>
     );
   }
 }

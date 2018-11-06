@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles/collection-card.css';
+import DEFAULT_IMAGE from '../images/No_image_available.svg';
 
 const CollectionCard = (props) => {
   let {
     brand, model, subtype, nickname, comment, imageUrl, totalUsage,
   } = props;
 
-  const usedImageUrl = imageUrl ? imageUrl : 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
+  const usedImageUrl = imageUrl ? imageUrl : DEFAULT_IMAGE;
 
   subtype = subtype ? subtype : 'n/a';
   comment = comment ? comment : 'n/a';

@@ -52,6 +52,7 @@
   position: relative;
   top: 2px;
   margin: 0 0;
+  padding: 13px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   border: 2px solid #1E0904;
@@ -96,14 +97,10 @@
 
 .collection-item{
   display: inline-block;
-  margin: 10px;
-  padding: 24px;
-  width: 300px;
-
-  /* background: #D7D0C1; */
-  /* background: white; */
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 95%;
   background: #EFE7E1;
-
   border: 1px solid #1E0904;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   text-align: center;
@@ -145,7 +142,7 @@
   }
 
   .product-nav-container {
-    width: 100%;
+    width: 90%;
   }
 
   div.product-nav {

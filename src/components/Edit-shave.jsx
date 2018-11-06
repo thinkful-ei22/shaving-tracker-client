@@ -110,100 +110,104 @@ export class EditShaves extends React.Component {
           <form className="form" onSubmit={e => this.handleEdit(e)}>
             {errorMessage}
             <h3>Edit Shave</h3>
-            <label htmlFor="date">
-              Date
-            </label>
-            <input className="col-5" type="date" id="date" name="date"
-              defaultValue={moment(shaveItem.date).tz('Atlantic/Azores').format('YYYY-MM-DD')}
-            />
-
-            <label htmlFor="razor">
-              Select Razor:
-            </label>
-            <select defaultValue={defaultRazor} className="col-5" id="razor" name="razor" required>
-              <option value="" disabled>Select...</option>
-              {productsObj ? productsObj.razor : null}
-            </select>
-
-            <label htmlFor="blade">
-              Select Blade:
-            </label>
-            <select defaultValue={defaultBlade} className="col-5" id="blade" name="blade" required>
-              <option value="" disabled>Select...</option>
-              {productsObj ? productsObj.blade : null}
-            </select>
-
-            <label htmlFor="brush">
-              Select Brush:
-            </label>
-            <select defaultValue={defaultBrush} className="col-5" id="brush" name="brush">
-              <option value="">None</option>
-              {productsObj ? productsObj.brush : null}
-            </select>
-
-            <label htmlFor="lather">
-              Select Lather:
-            </label>
-            <select defaultValue={defaultLather} className="col-5" id="lather" name="lather">
-              <option value="" >None</option>
-              {productsObj ? productsObj.lather : null}
-            </select>
-
-            <label htmlFor="aftershave">
-              Select Aftershave:
-            </label>
-            <select defaultValue={defaultAftershave} className="col-5" id="aftershave" name="aftershave">
-              <option value="" >None</option>
-              {productsObj ? productsObj.aftershave : null}
-            </select>
             
-            <label htmlFor="additionalcare">
-              Select Additional Care:
-            </label>
-            <select defaultValue={defaultAdditionalCare} className="col-5" id="additionalcare" name="additionalcare">
-              <option value="" >None</option>
-              {productsObj ? productsObj.additionalcare : null}
-            </select>
+            <div className="form-content">
 
-            <textarea className="col-5"
-              id="comment"
-              name="comment"
-              placeholder="Comment/Notes"
-              defaultValue={shaveItem.comments}
-            />
-            <div className="community-checkbox">
-              <label htmlFor="share">Share with community?</label>
-              <input type="checkbox" name="share" value="share" id="share"
-                defaultChecked={shaveItem.share}
+              <label htmlFor="date">
+                Date
+              </label>
+              <input className="" type="date" id="date" name="date"
+                defaultValue={moment(shaveItem.date).tz('Atlantic/Azores').format('YYYY-MM-DD')}
               />
-            </div>
-            <fieldset className="rating" defaultValue={shaveItem.rating}>
-              <legend>Rating:</legend>
-              <div>
-                <input type="radio" id="star5" name="rating" value="5" 
-                  defaultChecked={shaveItem.rating === 5 ? true : false}
+
+              <label htmlFor="razor">
+                Select Razor:
+              </label>
+              <select defaultValue={defaultRazor} className="" id="razor" name="razor" required>
+                <option value="" disabled>Select...</option>
+                {productsObj ? productsObj.razor : null}
+              </select>
+
+              <label htmlFor="blade">
+                Select Blade:
+              </label>
+              <select defaultValue={defaultBlade} className="" id="blade" name="blade" required>
+                <option value="" disabled>Select...</option>
+                {productsObj ? productsObj.blade : null}
+              </select>
+
+              <label htmlFor="brush">
+                Select Brush:
+              </label>
+              <select defaultValue={defaultBrush} className="" id="brush" name="brush">
+                <option value="">None</option>
+                {productsObj ? productsObj.brush : null}
+              </select>
+
+              <label htmlFor="lather">
+                Select Lather:
+              </label>
+              <select defaultValue={defaultLather} className="" id="lather" name="lather">
+                <option value="" >None</option>
+                {productsObj ? productsObj.lather : null}
+              </select>
+
+              <label htmlFor="aftershave">
+                Select Aftershave:
+              </label>
+              <select defaultValue={defaultAftershave} className="" id="aftershave" name="aftershave">
+                <option value="" >None</option>
+                {productsObj ? productsObj.aftershave : null}
+              </select>
+              
+              <label htmlFor="additionalcare">
+                Select Additional Care:
+              </label>
+              <select defaultValue={defaultAdditionalCare} className="" id="additionalcare" name="additionalcare">
+                <option value="" >None</option>
+                {productsObj ? productsObj.additionalcare : null}
+              </select>
+
+              <textarea className=""
+                id="comment"
+                name="comment"
+                placeholder="Comment/Notes"
+                defaultValue={shaveItem.comments}
+              />
+              <div className="community-checkbox">
+                <label htmlFor="share">Share with community?</label>
+                <input type="checkbox" name="share" value="share" id="share"
+                  defaultChecked={shaveItem.share}
                 />
-                <label htmlFor="star5" className="full" />
-                <input type="radio" id="star4" name="rating" value="4" 
-                  defaultChecked={shaveItem.rating === 4 ? true : false}
-                />
-                <label htmlFor="star4" className="full" />
-                <input type="radio" id="star3" name="rating" value="3" 
-                  defaultChecked={shaveItem.rating === 3 ? true : false}
-                />
-                <label htmlFor="star3" className="full" />
-                <input type="radio" id="star2" name="rating" value="2"
-                  defaultChecked={shaveItem.rating === 2 ? true : false}
-                />
-                <label htmlFor="star2" className="full" />
-                <input type="radio" id="star1" name="rating" value="1"
-                  defaultChecked={shaveItem.rating === 1 ? true : false}
-                />
-                <label htmlFor="star1" className="full" />
               </div>
-            </fieldset>
-            <button type="submit" className="weighty-button">Submit</button>
-            <button className="close" type="button" onClick={this.handleCloseModal} />
+              <fieldset className="rating" defaultValue={shaveItem.rating}>
+                <legend>Rating:</legend>
+                <div>
+                  <input type="radio" id="star5" name="rating" value="5" 
+                    defaultChecked={shaveItem.rating === 5 ? true : false}
+                  />
+                  <label htmlFor="star5" className="full" />
+                  <input type="radio" id="star4" name="rating" value="4" 
+                    defaultChecked={shaveItem.rating === 4 ? true : false}
+                  />
+                  <label htmlFor="star4" className="full" />
+                  <input type="radio" id="star3" name="rating" value="3" 
+                    defaultChecked={shaveItem.rating === 3 ? true : false}
+                  />
+                  <label htmlFor="star3" className="full" />
+                  <input type="radio" id="star2" name="rating" value="2"
+                    defaultChecked={shaveItem.rating === 2 ? true : false}
+                  />
+                  <label htmlFor="star2" className="full" />
+                  <input type="radio" id="star1" name="rating" value="1"
+                    defaultChecked={shaveItem.rating === 1 ? true : false}
+                  />
+                  <label htmlFor="star1" className="full" />
+                </div>
+              </fieldset>
+              <button type="submit" className="weighty-button">Submit</button>
+              <button className="close" type="button" onClick={this.handleCloseModal} />
+            </div>
           </form>
         </ReactModal>
       </div>

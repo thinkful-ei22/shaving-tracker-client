@@ -8,7 +8,7 @@
   }
 
   .app-content {
-    padding: 0;
+    padding: 0 15px;
     margin: 0;
   }
 
@@ -76,11 +76,12 @@
 
   .landing-page-footer {
     font-family: 'Merriweather', serif;
-    background-color: black;
+    /* background-color: black; */
     text-align: center;
     color: white;
     height: auto;
     padding: 10px 10px;
+    text-shadow: 1px 1px 1px #000, 3px 3px 5px #000;
   }
 
  .footer-first-row {
@@ -91,4 +92,10 @@
  .footer-second-row {
   display: flex;
   justify-content: space-evenly;
+ }
+
+ @media only screen and (max-width: 675px){
+   .sign-up-container{
+     width: 95%;
+   }
  }

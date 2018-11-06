@@ -115,51 +115,54 @@ export class ProductForm extends React.Component {
             <h3>Add Product</h3>
             {errorMessage}
             {loadingWheel}
-            <ImageUpload />
-            <label className="form-label" htmlFor="productType">Select Product Type: </label>
-            <select defaultValue=""
-              className="col-5"
-              onChange={e => this.handleProductChange(e)}
-              name="productType"
-              id="productType"
-              required
-            >
-              <option value="" disabled>Product Type</option>
-              <option value="razor">Razor</option>
-              <option value="blade">Blade</option>
-              <option value="brush">Brush</option>
-              <option value="lather">Lather</option>
-              <option value="aftershave">Aftershave</option>
-              <option value="additionalcare">Additional Care</option>
-            </select>
-            <label className="form-label"  htmlFor="subtype">Select Product Subtype:</label>
-            <select defaultValue=""
-              className="col-5"
-              id="subtype"
-              name="subtype"
-              required={this.state.types.length > 0}
-            >
-              <option value="" disabled>Subtype</option>
-              {typeList}
-            </select>
-            <label className="form-label" htmlFor="brand">
-              Brand
-            </label>
-            <input className="col-5" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} required />
-            <label className="form-label"  htmlFor="model">
-              Model
-            </label>
-            <input className="col-5" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} required />
-            <label className="form-label" htmlFor="nickname">
-              Nickname
-            </label>
-            <input className="col-5" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
-            <label htmlFor="comment">
-              Comments
-            </label>
-            <textarea className="col-5" id="comment" name="comment" placeholder="Comment/Notes" />
-            <button className="weighty-button" type="submit">Submit</button>
-            <button className="close" type="button" onClick={this.handleCloseModal} />
+            <div className="form-content">
+
+              <ImageUpload />
+              <label className="form-label" htmlFor="productType">Select Product Type: </label>
+              <select defaultValue=""
+                className=""
+                onChange={e => this.handleProductChange(e)}
+                name="productType"
+                id="productType"
+                required
+              >
+                <option value="" disabled>Product Type</option>
+                <option value="razor">Razor</option>
+                <option value="blade">Blade</option>
+                <option value="brush">Brush</option>
+                <option value="lather">Lather</option>
+                <option value="aftershave">Aftershave</option>
+                <option value="additionalcare">Additional Care</option>
+              </select>
+              <label className="form-label"  htmlFor="subtype">Select Product Subtype:</label>
+              <select defaultValue=""
+                className=""
+                id="subtype"
+                name="subtype"
+                required={this.state.types.length > 0}
+              >
+                <option value="" disabled>Subtype</option>
+                {typeList}
+              </select>
+              <label className="form-label" htmlFor="brand">
+                Brand
+              </label>
+              <input className="" id="brand" name="brand" placeholder="brand" onChange={e => this.handleNickname(e)} required />
+              <label className="form-label"  htmlFor="model">
+                Model
+              </label>
+              <input className="" id="model" name="model" placeholder="model" onChange={e => this.handleNickname(e)} required />
+              <label className="form-label" htmlFor="nickname">
+                Nickname
+              </label>
+              <input className="" id="nickname" name="nickname" placeholder="nickname" value={nickname} onChange={e => this.handleNicknameChange(e)} />
+              <label htmlFor="comment">
+                Comments
+              </label>
+              <textarea className="" id="comment" name="comment" placeholder="Comment/Notes" />
+              <button className="weighty-button" type="submit">Submit</button>
+              <button className="close" type="button" onClick={this.handleCloseModal} />
+            </div>
           </form>
         </ReactModal>
       </div>

@@ -34,6 +34,7 @@
 .login-button {
   display: block;
   float: right;
+  margin-bottom: 10px;
 }
 
 .form-login {
@@ -109,8 +110,9 @@
     float: right;
     display: block;
     right: 0;
-    top: 0;
+    top: 18px;
   }
+
 }
 
 @media screen and (max-width: 870px) {
@@ -119,7 +121,10 @@
     position: absolute;
     display: block;
     right: 0;
-    top: 0;
+    top: 18px;
+  }
+  .right-align{
+    margin-right: 20px;
   }
 
   .topnav.responsive .right-align a, .topnav.responsive .logout-btn {
@@ -136,4 +141,11 @@
     padding: 14px 16px;
   }
 
+}
+
+@media screen and (max-width: 675px){
+  .form-login {
+    display: flex;
+    flex-direction: column;
+  }
 }
