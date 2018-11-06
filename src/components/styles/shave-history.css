@@ -73,7 +73,8 @@
   margin: 10px;
   padding: 24px;
   display: inline-block;
-  width: 300px;
+  width: 100%;
+  max-width: 360px;
   border: 1px solid #1E0904;
   border-radius: 4px;
   background: #EFE7E1;
