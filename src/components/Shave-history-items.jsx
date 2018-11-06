@@ -87,7 +87,7 @@ export class ShaveHistoryItems extends React.Component {
       const comments = sortedShaveHist[i].comments ? sortedShaveHist[i].comments : 'n/a';
 
       items.push(
-        <div className="shave-list-item" key={sortedShaveHist[i].id}>
+        <section className="shave-list-item" key={sortedShaveHist[i].id}>
           <h3>{itemDate}</h3>
 
           <div className="image-div-normalizer">
@@ -128,7 +128,7 @@ export class ShaveHistoryItems extends React.Component {
             {deleteButton}
           </div>
           
-        </div>,
+        </section>,
       );
     }
 
