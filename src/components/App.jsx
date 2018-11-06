@@ -18,7 +18,7 @@ const App = () => (
     <Router>
       <div>
         <NavBar />
-        <div className="app-content">
+        <main className="app-content">
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/mycollection" component={MyCollection} />
           <Route exact path="/product-form" component={ProductForm} />
@@ -26,7 +26,7 @@ const App = () => (
           <Route exact path="/shaves" component={ShaveHistory} />
           <Route exact path="/community/shaves" component={CommunityShaveHistory} />
           <Route exact path="/csvproducts" component={CSVProducts} />
-        </div>
+        </main>
       </div>
     </Router>
   </Provider>
