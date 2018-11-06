@@ -48,13 +48,13 @@ export class MyCollection extends React.Component {
   generateContent(productType, product){
     if(productType[product].length > 0)
       return productType[product].map(item => <CollectionCard {...item} key={item.id} />)
-    else if(product === 'all'){
-      return (
-        <div className="no-products-message">
-          <p>First time here? Add a razor, a blade, and any other products you wish with +Product!</p>
-        </div>
-      )
-    }
+    // else if(product === 'all'){
+    //   return (
+    //     <div className="no-products-message">
+    //       <p>First time here? Add a razor, a blade, and any other products you wish with +Product!</p>
+    //     </div>
+    //   )
+    // }
     else
       return (
         <div className="no-products-message">
@@ -66,7 +66,7 @@ export class MyCollection extends React.Component {
   render() {
     const { products } = this.props;
     const categorizedProducts = {
-      all: [],
+      // all: [],
       razor: [],
       blade: [],
       brush: [],
@@ -82,7 +82,7 @@ export class MyCollection extends React.Component {
       } else {
         tempObj[type] = [...tempObj[type], product];
       }
-      tempObj.all.push(product);
+      // tempObj.all.push(product);
       return tempObj;
     }, categorizedProducts);
 
@@ -152,7 +152,7 @@ export class MyCollection extends React.Component {
               <Tabs className="product-list">
                 <div className="collection-content">
                   <TabList className="product-tabs">
-                    <Tab>All</Tab>
+                    {/* <Tab>All</Tab> */}
                     {tabs}
                   </TabList>
                   {collections}
