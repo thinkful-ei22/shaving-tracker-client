@@ -15,7 +15,7 @@ const CollectionCard = (props) => {
   comment = comment ? comment : 'n/a';
 
   return (
-    <section className="collection-item">
+    <article className="collection-item">
       <h3>{nickname}</h3>
       <div className="image-div-normalizer">
         <img src={usedImageUrl} alt="" />
@@ -37,7 +37,7 @@ const CollectionCard = (props) => {
         <span className="collection-item-info--label">Uses:</span>
         <span className="collection-item-info--value">{totalUsage}</span> 
       </div>
-    </section>
+    </article>
   );
 };
 

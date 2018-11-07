@@ -56,7 +56,7 @@ export class NavBar extends Component {
     }
     if (isLogged) {
       loggedIn = (
-        <div className="topnav-links">
+        <nav className="topnav-links">
           <a
             type="button"
             aria-label="menu"
@@ -73,7 +73,7 @@ export class NavBar extends Component {
               Log Out
             </LinkButton>
           </div>
-        </div>
+        </nav>
       );
     } else {
       loggedOut = (

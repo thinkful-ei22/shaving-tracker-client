@@ -18,7 +18,7 @@ class CommunityShaveNav extends React.Component{
     } = this.props;
 
     return(
-      <div className="shave-nav">
+      <section className="shave-nav">
         <div className="shave-date-filter-container">
           <div className="shave-date-filter shave-date-filter-start">
             <label>Start Date: </label>
@@ -43,7 +43,7 @@ class CommunityShaveNav extends React.Component{
             />
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
