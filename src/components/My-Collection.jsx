@@ -96,7 +96,7 @@ export class MyCollection extends React.Component {
     
     let collections = Object.keys(productType).map(product => (
       <TabPanel key={product} className="collection-list">
-        <div className="collection-list-container">
+        <section className="collection-list-container">
           {this.generateContent(productType, product)}
           {/* {productType[product].map(item => <CollectionCard {...item} key={item.id} />)} */}
           {/* {
@@ -109,7 +109,7 @@ export class MyCollection extends React.Component {
                 </div> 
               );
           } */}
-        </div>
+        </section>
       </TabPanel>
     ));
 
@@ -130,25 +130,25 @@ export class MyCollection extends React.Component {
         <Tab key="additional">Additional Cares</Tab>]);
 
     return (
-      <div className="product-container">
+      <section className="product-container">
         <div className="empty">
           {/* DO NOT DELETE THIS! It helps the column styles work! */}
         </div>
 
-        <div className="product-header">
+        <header className="product-header">
           <h2>My Collection</h2>
-        </div>
+        </header>
 
-        <div className="product-nav-container">
-          <div className="product-nav">
+        <section className="product-nav-container">
+          <section className="product-nav">
             <ProductForm />
             <CSVProducts />
-          </div>
-        </div>
+          </section>
+        </section>
 
         <div className="product-content">
-          <div className="product-list">
-              
+          <section className="product-list">
+
               <Tabs className="product-list">
                 <div className="collection-content">
                   <TabList className="product-tabs">
@@ -159,13 +159,13 @@ export class MyCollection extends React.Component {
                 </div>
               </Tabs>
 
-          </div>
+          </section>
         </div>
         <div className="empty">
           {/* DO NOT DELETE THIS! It helps the column styles work! */}
         </div>
         <div className="collection-footer">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></div>
-      </div>
+      </section>
     );
   }
 }

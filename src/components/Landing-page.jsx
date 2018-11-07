@@ -34,7 +34,7 @@ export class LandingPage extends React.Component {
     
     return (
       <div className = "landing-page-body">
-        <div className="welcome-header">
+        <section className="welcome-header">
           <h2>Welcome to ShaveReducer!</h2>
           <p>
             Are you a shaving enthusiast?
@@ -42,8 +42,8 @@ export class LandingPage extends React.Component {
             and keep detailed logs of your shaving history. You can then share your
             shaves and see what products are popular among the community!
           </p>
-        </div>
-        <div className="sign-up-container">
+        </section>
+        <section className="sign-up-container">
           <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">
             {errorMsg}
             <h3 className="sign-up-header">Join Us</h3>
@@ -61,7 +61,7 @@ export class LandingPage extends React.Component {
             </label><br/>
             <input type="submit" value="Register" className="register-button col-12" />
           </form>
-        </div>
+        </section>
         <footer className="landing-page-footer">
           <p>&copy; Hetokibo 2018</p>
         </footer>

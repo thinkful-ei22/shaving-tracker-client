@@ -50,7 +50,7 @@ const CSVProductsCard = props => {
   } 
   
   return (
-    <div className="collection-item relative csv-item">
+    <section className="collection-item relative csv-item">
       <button className="close-item" onClick={handleRemove} type="button" name={`remove-item ${index}`}/>
       <h3>{`Product ${index+1}`}</h3>
       <span className="collection-item-type">
@@ -121,7 +121,7 @@ const CSVProductsCard = props => {
         name={`comment ${index}`} 
         onChange={handleChange}
       />
-    </div>
+    </section>
   );
 };
 
@@ -145,7 +145,5 @@ CSVProductsCard.defaultProps = {
   comment: '',
   productType: '',
 };
-
-// brand, model, subtype, nickname, comment, productType, index, handleChange, handleRemove,
 
 export default CSVProductsCard;

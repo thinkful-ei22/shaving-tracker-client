@@ -28,29 +28,27 @@ export class CommunityShaveHistory extends React.Component {
       : (<ShaveHistoryItems canDelete={false} showUsername />);
 
     return (
-      <div className="shave-history">
+      <section className="shave-history">
         <div className="empty">
           {/* DO NOT DELETE THIS! It helps the column styles work! */}
         </div>
 
-        <div className="shave-header">
+        <header className="shave-header">
           <h2>Community Shaves</h2>
           {error}
-        </div>
+        </header>
 
-        <div className="shave-nav-container">
+        <section className="shave-nav-container">
           <CommunityShaveNav />
-        </div>
+        </section>
 
-        <div className="shave-content">
-          <div className="shave-list">
-            <div className="shave-list-content">
-              {shaveContent}
-            </div>
+        <section className="shave-list">
+          <div className="shave-list-content">
+            {shaveContent}
           </div>
-        </div>
+        </section>
         
-      </div>
+      </section>
     );
   }
 }
