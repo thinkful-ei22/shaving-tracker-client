@@ -42,6 +42,9 @@ export class LandingPage extends React.Component {
             and keep detailed logs of your shaving history. You can then share your
             shaves and see what products are popular among the community!
           </p>
+          <p><u>Demo Account:</u></p>
+          <p><strong>Username:</strong> Beardy</p>
+          <p><strong>Password:</strong> Wicked</p>
         </section>
         <section className="sign-up-container">
           <form onSubmit={e => this.onSubmit(e)} className="sign-up-form-container">
